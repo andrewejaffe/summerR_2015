@@ -16,6 +16,25 @@ TAs:
 * Shaun Truelove
 * Leonardo Collado-Torres
 
+# Modules
+
+* [Module 1]('module1.html')
+* [Module 2]('module2.html')
+* [Module 3]('module3.html')
+* [Module 4]('module4.html')
+* [Module 5]('module5.html')
+* [Module 6]('module6.html')
+* [Module 7]('module7.html')
+* [Module 8]('module8.html')
+* [Module 9]('module9.html')
+* [Module 10]('module10.html')
+* [Module 11]('module11.html')
+* [Module 12]('module12.html')
+* [Module 13]('module13.html')
+* [Module 14]('module14.html')
+
+
+# Render
 
 ```{r, eval = FALSE}
 ## Render this file:
