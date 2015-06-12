@@ -11,12 +11,14 @@ Instructor:
 
 * Andrew Jaffe
 
-TAs:
+Teaching assitants:
 
 * Shaun Truelove
 * Leonardo Collado-Torres
 
 # Syllabus
+
+Check the syllabus [here](http://www.aejaffe.com/summerR_2015/docs/Syllabus-summerR-student.doc).
 
 # Modules
 
