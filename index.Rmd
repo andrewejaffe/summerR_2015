@@ -1,0 +1,7 @@
+---
+output:
+  html_document:
+    theme: united
+---
+
+Summer R 2015
