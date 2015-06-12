@@ -9,12 +9,12 @@ Summer R 2015
 
 Instructor: 
 
-* Andrew Jaffe
+* [Andrew Jaffe](http://www.aejaffe.com/)
 
 Teaching assitants:
 
-* Shaun Truelove
-* Leonardo Collado-Torres
+* [Shaun Truelove](http://www.iddynamics.jhsph.edu/people.html)
+* [Leonardo Collado-Torres](http://lcolladotor.github.io/)
 
 # Syllabus
 
