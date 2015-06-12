@@ -16,6 +16,8 @@ TAs:
 * Shaun Truelove
 * Leonardo Collado-Torres
 
+# Syllabus
+
 # Modules
 
 <!-- * [Module 1](module/module1.html)
@@ -35,9 +37,7 @@ TAs:
 !-->
 
 
-# Render this 
-
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = FALSE}
 ## Render this file:
 rmarkdown::render('index.Rmd')
 ```
