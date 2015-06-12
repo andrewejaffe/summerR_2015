@@ -5,3 +5,19 @@ output:
 ---
 
 Summer R 2015
+=============
+
+Instructor: 
+
+* Andrew E Jaffe
+
+TAs:
+
+* Shaun Truelove
+* Leonardo Collado-Torres
+
+
+```{r, eval = FALSE}
+## Render this file:
+rmarkdown::render('index.Rmd')
+```
