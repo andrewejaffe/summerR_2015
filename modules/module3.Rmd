@@ -1,0 +1,280 @@
+---
+title: "Data Classes"
+subtitle: Module 3
+author: "Andrew Jaffe"
+date: "June 15, 2105"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+## Functions - Intro
+
+* R revolves around functions: denoted by `[function name]()`
+* Every function takes an input, defined by arguments, often provided by the user
+* Many functions have default settings for these arguments
+* `example([function name])` shows you how it is used
+
+## R Help
+* If you know the name of a function, `?[function name]` or `help([function name])` will pop up the help menu
+
+```{r assign_help, comment="", prompt=TRUE}
+## ?str
+## help("str")
+```
+
+## Functions - Intro
+
+For example, `length` is a function we briefly covered last module. You can try typing `?length` in the console and reading the help file.
+
+You can also see examples of running a function using `example()` [which is another function!]
+
+## Data Classes:
+
+* One dimensional classes ('vectors'):
+    * Character: strings or individual characters, quoted
+    * Numeric: any real number(s)
+    * Integer: any integer(s)/whole numbers
+    * Factor: categorical/qualitative variables
+    * Logical: variables composed of TRUE or FALSE
+
+## Data Classes:
+
+* Two dimensional classes:
+    * `data.frame`: traditional 'Excel' spreadsheets
+        * Each column can have a different class, from above
+    * Matrix: two-dimensional data, composed of rows and columns. Unlike data frames, the entire matrix is composed of one R class, e.g. all numeric or all characters.
+
+## Character and numeric
+
+We have already covered `character` and `numeric`
+
+```{r numChar, comment="", prompt=TRUE}
+class(c("Andrew","Jaffe"))
+class(c(1,4,7))
+```
+
+Recall that `c()` and `class()` are both functions!
+
+## Integer
+
+`Integer` is a special subset of `numeric` that contains only whole numbers
+
+A sequence of numbers is an example of the integer class
+
+```{r seq, comment="", prompt=TRUE}
+x = seq(from=1,to=5) # seq() is a function
+x
+class(x)
+```
+
+## Integer
+
+The colon `:` is a shortcut for making sequences of numbers
+
+It makes consecutive integer sequence from `[num1]` to `[num2]` by 1
+
+
+```{r seqShort, comment="", prompt=TRUE}
+1:5
+```
+
+## Factor
+
+`factor` are special `character` vectors where the elements have pre-defined groups or 'levels'. You can think of these as qualitative or categorical variables:
+
+```{r factor1, comment="", prompt=TRUE}
+x = factor(c("boy","girl","girl","boy","girl"))
+x 
+class(x)
+```
+
+Note that levels are, by default, alphabetical or alphanumerical order.
+
+## Logical
+
+`logical` is a class that only has two possible elements: `TRUE` and `FALSE`
+
+```{r logical1, comment="", prompt=TRUE}
+x = c(TRUE,FALSE,TRUE,TRUE,FALSE)
+class(x)
+```
+
+`sum()` and `mean()` work on `logical` vectors - they return the total and proportion of `TRUE` elements, respectively.
+
+## Logical
+
+Note that `logical` elements are NOT in quotes. 
+```{r logical2, comment="", prompt=TRUE}
+z = c("TRUE","FALSE","TRUE","FALSE")
+class(z)
+```
+
+## Vector functions
+
+Useful functions for exploring vectors (and other data types):
+
+* `length()` 
+* `head()` and `tail()`
+* `table()`
+* `subset()` and brackets (`[ ]`)
+* `unique()` 
+* `sum()`, `mean()`,`median()`, `min()`, `max()`
+
+## Head and Tail
+
+* `head()` shows the first 6 (default) elements of an R object
+* `tail()` shows the last 6 (default) elements of an R object
+* `str()` shows the structure of an R object
+
+## Head and Tail
+ 
+```{r head, comment="",prompt=TRUE}
+z = 1:100 # recall a sequence from 1 to 100
+head(z)
+tail(z)
+str(z)
+```
+
+These functions show a brief snapshot of the data which is useful for exploratory data analysis.
+
+## Table {.smaller}
+
+`table()` is the basic tabulation function, which is often more useful for `character` and `factor` vectors
+
+From the manual: "table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor level"
+
+```{r tab, comment="",prompt=TRUE}
+x = c("boy","girl","girl","boy","girl")
+table(x)
+y = c(1,2,1,2,1)
+table(x,y)
+```
+
+## Data Subsetting
+
+Brackets are used to select/subset/extract data in R
+
+```{r subset1, comment="",prompt=TRUE}
+x1 = 10:20
+x1
+length(x1)
+```
+
+## Data Subsetting
+
+```{r subset2, comment="",prompt=TRUE}
+x1[1] # selecting first element
+x1[3:4] # selecting third and fourth elements
+x1[c(1,5,7)] # selecting first, fifth, and seventh elements
+```
+
+#### **This is probably the most powerful and useful function in R. If you master this, you can literally do anything with R. Everything in the 'data analysis pipeline' revolves around subsetting (as you will soon see)**
+
+## Matrices
+
+```{r matrix, comment="", prompt=TRUE}
+n = 1:9 # sequence from first number to second number incrementing by 1
+n
+mat = matrix(n, nrow = 3)
+mat
+```
+
+## Matrix (and Data frame) Functions
+
+These are in addition to the previous useful vector functions:
+* `nrow()` displays the number of rows of a matrix or data frame
+* `ncol()` displays the number of columns 
+* `dim()` displays a vector of length 2: # rows, # columns
+* `colnames()` displays the column names (if any) and `rownames()` displays the row names (if any)
+
+## Data Selection
+
+Matrices have two "slots" you can use to select data, which represent rows and columns, that are separated by a comma, so the syntax is `matrix[row,column]`.
+
+```{r subset3, comment="", prompt=TRUE}
+mat[1,1] # individual entry: row 1, column 1
+mat[1,] # first row
+mat[,1] # first columns
+```
+
+## Data Selection
+
+Note that the class of the returned object is no longer a matrix
+
+```{r subset4, comment="", prompt=TRUE}
+class(mat[1,])
+class(mat[,1])
+```
+
+## Data Frames
+
+The `data.frame` is the other two dimensional variable class. 
+
+Again, data frames are like matrices, but each column is a vector that can have its own class. So some columns might be `character` and others might be `numeric`, while others maybe a `factor`.
+
+We can look at some of the example data frames that come with R.
+
+## Data Frames {.smaller}
+
+```{r df1, comment="", prompt=TRUE}
+data(iris) ## just use some data in R already
+names(iris) ## get the column names
+str(iris) # easy snapshot of data, like `describe` in Stata
+head(iris, 3) # get top 3 rows
+```
+
+## Data Selection
+
+Data frames have special ways to select data, specifically by a `$` and the column name.
+
+
+```{r df2, comment="", prompt=TRUE}
+head(iris$Petal.Length)
+class(iris$Petal.Width)
+```
+
+## Data Selection
+
+You can also subset data frames like matrices, using row and column indices, but using column names is generally safer and more reproducible.
+
+```{r subset6, comment="", prompt=TRUE}
+head(iris[,2])
+```
+
+You can also use the bracket notation, but specify the name(s) in quotes if you want more than 1 column. This allows you to subset rows and columns at the same time
+```{r subset7, comment="", prompt=TRUE}
+iris[1:3,c("Sepal.Width","Species")]
+```
+
+## Data Frames
+
+You can make your own data frames from "scratch" too, either from a matrix or using the `data.frame` function:
+
+```{r df3, comment="", prompt=TRUE}
+x = c("Andrew","Leonardo","Shaun")
+y = 1:3
+df = data.frame(name=x, id=y)
+df
+```
+
+## Data Frames {.smaller}
+
+You can add variables to a `data.frame` using `$` as well:
+
+```{r dfAdd, comment="", prompt=TRUE}
+iris2 = iris # copy `iris` to a new df
+iris2$Index=1:nrow(iris2)
+head(iris2)
+names(iris2)
+```
+
+## Data Classes: Extended
+
+Extensions of "normal" data classes:
+
+* N-dimensional classes:
+    * Arrays: any extension of matrices with more than 2 dimensions, e.g. 3x3x3 cube
+    * Lists: more flexible container for R objects. 
+
+
