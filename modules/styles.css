@@ -19,10 +19,18 @@ body{
   font-family: Helvetica;
   font-size: 16pt;
 }
+
 /* Headers */
-h1,h2,h3,h4,h5,h6{
+h1{
+  font-size: 32pt;
+}
+h2{
+  font-size: 28pt;
+}
+h3{
   font-size: 24pt;
 }
+
 
 .emphasized {
    font-size: 1.2em;
