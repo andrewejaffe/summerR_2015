@@ -147,7 +147,7 @@ name
 The function `c()` collects/combines/joins single R objects into a vector of R objects. It is mostly used for creating vectors of numbers, character strings, and other data types. 
 
 ```{r assign3a, comment="", prompt=TRUE}
-x <- c(1,4,6,8)
+x <- c(1, 4, 6, 8)
 x
 class(x)
 ```

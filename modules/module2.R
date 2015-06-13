@@ -33,7 +33,7 @@ name = "Andrew Jaffe"
 name
 
 ## ----assign3a, comment="", prompt=TRUE-----------------------------------
-x <- c(1,4,6,8)
+x <- c(1, 4, 6, 8)
 x
 class(x)
 
