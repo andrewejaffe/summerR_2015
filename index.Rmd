@@ -28,13 +28,10 @@ Teaching assitants:
 |---|---|---|---|---|
 | 1  | 2015-06-15  |   | [Try R](http://tryr.codeschool.com/)  | Finish all modules  |
 | 1  | 2015-06-15  | Module 1  | [Lecture](modules/module1.html), [pdf](modules/module1.pdf)  | Introduction to R  |
-<<<<<<< HEAD
 | 1  | 2015-06-15  | Module 2  | [Lecture](modules/module2.html), [pdf](modules/module2.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module2.R), [lab](labs/module2_lab.R)  | R variables  |
 | 1  | 2015-06-15  | Module 3  | [Lecture](modules/module3.html),[pdf](modules/module3.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module3.R), [lab](labs/module3_lab.R)  | Data Classes  |
-=======
 | 1  | 2015-06-15  | Module 2  | [Lecture](modules/module2.html), [pdf](modules/module2.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module2.R)  | R variables  |
 | 1  | 2015-06-15  | Module 3  | [Lecture](modules/module3.html), [pdf](modules/module3.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module3.R)  |   |
->>>>>>> origin/gh-pages
 |---|---|---|---|---|
 
 
