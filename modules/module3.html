@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Variables</title>
+  <title>Data Classes</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,8 +26,8 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Variables',
-                        subtitle: 'Module 2',
+                title: 'Data Classes',
+                        subtitle: 'Module 3',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -76,7 +76,7 @@
 
   </style>
 
-  <link href="data:text/css,pre%20%7B%0A%20%20font%2Dfamily%3A%20%27Source%20Code%20Pro%27%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2028px%3B%0A%20%20line%2Dheight%3A%2028px%3B%0A%20%20padding%3A%2010px%200%2010px%2060px%3B%0A%20%20letter%2Dspacing%3A%20%2D1px%3B%0A%20%20margin%2Dbottom%3A%208px%3B%0A%20%20width%3A%20106%25%3B%0A%20%20left%3A%20%2D60px%3B%0A%20%20position%3A%20relative%3B%0A%20%20%2Dwebkit%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2Dmoz%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20box%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2F%2Aoverflow%3A%20hidden%3B%2A%2F%0A%7D%0A%0A%2F%2A%20Whole%20document%3A%20%2A%2F%0Abody%7B%0A%20%20font%2Dfamily%3A%20Helvetica%3B%0A%20%20font%2Dsize%3A%2016pt%3B%0A%7D%0A%2F%2A%20Headers%20%2A%2F%0Ah1%2Ch2%2Ch3%2Ch4%2Ch5%2Ch6%7B%0A%20%20font%2Dsize%3A%2032pt%3B%0A%7D%0A%0A%2Eemphasized%20%7B%0A%20%20%20font%2Dsize%3A%201%2E2em%3B%0A%7D%0A%0A%2Esmall%20%7B%0A%20%20%20font%2Dsize%3A%200%2E8em%3B%0A%7D" rel="stylesheet" type="text/css" />
+  <link href="data:text/css,pre%20%7B%0A%20%20font%2Dfamily%3A%20%27Source%20Code%20Pro%27%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2028px%3B%0A%20%20line%2Dheight%3A%2028px%3B%0A%20%20padding%3A%2010px%200%2010px%2060px%3B%0A%20%20letter%2Dspacing%3A%20%2D1px%3B%0A%20%20margin%2Dbottom%3A%208px%3B%0A%20%20width%3A%20106%25%3B%0A%20%20left%3A%20%2D60px%3B%0A%20%20position%3A%20relative%3B%0A%20%20%2Dwebkit%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2Dmoz%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20box%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2F%2Aoverflow%3A%20hidden%3B%2A%2F%0A%7D%0A%0A%2F%2A%20Whole%20document%3A%20%2A%2F%0Abody%7B%0A%20%20font%2Dfamily%3A%20Helvetica%3B%0A%20%20font%2Dsize%3A%2016pt%3B%0A%7D%0A%0A%2F%2A%20Headers%20%2A%2F%0Ah1%7B%0A%20%20font%2Dsize%3A%2032pt%3B%0A%7D%0Ah2%7B%0A%20%20font%2Dsize%3A%2028pt%3B%0A%7D%0Ah3%7B%0A%20%20font%2Dsize%3A%2024pt%3B%0A%7D%0A%0A%0A%2Eemphasized%20%7B%0A%20%20%20font%2Dsize%3A%201%2E2em%3B%0A%7D%0A%0A%2Esmall%20%7B%0A%20%20%20font%2Dsize%3A%200%2E8em%3B%0A%7D" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -95,353 +95,376 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Getting Started</h2></hgroup><article  id="getting-started">
+<slide class=''><hgroup><h2>Functions - Intro</h2></hgroup><article  id="functions---intro">
 
 <ul>
-<li>You should have the latest version of R installed (R 3.2.0 as of 6/15/2015)!</li>
-<li>Open R Studio</li>
-<li>Files &#8211;&gt; New &#8211;&gt; R Script</li>
-<li>Save the blank R script as &quot;day1.R&quot; in a directory of your choosing</li>
-<li>Add a comment header</li>
+<li>R revolves around functions: denoted by <code>[function name]()</code></li>
+<li>Every function takes an input, defined by arguments, often provided by the user</li>
+<li>Many functions have default settings for these arguments</li>
+<li><code>example([function name])</code> shows you how it is used</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Commenting in Scripts</h2></hgroup><article  id="commenting-in-scripts">
-
-<p>Add a comment header to day1.R :<code>#</code> is the comment symbol</p>
-
-<pre >#################
-# Title: Demo R Script
-# Author: Andrew Jaffe
-# Date: 6/15/2015
-# Purpose: Demonstrate comments in R
-###################
- 
-# nothing to its right is evaluated
-
-# this # is still a comment
-### you can use many #&#39;s as you want
-
-# sometimes you have a really long comment,
-#    like explaining what you are doing 
-#    for a step in analysis. 
-# Take it to another line</pre>
-
-</article></slide><slide class=''><hgroup><h2>Explaining output on slides</h2></hgroup><article  id="explaining-output-on-slides">
-
-<p>In slides, a command (we&#39;ll also call them code or a code chunk) will look like this</p>
-
-<pre class = 'prettyprint lang-r'>&gt; print(&quot;I&#39;m code&quot;)</pre>
-
-<pre >[1] &quot;I&#39;m code&quot;</pre>
-
-<p>And then directly after it, will be the output of the code.<br/>So <code>print(&quot;I&#39;m code&quot;)</code> is the code chunk and [1] &quot;I&#39;m code&quot; is the output.</p>
-
-</article></slide><slide class=''><hgroup><h2>R as a calculator</h2></hgroup><article  id="r-as-a-calculator">
-
-<pre class = 'prettyprint lang-r'>&gt; 2 + 2</pre>
-
-<pre >[1] 4</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; 2 * 4</pre>
-
-<pre >[1] 8</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; 2^3</pre>
-
-<pre >[1] 8</pre>
-
-<p>Note, when you type your command, R inherently thinks you want to print the result.</p>
-
-</article></slide><slide class=''><hgroup><h2>R as a calculator</h2></hgroup><article  id="r-as-a-calculator-1">
+</article></slide><slide class=''><hgroup><h2>R Help</h2></hgroup><article  id="r-help">
 
 <ul>
-<li>The R console is a full calculator</li>
-<li>Try to play around with it:
+<li>If you know the name of a function, <code>?[function name]</code> or <code>help([function name])</code> will pop up the help menu</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>&gt; ## ?str
+&gt; ## help(&quot;str&quot;)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Functions - Intro</h2></hgroup><article  id="functions---intro-1">
+
+<p>For example, <code>length</code> is a function we briefly covered last module. You can try typing <code>?length</code> in the console and reading the help file.</p>
+
+<p>You can also see examples of running a function using <code>example()</code> [which is another function!]</p>
+
+</article></slide><slide class=''><hgroup><h2>Data Classes:</h2></hgroup><article  id="data-classes">
 
 <ul>
-<li>+, -, /, * are add, subtract, multiply, and divide</li>
-<li>^ or ** is power</li>
-<li>parentheses &#8211; ( and ) &#8211; work with order of operations</li>
+<li>One dimensional classes (&#39;vectors&#39;):
+
+<ul>
+<li>Character: strings or individual characters, quoted</li>
+<li>Numeric: any real number(s)</li>
+<li>Integer: any integer(s)/whole numbers</li>
+<li>Factor: categorical/qualitative variables</li>
+<li>Logical: variables composed of TRUE or FALSE</li>
 </ul></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>R as a calculator</h2></hgroup><article  id="r-as-a-calculator-2">
-
-<pre class = 'prettyprint lang-r'>&gt; 2 + (2 * 3)^2</pre>
-
-<pre >[1] 38</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; (1 + 3) / 2 + 45</pre>
-
-<pre >[1] 47</pre>
-
-</article></slide><slide class=''><hgroup><h2>R as a calculator</h2></hgroup><article  id="r-as-a-calculator-3">
-
-<p>Try evaluating the following:</p>
+</article></slide><slide class=''><hgroup><h2>Data Classes:</h2></hgroup><article  id="data-classes-1">
 
 <ul>
-<li><code>2 + 2 * 3 / 4 -3</code></li>
-<li><code>2 * 3 / 4 * 2</code></li>
-<li><code>2^4 - 1</code></li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<li>Two dimensional classes:
 
 <ul>
-<li>You can create variables from within the R environment and from files on your computer</li>
-<li>R uses &quot;=&quot; or &quot;&lt;-&quot; to assign values to a variable name</li>
-<li>Variable names are case-sensitive, i.e. X and x are different</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>&gt; x = 2 # Same as: x &lt;- 2
-&gt; x</pre>
-
-<pre >[1] 2</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; x * 4</pre>
-
-<pre >[1] 8</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; x + 2</pre>
-
-<pre >[1] 4</pre>
-
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables">
+<li><code>data.frame</code>: traditional &#39;Excel&#39; spreadsheets
 
 <ul>
-<li>The most comfortable and familiar class/data type for many of you will be <code>data.frame</code></li>
-<li><p>You can think of these as essentially Excel spreadsheets with rows (usually subjects or observations) and columns (usually variables)</p></li>
-<li><p>Go to RStudio &#8211;&gt; Tools &#8211;&gt; Import Dataset &#8211;&gt; From Web URL then paste</p></li>
+<li>Each column can have a different class, from above</li>
+</ul></li>
+<li>Matrix: two-dimensional data, composed of rows and columns. Unlike data frames, the entire matrix is composed of one R class, e.g. all numeric or all characters.</li>
+</ul></li>
 </ul>
 
-<p><a href='http://www.aejaffe.com/summerR_2015/data/Charm_City_Circulator_Ridership.csv' title=''>http://www.aejaffe.com/summerR_2015/data/Charm_City_Circulator_Ridership.csv</a></p>
+</article></slide><slide class=''><hgroup><h2>Character and numeric</h2></hgroup><article  id="character-and-numeric">
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-1" class="smaller">
+<p>We have already covered <code>character</code> and <code>numeric</code></p>
 
-<ul>
-<li>We can display the top of the data with <code>head</code>:</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>&gt; head(Charm_City_Circulator_Ridership)</pre>
-
-<pre >        day       date orangeBoardings orangeAlightings orangeAverage
-1    Monday 01/11/2010             877             1027         952.0
-2   Tuesday 01/12/2010             777              815         796.0
-3 Wednesday 01/13/2010            1203             1220        1211.5
-4  Thursday 01/14/2010            1194             1233        1213.5
-5    Friday 01/15/2010            1645             1643        1644.0
-6  Saturday 01/16/2010            1457             1524        1490.5
-  purpleBoardings purpleAlightings purpleAverage greenBoardings
-1              NA               NA            NA             NA
-2              NA               NA            NA             NA
-3              NA               NA            NA             NA
-4              NA               NA            NA             NA
-5              NA               NA            NA             NA
-6              NA               NA            NA             NA
-  greenAlightings greenAverage bannerBoardings bannerAlightings
-1              NA           NA              NA               NA
-2              NA           NA              NA               NA
-3              NA           NA              NA               NA
-4              NA           NA              NA               NA
-5              NA           NA              NA               NA
-6              NA           NA              NA               NA
-  bannerAverage  daily
-1            NA  952.0
-2            NA  796.0
-3            NA 1211.5
-4            NA 1213.5
-5            NA 1644.0
-6            NA 1490.5</pre>
-
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-2">
-
-<ul>
-<li><code>data.frame</code>s are somewhat advanced objects in R; we will start with simpler objects;</li>
-<li>Here we introduce &quot;1 dimensional&quot; classes; these are often referred to as &#39;vectors&#39;</li>
-<li>Vectors can have multiple sets of observations, but each observation has to be the same class.</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
-
-<pre >[1] &quot;numeric&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; y = &quot;hello world!&quot;
-&gt; print(y)</pre>
-
-<pre >[1] &quot;hello world!&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; class(y)</pre>
+<pre class = 'prettyprint lang-r'>&gt; class(c(&quot;Andrew&quot;,&quot;Jaffe&quot;))</pre>
 
 <pre >[1] &quot;character&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-3">
-
-<p>Try assigning your full name to an R variable called <code>name</code></p>
-
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-4">
-
-<p>Try assigning your full name to an R variable called <code>name</code></p>
-
-<pre class = 'prettyprint lang-r'>&gt; name = &quot;Andrew Jaffe&quot;
-&gt; name</pre>
-
-<pre >[1] &quot;Andrew Jaffe&quot;</pre>
-
-</article></slide><slide class=''><hgroup><h2>The &#39;combine&#39; function</h2></hgroup><article  id="the-combine-function">
-
-<p>The function <code>c()</code> collects/combines/joins single R objects into a vector of R objects. It is mostly used for creating vectors of numbers, character strings, and other data types.</p>
-
-<pre class = 'prettyprint lang-r'>&gt; x &lt;- c(1,4,6,8)
-&gt; x</pre>
-
-<pre >[1] 1 4 6 8</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
+<pre class = 'prettyprint lang-r'>&gt; class(c(1,4,7))</pre>
 
 <pre >[1] &quot;numeric&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>The &#39;combine&#39; function</h2></hgroup><article  id="the-combine-function-1">
+<p>Recall that <code>c()</code> and <code>class()</code> are both functions!</p>
 
-<p>Try assigning your first and last name as 2 separate character strings into a single vector called <code>name2</code></p>
+</article></slide><slide class=''><hgroup><h2>Integer</h2></hgroup><article  id="integer">
 
-</article></slide><slide class=''><hgroup><h2>The &#39;combine&#39; function</h2></hgroup><article  id="the-combine-function-2">
+<p><code>Integer</code> is a special subset of <code>numeric</code> that contains only whole numbers</p>
 
-<p>Try assigning your first and last name as 2 separate character strings into a length-2 vector called <code>name2</code></p>
+<p>A sequence of numbers is an example of the integer class</p>
 
-<pre class = 'prettyprint lang-r'>&gt; name2 = c(&quot;Andrew&quot;,&quot;Jaffe&quot;)
-&gt; name2</pre>
+<pre class = 'prettyprint lang-r'>&gt; x = seq(from=1,to=5) # seq() is a function
+&gt; x</pre>
 
-<pre >[1] &quot;Andrew&quot; &quot;Jaffe&quot; </pre>
+<pre >[1] 1 2 3 4 5</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-5">
+<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
 
-<p><code>length()</code>: Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.</p>
+<pre >[1] &quot;integer&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(x)</pre>
+</article></slide><slide class=''><hgroup><h2>Integer</h2></hgroup><article  id="integer-1">
 
-<pre >[1] 4</pre>
+<p>The colon <code>:</code> is a shortcut for making sequences of numbers</p>
 
-<pre class = 'prettyprint lang-r'>&gt; y</pre>
+<p>It makes consecutive integer sequence from <code>[num1]</code> to <code>[num2]</code> by 1</p>
 
-<pre >[1] &quot;hello world!&quot;</pre>
+<pre class = 'prettyprint lang-r'>&gt; 1:5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(y)</pre>
+<pre >[1] 1 2 3 4 5</pre>
+
+</article></slide><slide class=''><hgroup><h2>Factor</h2></hgroup><article  id="factor">
+
+<p><code>factor</code> are special <code>character</code> vectors where the elements have pre-defined groups or &#39;levels&#39;. You can think of these as qualitative or categorical variables:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = factor(c(&quot;boy&quot;,&quot;girl&quot;,&quot;girl&quot;,&quot;boy&quot;,&quot;girl&quot;))
+&gt; x </pre>
+
+<pre >[1] boy  girl girl boy  girl
+Levels: boy girl</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
+
+<pre >[1] &quot;factor&quot;</pre>
+
+<p>Note that levels are, by default, alphabetical or alphanumerical order.</p>
+
+</article></slide><slide class=''><hgroup><h2>Logical</h2></hgroup><article  id="logical">
+
+<p><code>logical</code> is a class that only has two possible elements: <code>TRUE</code> and <code>FALSE</code></p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = c(TRUE,FALSE,TRUE,TRUE,FALSE)
+&gt; class(x)</pre>
+
+<pre >[1] &quot;logical&quot;</pre>
+
+<p><code>sum()</code> and <code>mean()</code> work on <code>logical</code> vectors - they return the total and proportion of <code>TRUE</code> elements, respectively.</p>
+
+</article></slide><slide class=''><hgroup><h2>Logical</h2></hgroup><article  id="logical-1">
+
+<p>Note that <code>logical</code> elements are NOT in quotes.</p>
+
+<pre class = 'prettyprint lang-r'>&gt; z = c(&quot;TRUE&quot;,&quot;FALSE&quot;,&quot;TRUE&quot;,&quot;FALSE&quot;)
+&gt; class(z)</pre>
+
+<pre >[1] &quot;character&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Vector functions</h2></hgroup><article  id="vector-functions">
+
+<p>Useful functions for exploring vectors (and other data types):</p>
+
+<ul>
+<li><code>length()</code></li>
+<li><code>head()</code> and <code>tail()</code></li>
+<li><code>table()</code></li>
+<li><code>subset()</code> and brackets (<code>[ ]</code>)</li>
+<li><code>unique()</code></li>
+<li><code>sum()</code>, <code>mean()</code>,<code>median()</code>, <code>min()</code>, <code>max()</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Head and Tail</h2></hgroup><article  id="head-and-tail">
+
+<ul>
+<li><code>head()</code> shows the first 6 (default) elements of an R object</li>
+<li><code>tail()</code> shows the last 6 (default) elements of an R object</li>
+<li><code>str()</code> shows the structure of an R object</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Head and Tail</h2></hgroup><article  id="head-and-tail-1">
+
+<pre class = 'prettyprint lang-r'>&gt; z = 1:100 # recall a sequence from 1 to 100
+&gt; head(z)</pre>
+
+<pre >[1] 1 2 3 4 5 6</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; tail(z)</pre>
+
+<pre >[1]  95  96  97  98  99 100</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; str(z)</pre>
+
+<pre > int [1:100] 1 2 3 4 5 6 7 8 9 10 ...</pre>
+
+<p>These functions show a brief snapshot of the data which is useful for exploratory data analysis.</p>
+
+</article></slide><slide class=''><hgroup><h2>Table</h2></hgroup><article  id="table" class="smaller">
+
+<p><code>table()</code> is the basic tabulation function, which is often more useful for <code>character</code> and <code>factor</code> vectors</p>
+
+<p>From the manual: &quot;table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor level&quot;</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = c(&quot;boy&quot;,&quot;girl&quot;,&quot;girl&quot;,&quot;boy&quot;,&quot;girl&quot;)
+&gt; table(x)</pre>
+
+<pre >x
+ boy girl 
+   2    3 </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; y = c(1,2,1,2,1)
+&gt; table(x,y)</pre>
+
+<pre >      y
+x      1 2
+  boy  1 1
+  girl 2 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting">
+
+<p>Brackets are used to select/subset/extract data in R</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x1 = 10:20
+&gt; x1</pre>
+
+<pre > [1] 10 11 12 13 14 15 16 17 18 19 20</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; length(x1)</pre>
+
+<pre >[1] 11</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting-1">
+
+<pre class = 'prettyprint lang-r'>&gt; x1[1] # selecting first element</pre>
+
+<pre >[1] 10</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; x1[3:4] # selecting third and fourth elements</pre>
+
+<pre >[1] 12 13</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; x1[c(1,5,7)] # selecting first, fifth, and seventh elements</pre>
+
+<pre >[1] 10 14 16</pre>
+
+<h4><strong>This is probably the most powerful and useful function in R. If you master this, you can literally do anything with R. Everything in the &#39;data analysis pipeline&#39; revolves around subsetting (as you will soon see)</strong></h4>
+
+</article></slide><slide class=''><hgroup><h2>Matrices</h2></hgroup><article  id="matrices">
+
+<pre class = 'prettyprint lang-r'>&gt; n = 1:9 # sequence from first number to second number incrementing by 1
+&gt; n</pre>
+
+<pre >[1] 1 2 3 4 5 6 7 8 9</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; mat = matrix(n, nrow = 3)
+&gt; mat</pre>
+
+<pre >     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</pre>
+
+</article></slide><slide class=''><hgroup><h2>Matrix (and Data frame) Functions</h2></hgroup><article  id="matrix-and-data-frame-functions">
+
+<p>These are in addition to the previous useful vector functions: * <code>nrow()</code> displays the number of rows of a matrix or data frame * <code>ncol()</code> displays the number of columns * <code>dim()</code> displays a vector of length 2: # rows, # columns * <code>colnames()</code> displays the column names (if any) and <code>rownames()</code> displays the row names (if any)</p>
+
+</article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection">
+
+<p>Matrices have two &quot;slots&quot; you can use to select data, which represent rows and columns, that are separated by a comma, so the syntax is <code>matrix[row,column]</code>.</p>
+
+<pre class = 'prettyprint lang-r'>&gt; mat[1,1] # individual entry: row 1, column 1</pre>
 
 <pre >[1] 1</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-6">
+<pre class = 'prettyprint lang-r'>&gt; mat[1,] # first row</pre>
 
-<p>What do you expect for the length of the <code>name</code> variable? What about the <code>name2</code> variable?</p>
+<pre >[1] 1 4 7</pre>
 
-<p>What are the lengths of each?</p>
+<pre class = 'prettyprint lang-r'>&gt; mat[,1] # first columns</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-7">
+<pre >[1] 1 2 3</pre>
 
-<p>What do you expect for the length of the <code>name</code> variable? What about the <code>name2</code> variable?</p>
+</article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-1">
 
-<p>What are the lengths of each?</p>
+<p>Note that the class of the returned object is no longer a matrix</p>
 
-<pre class = 'prettyprint lang-r'>&gt; length(name)</pre>
+<pre class = 'prettyprint lang-r'>&gt; class(mat[1,])</pre>
 
-<pre >[1] 1</pre>
+<pre >[1] &quot;integer&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(name2)</pre>
+<pre class = 'prettyprint lang-r'>&gt; class(mat[,1])</pre>
 
-<pre >[1] 2</pre>
+<pre >[1] &quot;integer&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-8">
+</article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames">
 
-<p>You can perform functions to entire vectors of numbers very easily.</p>
+<p>The <code>data.frame</code> is the other two dimensional variable class.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x + 2</pre>
+<p>Again, data frames are like matrices, but each column is a vector that can have its own class. So some columns might be <code>character</code> and others might be <code>numeric</code>, while others maybe a <code>factor</code>.</p>
 
-<pre >[1]  3  6  8 10</pre>
+<p>We can look at some of the example data frames that come with R.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x * 3</pre>
+</article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-1" class="smaller">
 
-<pre >[1]  3 12 18 24</pre>
+<pre class = 'prettyprint lang-r'>&gt; data(iris) ## just use some data in R already
+&gt; names(iris) ## get the column names</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; x + c(1, 2, 3, 4)</pre>
+<pre >[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+[5] &quot;Species&quot;     </pre>
 
-<pre >[1]  2  6  9 12</pre>
+<pre class = 'prettyprint lang-r'>&gt; str(iris) # easy snapshot of data, like `describe` in Stata</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-9">
+<pre >&#39;data.frame&#39;:   150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</pre>
 
-<p>But things like algebra can only be performed on numbers.</p>
+<pre class = 'prettyprint lang-r'>&gt; head(iris, 3) # get top 3 rows</pre>
 
-<pre >&gt; name2 + 4
-[1] Error in name2 * 4 : non-numeric argument
- to binary operator</pre>
+<pre >  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-10">
+</article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-2">
 
-<p>And save these modified vectors as a new vector.</p>
+<p>Data frames have special ways to select data, specifically by a <code>$</code> and the column name.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; y = x + c(1, 2, 3, 4)
-&gt; y </pre>
+<pre class = 'prettyprint lang-r'>&gt; head(iris$Petal.Length)</pre>
 
-<pre >[1]  2  6  9 12</pre>
+<pre >[1] 1.4 1.4 1.3 1.5 1.4 1.7</pre>
 
-<p>Note that the R object <code>y</code> is no longer &quot;Hello World!&quot; - It has effectively been overwritten by assigning new data to the variable</p>
+<pre class = 'prettyprint lang-r'>&gt; class(iris$Petal.Width)</pre>
 
-</article></slide><slide class=''><hgroup><h2>R variables</h2></hgroup><article  id="r-variables-11">
+<pre >[1] &quot;numeric&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-3">
+
+<p>You can also subset data frames like matrices, using row and column indices, but using column names is generally safer and more reproducible.</p>
+
+<pre class = 'prettyprint lang-r'>&gt; head(iris[,2])</pre>
+
+<pre >[1] 3.5 3.0 3.2 3.1 3.6 3.9</pre>
+
+<p>You can also use the bracket notation, but specify the name(s) in quotes if you want more than 1 column. This allows you to subset rows and columns at the same time</p>
+
+<pre class = 'prettyprint lang-r'>&gt; iris[1:3,c(&quot;Sepal.Width&quot;,&quot;Species&quot;)]</pre>
+
+<pre >  Sepal.Width Species
+1         3.5  setosa
+2         3.0  setosa
+3         3.2  setosa</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-2">
+
+<p>You can make your own data frames from &quot;scratch&quot; too, either from a matrix or using the <code>data.frame</code> function:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = c(&quot;Andrew&quot;,&quot;Leonardo&quot;,&quot;Shaun&quot;)
+&gt; y = 1:3
+&gt; df = data.frame(name=x, id=y)
+&gt; df</pre>
+
+<pre >      name id
+1   Andrew  1
+2 Leonardo  2
+3    Shaun  3</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-3" class="smaller">
+
+<p>You can add variables to a <code>data.frame</code> using <code>$</code> as well:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; iris2 = iris # copy `iris` to a new df
+&gt; iris2$Index=1:nrow(iris2)
+&gt; head(iris2)</pre>
+
+<pre >  Sepal.Length Sepal.Width Petal.Length Petal.Width Species Index
+1          5.1         3.5          1.4         0.2  setosa     1
+2          4.9         3.0          1.4         0.2  setosa     2
+3          4.7         3.2          1.3         0.2  setosa     3
+4          4.6         3.1          1.5         0.2  setosa     4
+5          5.0         3.6          1.4         0.2  setosa     5
+6          5.4         3.9          1.7         0.4  setosa     6</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; names(iris2)</pre>
+
+<pre >[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+[5] &quot;Species&quot;      &quot;Index&quot;       </pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Classes: Extended</h2></hgroup><article  id="data-classes-extended">
+
+<p>Extensions of &quot;normal&quot; data classes:</p>
 
 <ul>
-<li>You can get more attributes than just class. The function <code>str</code> gives you the structure of the object.</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>&gt; str(x)</pre>
-
-<pre > num [1:4] 1 4 6 8</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; str(y)</pre>
-
-<pre > num [1:4] 2 6 9 12</pre>
-
-<p>This tells you that <code>x</code> is a numeric vector and tells you the length.</p>
-
-</article></slide><slide class=''><hgroup><h2>Basic Summarization</h2></hgroup><article  id="basic-summarization">
-
-<p>Here are some simple functions for making calculations on data.</p>
-
-<p><code>sum()</code>: takes the sum of all numeric variables in a vector</p>
-
-<p><code>mean()</code>: takes the mean of all numeric variables in a vector</p>
-
-<p><code>median()</code>: takes the median of all numeric variables in a vector</p>
-
-</article></slide><slide class=''><hgroup><h2>Back to our <code>data.frame</code> example</h2></hgroup><article  id="back-to-our-data.frame-example" class="smaller">
+<li>N-dimensional classes:
 
 <ul>
-<li>Let&#39;s see what the structure of our <code>data.frame</code> is:</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>&gt; str(Charm_City_Circulator_Ridership)</pre>
-
-<pre >&#39;data.frame&#39;:   1146 obs. of  15 variables:
- $ day             : Factor w/ 7 levels &quot;Friday&quot;,&quot;Monday&quot;,..: 2 6 7 5 1 3 4 2 6 7 ...
- $ date            : Factor w/ 1146 levels &quot;01/01/2011&quot;,&quot;01/01/2012&quot;,..: 31 35 39 43 47 51 55 59 63 67 ...
- $ orangeBoardings : int  877 777 1203 1194 1645 1457 839 999 1023 1375 ...
- $ orangeAlightings: int  1027 815 1220 1233 1643 1524 938 1000 1047 1416 ...
- $ orangeAverage   : num  952 796 1212 1214 1644 ...
- $ purpleBoardings : int  NA NA NA NA NA NA NA NA NA NA ...
- $ purpleAlightings: int  NA NA NA NA NA NA NA NA NA NA ...
- $ purpleAverage   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ greenBoardings  : int  NA NA NA NA NA NA NA NA NA NA ...
- $ greenAlightings : int  NA NA NA NA NA NA NA NA NA NA ...
- $ greenAverage    : num  NA NA NA NA NA NA NA NA NA NA ...
- $ bannerBoardings : int  NA NA NA NA NA NA NA NA NA NA ...
- $ bannerAlightings: int  NA NA NA NA NA NA NA NA NA NA ...
- $ bannerAverage   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ daily           : num  952 796 1212 1214 1644 ...</pre>
-
-</article></slide><slide class=''><hgroup><h2>Review</h2></hgroup><article  id="review">
-
-<ul>
-<li>Creating a new script</li>
-<li>Using R as a calculator</li>
-<li>Assigning values to variables</li>
-<li>Performing algebra on numeric variables</li>
+<li>Arrays: any extension of matrices with more than 2 dimensions, e.g. 3x3x3 cube</li>
+<li>Lists: more flexible container for R objects.</li>
+</ul></li>
 </ul></article></slide>
 
 
