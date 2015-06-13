@@ -166,7 +166,7 @@ length(x1)
 ```{r subset2, comment="",prompt=TRUE}
 x1[1] # selecting first element
 x1[3:4] # selecting third and fourth elements
-x1[c(1, 5, 7)] # selecting first, fifth, and seventh elements
+x1[c(1, 5, 7)] # first, fifth, and seventh elements
 ```
 
 #### **This is probably the most powerful and useful function in R. If you master this, you can literally do anything with R. Everything in the 'data analysis pipeline' revolves around subsetting (as you will soon see)**
