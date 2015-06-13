@@ -3,7 +3,9 @@ title: "Variables"
 subtitle: Module 2
 author: "Andrew Jaffe"
 date: "June 15, 2105"
-output: ioslides_presentation
+output:
+  ioslides_presentation:
+    css: styles.css
 ---
 
 ## Getting Started
@@ -16,7 +18,7 @@ output: ioslides_presentation
 
 ## Commenting in Scripts
 
-Add a comment header to day1.R : '#' is the comment symbol
+Add a comment header to day1.R :`#` is the comment symbol
 
 ```
 #################
@@ -26,12 +28,15 @@ Add a comment header to day1.R : '#' is the comment symbol
 # Purpose: Demonstrate comments in R
 ###################
  
-# this is a comment, nothing to the right of it gets read
+# nothing to its right is evaluated
 
-# this # is still a comment - you can use many #'s as you want
+# this # is still a comment
+### you can use many #'s as you want
 
-# sometimes you have a really long comment, like explaining what you 
-#    are doing for a step in analysis. Take it to a second line
+# sometimes you have a really long comment,
+#    like explaining what you are doing 
+#    for a step in analysis. 
+# Take it to another line
 ```
 
 ## Explaining output on slides
@@ -102,7 +107,7 @@ http://www.aejaffe.com/summerR_2015/data/Charm_City_Circulator_Ridership.csv
 Charm_City_Circulator_Ridership <- read.csv("http://www.aejaffe.com/summerR_2015/data/Charm_City_Circulator_Ridership.csv")
 ```
 
-## R variables
+## R variables {.smaller}
 * We can display the top of the data with `head`:
 
 ```{r df1,  comment="", prompt=TRUE}
@@ -234,7 +239,7 @@ Here are some simple functions for making calculations on data.
 
 `median()`: takes the median of all numeric variables in a vector
 
-## Back to our `data.frame` example
+## Back to our `data.frame` example {.smaller}
 
 * Let's see what the structure of our `data.frame` is:
 
