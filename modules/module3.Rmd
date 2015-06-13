@@ -183,6 +183,7 @@ mat
 ## Matrix (and Data frame) Functions
 
 These are in addition to the previous useful vector functions:
+
 * `nrow()` displays the number of rows of a matrix or data frame
 * `ncol()` displays the number of columns 
 * `dim()` displays a vector of length 2: # rows, # columns
