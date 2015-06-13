@@ -50,8 +50,8 @@ You can also see examples of running a function using `example()` [which is anot
 We have already covered `character` and `numeric`
 
 ```{r numChar, comment="", prompt=TRUE}
-class(c("Andrew","Jaffe"))
-class(c(1,4,7))
+class(c("Andrew", "Jaffe"))
+class(c(1, 4, 7))
 ```
 
 Recall that `c()` and `class()` are both functions!
@@ -63,7 +63,7 @@ Recall that `c()` and `class()` are both functions!
 A sequence of numbers is an example of the integer class
 
 ```{r seq, comment="", prompt=TRUE}
-x = seq(from=1,to=5) # seq() is a function
+x = seq(from = 1, to = 5) # seq() is a function
 x
 class(x)
 ```
@@ -84,7 +84,7 @@ It makes consecutive integer sequence from `[num1]` to `[num2]` by 1
 `factor` are special `character` vectors where the elements have pre-defined groups or 'levels'. You can think of these as qualitative or categorical variables:
 
 ```{r factor1, comment="", prompt=TRUE}
-x = factor(c("boy","girl","girl","boy","girl"))
+x = factor(c("boy", "girl", "girl", "boy", "girl"))
 x 
 class(x)
 ```
@@ -96,7 +96,7 @@ Note that levels are, by default, alphabetical or alphanumerical order.
 `logical` is a class that only has two possible elements: `TRUE` and `FALSE`
 
 ```{r logical1, comment="", prompt=TRUE}
-x = c(TRUE,FALSE,TRUE,TRUE,FALSE)
+x = c(TRUE, FALSE, TRUE, TRUE, FALSE)
 class(x)
 ```
 
@@ -106,7 +106,7 @@ class(x)
 
 Note that `logical` elements are NOT in quotes. 
 ```{r logical2, comment="", prompt=TRUE}
-z = c("TRUE","FALSE","TRUE","FALSE")
+z = c("TRUE", "FALSE", "TRUE", "FALSE")
 class(z)
 ```
 
@@ -145,9 +145,9 @@ These functions show a brief snapshot of the data which is useful for explorator
 From the manual: "table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor level"
 
 ```{r tab, comment="",prompt=TRUE}
-x = c("boy","girl","girl","boy","girl")
+x = c("boy", "girl", "girl", "boy", "girl")
 table(x)
-y = c(1,2,1,2,1)
+y = c(1, 2, 1, 2, 1)
 table(x,y)
 ```
 
@@ -166,7 +166,7 @@ length(x1)
 ```{r subset2, comment="",prompt=TRUE}
 x1[1] # selecting first element
 x1[3:4] # selecting third and fourth elements
-x1[c(1,5,7)] # selecting first, fifth, and seventh elements
+x1[c(1, 5, 7)] # selecting first, fifth, and seventh elements
 ```
 
 #### **This is probably the most powerful and useful function in R. If you master this, you can literally do anything with R. Everything in the 'data analysis pipeline' revolves around subsetting (as you will soon see)**
@@ -193,9 +193,9 @@ These are in addition to the previous useful vector functions:
 Matrices have two "slots" you can use to select data, which represent rows and columns, that are separated by a comma, so the syntax is `matrix[row,column]`.
 
 ```{r subset3, comment="", prompt=TRUE}
-mat[1,1] # individual entry: row 1, column 1
-mat[1,] # first row
-mat[,1] # first columns
+mat[1, 1] # individual entry: row 1, column 1
+mat[1, ] # first row
+mat[, 1] # first columns
 ```
 
 ## Data Selection
@@ -203,8 +203,8 @@ mat[,1] # first columns
 Note that the class of the returned object is no longer a matrix
 
 ```{r subset4, comment="", prompt=TRUE}
-class(mat[1,])
-class(mat[,1])
+class(mat[1, ])
+class(mat[, 1])
 ```
 
 ## Data Frames
@@ -239,12 +239,12 @@ class(iris$Petal.Width)
 You can also subset data frames like matrices, using row and column indices, but using column names is generally safer and more reproducible.
 
 ```{r subset6, comment="", prompt=TRUE}
-head(iris[,2])
+head(iris[, 2])
 ```
 
 You can also use the bracket notation, but specify the name(s) in quotes if you want more than 1 column. This allows you to subset rows and columns at the same time
 ```{r subset7, comment="", prompt=TRUE}
-iris[1:3,c("Sepal.Width","Species")]
+iris[1:3, c("Sepal.Width", "Species")]
 ```
 
 ## Data Frames
@@ -252,9 +252,9 @@ iris[1:3,c("Sepal.Width","Species")]
 You can make your own data frames from "scratch" too, either from a matrix or using the `data.frame` function:
 
 ```{r df3, comment="", prompt=TRUE}
-x = c("Andrew","Leonardo","Shaun")
+x = c("Andrew", "Leonardo", "Shaun")
 y = 1:3
-df = data.frame(name=x, id=y)
+df = data.frame(name = x, id = y)
 df
 ```
 
@@ -264,7 +264,7 @@ You can add variables to a `data.frame` using `$` as well:
 
 ```{r dfAdd, comment="", prompt=TRUE}
 iris2 = iris # copy `iris` to a new df
-iris2$Index=1:nrow(iris2)
+iris2$Index = 1:nrow(iris2)
 head(iris2)
 names(iris2)
 ```
