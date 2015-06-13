@@ -27,7 +27,7 @@ Teaching assitants:
 | Day  | Date  |  Module  | Resources  |  Description |
 |---|---|---|---|---|
 | 1  | 2015-06-15  |   | [Try R](http://tryr.codeschool.com/)  | Finish all modules  |
-| 1  | 2015-06-15  | Module 1  | [Lecture](modules/module1.html), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module1.Rmd)  |   |
+| 1  | 2015-06-15  | Module 1  | [Lecture](modules/module1.html)  |   |
 | 1  | 2015-06-15  | Module 2  | [Lecture](modules/module2.html), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module2.R)  |   |
 |---|---|---|---|---|
 
