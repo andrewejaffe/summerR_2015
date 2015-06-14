@@ -1,0 +1,197 @@
+---
+title: "Lab 4 Review"
+subtitle: Module 4
+author: "Andrew Jaffe"
+date: "June 15, 2105"
+output:
+  ioslides_presentation:
+  css: styles.css
+---
+
+```{r labSetup, echo=FALSE, message=FALSE, warning = FALSE}
+mon = read.csv("../data/Monuments.csv",header=TRUE,as.is=TRUE)
+```
+
+## Question 1
+
+1. Change the name of the "Location.1" column to "location"
+
+## Question 1 {.smaller}
+
+Names are just an attribute of the data frame (recall `str`) that you can change to any valid character name
+
+Valid character names are case-sensitive, contain a-z, 0-9, underscores, and periods (but cannot start with a number).
+
+For the `data.frame` class, `colnames()` and `names()` return the same attribute.
+
+```{r q1, comment="", prompt=TRUE}
+names(mon)
+names(mon)[6] = "location"
+names(mon)
+```
+
+These naming rules also apply for creating R objects
+
+## Question 2
+
+2. How many monuments are in Baltimore (at least this collection...)?
+
+## Question 2
+
+There are several ways to return the number of rows of a data frame or matrix
+
+```{r q2, comment="", prompt=TRUE}
+nrow(mon)
+dim(mon)
+length(mon$name)
+```
+
+## Question 3
+
+What are the:
+
+(a) zip codes
+
+(b) neighborhoods
+
+(c) council districts, and
+
+(d) police districts 
+
+that contain monuments, and how many monuments are in each?
+
+## Question 3
+  
+`unique()` returns the unique entries in a vector
+
+```{r q3a, comment="", prompt=TRUE}
+unique(mon$zipCode)
+unique(mon$policeDistrict)
+unique(mon$councilDistrict)
+```
+
+---
+
+```{r q3b, comment="", prompt=TRUE}
+unique(mon$neighborhood)
+```
+
+---
+  
+```{r q3c, comment="", prompt=TRUE}
+length(unique(mon$zipCode))
+length(unique(mon$policeDistrict))
+length(unique(mon$councilDistrict))
+length(unique(mon$neighborhood))
+```
+
+---
+  
+Also note that table() can work, which tabulates a specific variable (or cross-tabulates two variables)
+```{r q3d, comment="", prompt=TRUE}
+table(mon$zipCode)
+length(table(mon$zipCode))
+```
+
+## Question 4
+  
+The "by hand" way is cross-tabulating the zip codes and neighborhoods,
+```{r q4a, comment="", prompt=TRUE}
+tab = table(mon$zipCode, mon$neighborhood)
+# tab
+tab[,"Downtown"]
+length(unique(tab[,"Downtown"]))
+```
+
+---
+  
+```{r q4b, comment="", prompt=TRUE}
+tt = tab[,"Downtown"]
+tt
+tt == 0 # which entries are equal to 0
+```
+
+---
+  
+```{r q4c, comment="", prompt=TRUE}
+tab[,"Downtown"] !=0
+sum(tab[,"Downtown"] !=0)
+sum(tab[,"Johns Hopkins Homewood"] !=0)
+```
+
+---
+  
+We could also subset the data into neighborhoods:
+  
+```{r q4d, comment="", prompt=TRUE}
+dt = mon[mon$neighborhood == "Downtown",]
+head(mon$neighborhood == "Downtown",10)
+dim(dt)
+length(unique(dt$zipCode))
+```
+
+## Question 5
+
+How many monuments (a) do and (b) do not have an exact location/address?
+
+## Question 5
+
+```{r q5, comment="", prompt=TRUE}
+head(mon$location)
+table(mon$location != "") # FALSE=DO NOT and TRUE=DO
+```
+
+## Question 6
+
+Which: 
+
+(a) zip code, 
+(b) neighborhood, 
+(c) council district, and 
+(d) police district 
+
+contains the most number of monuments?
+
+## Question 6 {.smaller}
+
+```{r q6a, comment="", prompt=TRUE}
+tabZ = table(mon$zipCode)
+head(tabZ)
+max(tabZ)
+tabZ[tabZ == max(tabZ)]
+```
+
+---
+  
+`which.max()` returns the FIRST entry/element number that contains the maximum and `which.min()` returns the FIRST entry that contains the minimum
+```{r q6b, comment="", prompt=TRUE}
+which.max(tabZ) # this is the element number
+tabZ[which.max(tabZ)] # this is the actual maximum
+```
+
+---
+  
+```{r q6c, comment="", prompt=TRUE}
+tabN = table(mon$neighborhood)
+tabN[which.max(tabN)] 
+tabC = table(mon$councilDistrict)
+tabC[which.max(tabC)] 
+tabP = table(mon$policeDistrict)
+tabP[which.max(tabP)] 
+```
+
+## Question 7
+
+7. Try reading in the tab-delimited `Monuments-tab.txt` file from:
+		"http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt"
+  
+## Question 7
+  
+```{r q7, comment="", prompt=TRUE}
+monTab = read.delim("http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt",
+                    header=TRUE, as.is=TRUE)
+identical(mon$name,monTab$name)
+```
+
+
+

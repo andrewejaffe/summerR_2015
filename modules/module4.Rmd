@@ -1,0 +1,219 @@
+---
+title: "Data Input"
+subtitle: Module 4
+author: "Andrew Jaffe"
+date: "June 15, 2105"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+## Data Input
+
+* We used several pre-installed sample datasets during previous modules (`CO2`, `iris`) 
+* However, 'reading in' data is the first step of any real project/analysis
+* R can read almost any file format, especially via add-on packages
+* We are going to focus on simple delimited files first
+    * tab delimited (e.g. '.txt')
+    * comma separated (e.g. '.csv')
+    * Microsoft excel (e.g. '.xlsx')
+
+## Data Input {.smaller}
+
+`read.table()`: Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
+
+```
+# the four ones I've put at the top are the important inputs
+read.table( file, # filename
+           header = FALSE, # are there column names?
+           sep = "", # what separates columns?
+           as.is = !stringsAsFactors, # do you want character strings as factors or characters?
+           quote = "\"'",  dec = ".", row.names, col.names,
+           na.strings = "NA", nrows = -1,
+           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
+           strip.white = FALSE, blank.lines.skip = TRUE, comment.char = "#",
+           stringsAsFactors = default.stringsAsFactors())
+           
+# for example: `read.table("file.txt", header = TRUE, sep="\t", as.is=TRUE)`
+```
+
+## Data Input
+
+* The filename is the path to your file, in quotes
+* The function will look in your "working directory" if no absolute file path is given
+* Note that the filename can also be a path to a file on a website (e.g. 'www.someurl.com/table1.txt')
+
+## Data Aside
+
+* Everything we do in class will be using real publicly available data - there are few 'toy' example datasets and 'simulated' data
+* OpenBaltimore and Data.gov will be sources for the first few days
+
+## Data Input
+
+Monuments Dataset: "This data set shows the point location of Baltimore City monuments. However, the completness and currentness of these data are uncertain."
+
+* Navigate to: https://data.baltimorecity.gov/Community/Monuments/cpxf-kxp3
+* Export --> Download --> Download As: CSV
+* Save it (or move it) to the same folder as your day1.R script
+* Within RStudio: Session --> Set Working Directory --> To Source File Location
+
+## Data Input
+
+There is a 'wrapper' function for reading CSV files: 
+
+```{r readCSV}
+read.csv
+```
+
+Note: the `...` designates extra/optional arguments that can be passed to `read.table()` if needed
+
+## Data Input {.smaller}
+
+* Starting out, you can use RStudio --> Tools --> Import Dataset --> From Text File and select
+
+```{r readCSV2, comment=""}
+mon = read.csv("../data/Monuments.csv",header=TRUE,as.is=TRUE)
+head(mon)
+```
+
+## Data Input {.smaller}
+
+```{r subset5, comment="", prompt=TRUE}
+colnames(mon)
+head(mon$zipCode)
+head(mon$neighborhood)
+```
+
+## Aside: Working Directory
+
+* R looks for files on your computer relative to the "working" directory
+* It's always safer to set the working directory at the beginning of your script. Note that setting the working directory created the necessary code that you can copy into your script.
+* Example of help file
+
+```{r workingDirectory, comment="", prompt=TRUE,eval=FALSE}
+## get the working directory
+getwd()
+# setwd("~/Dropbox/summerR_2015/Lectures")
+```
+
+## Aside: Working Directory
+
+* Setting the directory can sometimes be finicky
+    * Windows: Default directory structure involves single backslashes ("\"), but R interprets these as "escape" characters. So you must replace the backslash with forward slashed ("/") or two backslashes ("\\")
+    * Mac/Linux: Default is forward slashes, so you are okay
+* Typical linux/DOS directory structure syntax applies
+    * ".." goes up one level
+    * "./" is the current directory
+    * "~" is your home directory
+
+## Working Directory 
+
+Try some directory navigation: 
+
+```{r directoryNav, comment="", prompt=TRUE}
+dir("./") # shows directory contents
+dir("..")
+```
+
+## Working Directory
+
+* Copy the code to set your working directory from the History tab in RStudio (top right)
+* Confirm the directory contains "day2.R" using `dir()`
+
+## Data Input
+
+The `read.table()` function returns a `data.frame`
+
+```{r readCSV3, comment="", prompt=TRUE}
+class(mon)
+str(mon)
+```
+
+## Data Input
+
+Changing variable names in `data.frame`s works using the `names()` function, which is analagous to `colnames()` for data frames (they can be used interchangeably)
+
+```{r names1, comment="", prompt=TRUE}
+names(mon)[1] = "Name"
+names(mon)
+names(mon)[1] = "name"
+names(mon)
+```
+
+## Data Subsetting
+
+Now we will introduce subsetting rows/observations of data using logical statements. Recall that the `logical` class consists of either `TRUE` or `FALSE`
+
+```{r logical1, comment="", prompt=TRUE}
+z = c(TRUE,FALSE,TRUE,FALSE)
+class(z)
+sum(z) # number of TRUEs
+```
+
+## Data Subsetting
+
+And recall again that the logical class does NOT use quotes. 
+```{r logical2, comment="", prompt=TRUE}
+z2 = c("TRUE","FALSE","TRUE","FALSE")
+class(z2)
+# sum(z2)
+identical(z,z2)
+```
+
+Useful: `identical()` checks if two R objects are exactly identical/equal. 
+
+## Logical Statements
+
+Almost every R object can be evaluated and converted to the `logical` class using different logical statements (this mirrors computer science/programming syntax)
+
+* '==': equal to
+* '!=': not equal to (it is NOT '~' in R, e.g. SAS)
+* '>': greater than
+* '<': less than
+* '>=': greater than or equal to 
+* '<=': less than or equal to
+
+## Logical Statements
+
+```{r logical3, comment="", prompt=TRUE}
+x = 1:6
+x > 4
+x == 3
+```
+
+## Logical Statements
+
+These logical statements can be then used to subset your data.
+
+```{r logical4, comment="", prompt=TRUE}
+Index = (mon$zipCode == 21202)
+sum(Index)
+table(Index)
+mon2 = mon[Index,] 
+```
+
+## Logical Statements {.smaller}
+
+```{r logical5, comment="", prompt=TRUE}
+dim(mon2)
+head(mon2)
+```
+
+## Which
+
+`which()`: "Give the `TRUE` indices of a logical object, allowing for array indices."
+
+```{r which, comment="", prompt=TRUE}
+mon$Location.1 != ""
+which(mon$Location.1 != "")
+```
+
+## Missing Data
+
+* In R, missing data is represented by the symbol `NA` (note that it is NOT a character, and therefore not in quotes, just like the `logical` class)
+
+* `is.na()` is a logical test for which variables are missing
+
+* Many summarization functions do not the calculation you expect (e.g. they return `NA`) if there is ANY missing data, and these ofen have an argument `na.rm=FALSE`. Changing this to `na.rm=TRUE` will ignore the missing values in the calculation (i.e. `mean()`, `median()`, `max()`, `sum()`)
+
+Here is a good link with more information: http://www.statmethods.net/input/missingdata.html
