@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab 4 Review</title>
+  <title>Data Manipulation</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2105-06-15" />
+  <meta name="date" content="2105-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,8 +26,8 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Lab 4 Review',
-                        subtitle: 'Module 4',
+                title: 'Data Manipulation',
+                        subtitle: 'Module 6',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -76,6 +76,7 @@
 
   </style>
 
+  <link href="data:text/css,pre%20%7B%0A%20%20font%2Dfamily%3A%20%27Source%20Code%20Pro%27%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2028px%3B%0A%20%20line%2Dheight%3A%2028px%3B%0A%20%20padding%3A%2010px%200%2010px%2060px%3B%0A%20%20letter%2Dspacing%3A%20%2D1px%3B%0A%20%20margin%2Dbottom%3A%208px%3B%0A%20%20width%3A%20106%25%3B%0A%20%20left%3A%20%2D60px%3B%0A%20%20position%3A%20relative%3B%0A%20%20%2Dwebkit%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2Dmoz%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20box%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2F%2Aoverflow%3A%20hidden%3B%2A%2F%0A%7D%0A%0A%2F%2A%20Whole%20document%3A%20%2A%2F%0Abody%7B%0A%20%20font%2Dfamily%3A%20Helvetica%3B%0A%20%20font%2Dsize%3A%2016pt%3B%0A%7D%0A%0A%2F%2A%20Headers%20%2A%2F%0Ah1%7B%0A%20%20font%2Dsize%3A%2032pt%3B%0A%7D%0Ah2%7B%0A%20%20font%2Dsize%3A%2028pt%3B%0A%7D%0Ah3%7B%0A%20%20font%2Dsize%3A%2024pt%3B%0A%7D%0A%0A%0A%2Eemphasized%20%7B%0A%20%20%20font%2Dsize%3A%201%2E2em%3B%0A%7D%0A%0A%2Esmall%20%7B%0A%20%20%20font%2Dsize%3A%200%2E8em%3B%0A%7D" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -90,309 +91,381 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">June 15, 2105</p>
+            <p style="margin-top: 6px; margin-left: -2px;">June 16, 2105</p>
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Question 1</h2></hgroup><article  id="question-1">
+<slide class=''><hgroup><h2>Manipulating Data</h2></hgroup><article  id="manipulating-data">
 
-<ol>
-<li>Change the name of the &quot;Location.1&quot; column to &quot;location&quot;</li>
-</ol>
+<p>So far, we&#39;ve covered how to read in data, and select specific rows and columns.</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 1</h2></hgroup><article  id="question-1-1" class="smaller">
+<p>All of these steps help you set up your analysis or data exploration.</p>
 
-<p>Names are just an attribute of the data frame (recall <code>str</code>) that you can change to any valid character name</p>
+<p>Now we are going to cover manipulating your data and summarizing it using basic statistics and visualizations.</p>
 
-<p>Valid character names are case-sensitive, contain a-z, 0-9, underscores, and periods (but cannot start with a number).</p>
+</article></slide><slide class=''><hgroup><h2>Sorting and ordering</h2></hgroup><article  id="sorting-and-ordering">
 
-<p>For the <code>data.frame</code> class, <code>colnames()</code> and <code>names()</code> return the same attribute.</p>
+<p><code>sort(x, decreasing=FALSE)</code>: &#39;sort (or order) a vector or factor (partially) into ascending or descending order.&#39; Note that this returns an object that has been sorted/ordered</p>
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)</pre>
+<p><code>order(...,decreasing=FALSE)</code>: &#39;returns a permutation which rearranges its first argument into ascending or descending order, breaking ties by further arguments.&#39; Note that this returns the indices corresponding to the sorted data.</p>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
+</article></slide><slide class=''><hgroup><h2>Sorting and ordering</h2></hgroup><article  id="sorting-and-ordering-1">
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)[6] = &quot;location&quot;
-&gt; names(mon)</pre>
+<pre class = 'prettyprint lang-r'>&gt; x = c(1,4,7,6,4,12,9,3)
+&gt; sort(x)</pre>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;location&quot;       </pre>
+<pre >[1]  1  3  4  4  6  7  9 12</pre>
 
-<p>These naming rules also apply for creating R objects</p>
+<pre class = 'prettyprint lang-r'>&gt; order(x)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 2</h2></hgroup><article  id="question-2">
+<pre >[1] 1 8 2 5 4 3 7 6</pre>
 
-<ol>
-<li>How many monuments are in Baltimore (at least this collection&#8230;)?</li>
-</ol>
+<p>Note you would have to assign the sorted variable to a new variable to retain it</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 2</h2></hgroup><article  id="question-2-1">
+</article></slide><slide class=''><hgroup><h2>Sorting and ordering</h2></hgroup><article  id="sorting-and-ordering-2" class="smaller">
 
-<p>There are several ways to return the number of rows of a data frame or matrix</p>
+<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/charmcitycirc_reduced.csv&quot;, header=TRUE,as.is=TRUE)
+&gt; circ2 = circ[,c(&quot;day&quot;,&quot;date&quot;, &quot;orangeAverage&quot;,&quot;purpleAverage&quot;,
++               &quot;greenAverage&quot;,&quot;bannerAverage&quot;,&quot;daily&quot;)]
+&gt; head(order(circ2$daily,decreasing=TRUE))</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; nrow(mon)</pre>
+<pre >[1] 888 887 886 971 880 866</pre>
 
-<pre >[1] 84</pre>
+<pre class = 'prettyprint lang-r'>&gt; head(sort(circ2$daily,decreasing=TRUE))</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; dim(mon)</pre>
+<pre >[1] 22074.5 21951.0 17580.0 16714.0 16366.5 16149.5</pre>
 
-<pre >[1] 84  6</pre>
+<p>The first indicates the rows of <code>circ2</code> ordered by daily average ridership. The second displays the actual sorted values of daily average ridership.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; length(mon$name)</pre>
+</article></slide><slide class=''><hgroup><h2>Sorting and ordering</h2></hgroup><article  id="sorting-and-ordering-3" class="smaller">
 
-<pre >[1] 84</pre>
+<pre class = 'prettyprint lang-r'>&gt; circSorted = circ2[order(circ2$daily,decreasing=TRUE),]
+&gt; circSorted[1:5,]</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 3</h2></hgroup><article  id="question-3">
+<pre >         day       date orangeAverage purpleAverage greenAverage
+888 Saturday 06/16/2012        6322.0        7797.0       3338.5
+887   Friday 06/15/2012        6926.5        8089.5       3485.0
+886 Thursday 06/14/2012        5617.5        6521.0       2769.5
+971   Friday 09/07/2012        5717.5        7007.0       2688.5
+880   Friday 06/08/2012        5782.5        6881.5       2858.0
+    bannerAverage   daily
+888        4617.0 22074.5
+887        3450.0 21951.0
+886        2672.0 17580.0
+971        1301.0 16714.0
+880         844.5 16366.5</pre>
 
-<p>What are the:</p>
+</article></slide><slide class=''><hgroup><h2>Sorting and ordering</h2></hgroup><article  id="sorting-and-ordering-4" class="smaller">
 
-<ol>
-<li><p>zip codes</p></li>
-<li><p>neighborhoods</p></li>
-<li><p>council districts, and</p></li>
-<li><p>police districts</p></li>
-</ol>
+<p>Note that the row names refer to their previous values. You can do something like this to fix:</p>
 
-<p>that contain monuments, and how many monuments are in each?</p>
+<pre class = 'prettyprint lang-r'>&gt; rownames(circSorted)=NULL
+&gt; circSorted[1:5,]</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 3</h2></hgroup><article  id="question-3-1">
+<pre >       day       date orangeAverage purpleAverage greenAverage
+1 Saturday 06/16/2012        6322.0        7797.0       3338.5
+2   Friday 06/15/2012        6926.5        8089.5       3485.0
+3 Thursday 06/14/2012        5617.5        6521.0       2769.5
+4   Friday 09/07/2012        5717.5        7007.0       2688.5
+5   Friday 06/08/2012        5782.5        6881.5       2858.0
+  bannerAverage   daily
+1        4617.0 22074.5
+2        3450.0 21951.0
+3        2672.0 17580.0
+4        1301.0 16714.0
+5         844.5 16366.5</pre>
 
-<p><code>unique()</code> returns the unique entries in a vector</p>
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables">
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$zipCode)</pre>
+<p>the <code>rep()</code> [&quot;repeat&quot;] function is useful for creating new variables</p>
 
-<pre > [1] 21201 21202 21211 21213 21217 21218 21224 21230 21231 21214 21223
-[12] 21225 21251</pre>
+<pre class = 'prettyprint lang-r'>&gt; bg = rep(c(&quot;boy&quot;,&quot;girl&quot;),each=50)
+&gt; head(bg)</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$policeDistrict)</pre>
+<pre >[1] &quot;boy&quot; &quot;boy&quot; &quot;boy&quot; &quot;boy&quot; &quot;boy&quot; &quot;boy&quot;</pre>
 
-<pre >[1] &quot;CENTRAL&quot;      &quot;NORTHERN&quot;     &quot;NORTHEASTERN&quot; &quot;WESTERN&quot;     
-[5] &quot;SOUTHEASTERN&quot; &quot;SOUTHERN&quot;     &quot;EASTERN&quot;     </pre>
+<pre class = 'prettyprint lang-r'>&gt; bg2 = rep(c(&quot;boy&quot;,&quot;girl&quot;),times=50)
+&gt; head(bg2)</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$councilDistrict)</pre>
+<pre >[1] &quot;boy&quot;  &quot;girl&quot; &quot;boy&quot;  &quot;girl&quot; &quot;boy&quot;  &quot;girl&quot;</pre>
 
-<pre > [1] 11  7 14 13  1 10  3  2  9 12</pre>
+<pre class = 'prettyprint lang-r'>&gt; length(bg)==length(bg2)</pre>
+
+<pre >[1] TRUE</pre>
+
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables-1">
+
+<p>One frequently-used tool is creating categorical variables out of continuous variables, like generating quantiles of a specific continuously measured variable.</p>
+
+<p>A general function for creating new variables based on existing variables is the <code>ifelse()</code> function, which &quot;returns a value with the same shape as test which is filled with elements selected from either yes or no depending on whether the element of test is <code>TRUE</code> or <code>FALSE</code>.&quot;</p>
+
+<pre >ifelse(test, yes, no)
+
+# test: an object which can be coerced
+    to logical mode.
+# yes: return values for true elements of test.
+# no: return values for false elements of test.</pre>
+
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables-2">
+
+<p>For example, we can create a new variable that records whether daily ridership on the Circulator was above 10,000.</p>
+
+<pre class = 'prettyprint lang-r'>&gt; hi_rider = ifelse(circ$daily &gt; 10000, 1, 0)
+&gt; head(hi_rider)</pre>
+
+<pre >[1] 0 0 0 0 0 0</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; table(hi_rider)</pre>
+
+<pre >hi_rider
+  0   1 
+740 282 </pre>
+
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables-3">
+
+<p>You can also nest <code>ifelse()</code> within itself to create 3 levels of a variable.</p>
+
+<pre class = 'prettyprint lang-r'>&gt; riderLevels = ifelse(circ$daily &lt; 10000, &quot;low&quot;, 
++                   ifelse(circ$daily &gt; 20000,
++                   &quot;high&quot;, &quot;med&quot;))
+&gt; head(riderLevels)</pre>
+
+<pre >[1] &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; table(riderLevels)</pre>
+
+<pre >riderLevels
+high  low  med 
+   2  740  280 </pre>
+
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables-4">
+
+<p>However, it&#39;s much easier to use <code>cut()</code> to create categorical variables from continuous variables.</p>
+
+<p>&#39;cut divides the range of x into intervals and codes the values in x according to which interval they fall. The leftmost interval corresponds to level one, the next leftmost to level two and so on.&#39;</p>
+
+<pre >cut(x, breaks, labels = NULL, include.lowest = FALSE, 
+  right = TRUE, dig.lab = 3,
+  ordered_result = FALSE, ...)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Creating categorical variables</h2></hgroup><article  id="creating-categorical-variables-5">
+
+<p><code>x</code>: a numeric vector which is to be converted to a factor by cutting.</p>
+
+<p><code>breaks</code>: either a numeric vector of two or more unique cut points or a single number (greater than or equal to 2) giving the number of intervals into which x is to be cut.</p>
+
+<p><code>labels</code>: labels for the levels of the resulting category. By default, labels are constructed using &quot;(a,b]&quot; interval notation. If <code>labels = FALSE</code>, simple integer codes are returned instead of a factor.</p>
+
+</article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors">
+
+<p>Factors are used to represent categorical data, and can also be used for ordinal data (ie categories have an intrinsic ordering)</p>
+
+<p>Note that R reads in character strings as factors by default in functions like <code>read.table()</code></p>
+
+<p>&#39;The function factor is used to encode a vector as a factor (the terms &#39;category&#39; and &#39;enumerated type&#39; are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered.&#39;</p>
+
+<pre >factor(x = character(), levels, labels = levels,
+       exclude = NA, ordered = is.ordered(x))</pre>
+
+</article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors-1">
+
+<p>Suppose we have a vector of case-control status</p>
+
+<pre class = 'prettyprint lang-r'>&gt; cc = factor(c(&quot;case&quot;,&quot;case&quot;,&quot;case&quot;,
++         &quot;control&quot;,&quot;control&quot;,&quot;control&quot;))
+&gt; cc</pre>
+
+<pre >[1] case    case    case    control control control
+Levels: case control</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; levels(cc) = c(&quot;control&quot;,&quot;case&quot;)
+&gt; cc</pre>
+
+<pre >[1] control control control case    case    case   
+Levels: control case</pre>
+
+</article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors-2">
+
+<p>Note that the levels are alphabetically ordered by default. We can also specify the levels within the factor call</p>
+
+<pre class = 'prettyprint lang-r'>&gt; factor(c(&quot;case&quot;,&quot;case&quot;,&quot;case&quot;,&quot;control&quot;,
++           &quot;control&quot;,&quot;control&quot;), 
++         levels =c(&quot;control&quot;,&quot;case&quot;) )</pre>
+
+<pre >[1] case    case    case    control control control
+Levels: control case</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; factor(c(&quot;case&quot;,&quot;case&quot;,&quot;case&quot;,&quot;control&quot;,
++             &quot;control&quot;,&quot;control&quot;), 
++         levels =c(&quot;control&quot;,&quot;case&quot;), ordered=TRUE)</pre>
+
+<pre >[1] case    case    case    control control control
+Levels: control &lt; case</pre>
+
+</article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors-3">
+
+<p>Factors can be converted to <code>numeric</code> or <code>character</code> very easily</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = factor(c(&quot;case&quot;,&quot;case&quot;,&quot;case&quot;,&quot;control&quot;,
++       &quot;control&quot;,&quot;control&quot;),
++         levels =c(&quot;control&quot;,&quot;case&quot;) )
+&gt; as.character(x)</pre>
+
+<pre >[1] &quot;case&quot;    &quot;case&quot;    &quot;case&quot;    &quot;control&quot; &quot;control&quot; &quot;control&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; as.numeric(x)</pre>
+
+<pre >[1] 2 2 2 1 1 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>Cut</h2></hgroup><article  id="cut">
+
+<p>Now that we know more about factors, <code>cut()</code> will make more sense:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; x = 1:100
+&gt; cx = cut(x, breaks=c(0,10,25,50,100))
+&gt; head(cx)  </pre>
+
+<pre >[1] (0,10] (0,10] (0,10] (0,10] (0,10] (0,10]
+Levels: (0,10] (10,25] (25,50] (50,100]</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; table(cx)</pre>
+
+<pre >cx
+  (0,10]  (10,25]  (25,50] (50,100] 
+      10       15       25       50 </pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$neighborhood)</pre>
+<p>We can also leave off the labels</p>
 
-<pre > [1] &quot;Downtown&quot;                        &quot;Remington&quot;                      
- [3] &quot;Clifton Park&quot;                    &quot;Johns Hopkins Homewood&quot;         
- [5] &quot;Mid-Town Belvedere&quot;              &quot;Madison Park&quot;                   
- [7] &quot;Upton&quot;                           &quot;Reservoir Hill&quot;                 
- [9] &quot;Harlem Park&quot;                     &quot;Coldstream Homestead Montebello&quot;
-[11] &quot;Guilford&quot;                        &quot;McElderry Park&quot;                 
-[13] &quot;Patterson Park&quot;                  &quot;Canton&quot;                         
-[15] &quot;Middle Branch/Reedbird Parks&quot;    &quot;Locust Point Industrial Area&quot;   
-[17] &quot;Federal Hill&quot;                    &quot;Washington Hill&quot;                
-[19] &quot;Inner Harbor&quot;                    &quot;Herring Run Park&quot;               
-[21] &quot;Ednor Gardens-Lakeside&quot;          &quot;Fells Point&quot;                    
-[23] &quot;Hopkins Bayview&quot;                 &quot;New Southwest/Mount Clare&quot;      
-[25] &quot;Brooklyn&quot;                        &quot;Stadium Area&quot;                   
-[27] &quot;Mount Vernon&quot;                    &quot;Druid Hill Park&quot;                
-[29] &quot;Morgan State University&quot;         &quot;Dunbar-Broadway&quot;                
-[31] &quot;Carrollton Ridge&quot;                &quot;Union Square&quot;                   </pre>
+<pre class = 'prettyprint lang-r'>&gt; cx = cut(x, breaks=c(0,10,25,50,100), labels=FALSE)
+&gt; head(cx)  </pre>
+
+<pre >[1] 1 1 1 1 1 1</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; table(cx)</pre>
+
+<pre >cx
+ 1  2  3  4 
+10 15 25 50 </pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$zipCode))</pre>
+<p>Note that you have to specify the endpoints of the data, otherwise some of the categories will not be created</p>
 
-<pre >[1] 13</pre>
+<pre class = 'prettyprint lang-r'>&gt; cx = cut(x, breaks=c(10,25,50), labels=FALSE)
+&gt; head(cx)  </pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$policeDistrict))</pre>
+<pre >[1] NA NA NA NA NA NA</pre>
 
-<pre >[1] 7</pre>
+<pre class = 'prettyprint lang-r'>&gt; table(cx)</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$councilDistrict))</pre>
+<pre >cx
+ 1  2 
+15 25 </pre>
 
-<pre >[1] 10</pre>
+<pre class = 'prettyprint lang-r'>&gt; table(cx,useNA=&quot;ifany&quot;)</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$neighborhood))</pre>
+<pre >cx
+   1    2 &lt;NA&gt; 
+  15   25   60 </pre>
 
-<pre >[1] 32</pre>
+</article></slide><slide class=''><hgroup><h2>Adding to data frames</h2></hgroup><article  id="adding-to-data-frames" class="smaller">
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre class = 'prettyprint lang-r'>&gt; circ2$riderLevels = cut(circ2$daily, 
++       breaks = c(0,10000,20000,100000))
+&gt; circ2[1:2,]</pre>
 
-<p>Also note that table() can work, which tabulates a specific variable (or cross-tabulates two variables)</p>
+<pre >      day       date orangeAverage purpleAverage greenAverage
+1  Monday 01/11/2010           952            NA           NA
+2 Tuesday 01/12/2010           796            NA           NA
+  bannerAverage daily riderLevels
+1            NA   952   (0,1e+04]
+2            NA   796   (0,1e+04]</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; table(mon$zipCode)</pre>
+<pre class = 'prettyprint lang-r'>&gt; table(circ2$riderLevels, useNA=&quot;always&quot;)</pre>
 
 <pre >
-21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-   11    16     8     4     1     9    14     4     8     1     3     4 
-21251 
-    1 </pre>
+    (0,1e+04] (1e+04,2e+04] (2e+04,1e+05]          &lt;NA&gt; 
+          731           280             2           133 </pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(table(mon$zipCode))</pre>
+</article></slide><slide class=''><hgroup><h2>Adding rows and columns</h2></hgroup><article  id="adding-rows-and-columns">
 
-<pre >[1] 13</pre>
+<pre class = 'prettyprint lang-r'>&gt; m1 = matrix(1:9, nrow = 3, 
++       ncol = 3, byrow = FALSE)
+&gt; m1</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 4</h2></hgroup><article  id="question-4">
+<pre >     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</pre>
 
-<p>The &quot;by hand&quot; way is cross-tabulating the zip codes and neighborhoods,</p>
+<pre class = 'prettyprint lang-r'>&gt; m2 = matrix(1:9, nrow = 3, 
++       ncol = 3, byrow = TRUE)
+&gt; m2</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tab = table(mon$zipCode, mon$neighborhood)
-&gt; # tab
-&gt; tab[,&quot;Downtown&quot;]</pre>
+<pre >     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]    7    8    9</pre>
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
+</article></slide><slide class=''><hgroup><h2>Adding rows and columns</h2></hgroup><article  id="adding-rows-and-columns-1" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(tab[,&quot;Downtown&quot;]))</pre>
+<p>More generally, you can add columns (or another matrix/data frame) to a data frame or matrix using <code>cbind()</code> (&#39;column bind&#39;). You can also add rows (or another matrix/data frame) using <code>rbind()</code> (&#39;row bind&#39;).</p>
 
-<pre >[1] 3</pre>
+<p>Note that the vector you are adding has to have the same length as the number of rows (for <code>cbind()</code>) or the number of columns (<code>rbind()</code>)</p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<p>When binding two matrices, they must have either the same number of rows or columns</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tt = tab[,&quot;Downtown&quot;]
-&gt; tt</pre>
+<pre class = 'prettyprint lang-r'>&gt; cbind(m1,m2)</pre>
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
+<pre >     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7    1    2    3
+[2,]    2    5    8    4    5    6
+[3,]    3    6    9    7    8    9</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tt == 0 # which entries are equal to 0</pre>
+</article></slide><slide class=''><hgroup><h2>Adding rows and columns</h2></hgroup><article  id="adding-rows-and-columns-2" class="smaller">
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE 
-21251 
- TRUE </pre>
+<pre class = 'prettyprint lang-r'>&gt; rbind(m1,m2)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre >     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+[4,]    1    2    3
+[5,]    4    5    6
+[6,]    7    8    9</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tab[,&quot;Downtown&quot;] !=0</pre>
+</article></slide><slide class=''><hgroup><h2>Adding columns manually</h2></hgroup><article  id="adding-columns-manually" class="smaller">
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
- TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE 
-21251 
-FALSE </pre>
+<pre class = 'prettyprint lang-r'>&gt; circ2$riderLevels = NULL
+&gt; rider = cut(circ2$daily, breaks = c(0,10000,20000,100000))
+&gt; circ2 = cbind(circ2,rider)
+&gt; circ2[1:2,]</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Downtown&quot;] !=0)</pre>
+<pre >      day       date orangeAverage purpleAverage greenAverage
+1  Monday 01/11/2010           952            NA           NA
+2 Tuesday 01/12/2010           796            NA           NA
+  bannerAverage daily     rider
+1            NA   952 (0,1e+04]
+2            NA   796 (0,1e+04]</pre>
 
-<pre >[1] 2</pre>
+</article></slide><slide class=''><hgroup><h2>Other manipulations</h2></hgroup><article  id="other-manipulations">
 
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Johns Hopkins Homewood&quot;] !=0)</pre>
+<ul>
+<li><code>abs(x)</code>: absolute value</li>
+<li><code>sqrt(x)</code>: square root</li>
+<li><code>ceiling(x)</code>: ceiling(3.475) is 4</li>
+<li><code>floor(x)</code>: floor(3.475) is 3</li>
+<li><code>trunc(x)</code>: trunc(5.99) is 5</li>
+<li><code>round(x, digits=n)</code>: round(3.475, digits=2) is 3.48</li>
+<li><code>signif(x, digits=n)</code>: signif(3.475, digits=2) is 3.5</li>
+<li><code>log(x)</code>: natural logarithm</li>
+<li><code>log10(x)</code>: common logarithm</li>
+<li><code>exp(x)</code>: e^x</li>
+</ul>
 
-<pre >[1] 2</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<p>We could also subset the data into neighborhoods:</p>
-
-<pre class = 'prettyprint lang-r'>&gt; dt = mon[mon$neighborhood == &quot;Downtown&quot;,]
-&gt; head(mon$neighborhood == &quot;Downtown&quot;,10)</pre>
-
-<pre > [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; dim(dt)</pre>
-
-<pre >[1] 11  6</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(dt$zipCode))</pre>
-
-<pre >[1] 2</pre>
-
-</article></slide><slide class=''><hgroup><h2>Question 5</h2></hgroup><article  id="question-5">
-
-<p>How many monuments (a) do and (b) do not have an exact location/address?</p>
-
-</article></slide><slide class=''><hgroup><h2>Question 5</h2></hgroup><article  id="question-5-1">
-
-<pre class = 'prettyprint lang-r'>&gt; head(mon$location)</pre>
-
-<pre >[1] &quot;408 CHARLES ST\nBaltimore, MD\n&quot;  &quot;&quot;                                
-[3] &quot;&quot;                                 &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot;
-[5] &quot;50 MARKET PL\nBaltimore, MD\n&quot;    &quot;100 CALVERT ST\nBaltimore, MD\n&quot; </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; table(mon$location != &quot;&quot;) # FALSE=DO NOT and TRUE=DO</pre>
-
-<pre >
-FALSE  TRUE 
-   26    58 </pre>
-
-</article></slide><slide class=''><hgroup><h2>Question 6</h2></hgroup><article  id="question-6">
-
-<p>Which:</p>
-
-<ol>
-<li>zip code,</li>
-<li>neighborhood,</li>
-<li>council district, and</li>
-<li>police district</li>
-</ol>
-
-<p>contains the most number of monuments?</p>
-
-</article></slide><slide class=''><hgroup><h2>Question 6</h2></hgroup><article  id="question-6-1" class="smaller">
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ = table(mon$zipCode)
-&gt; head(tabZ)</pre>
-
-<pre >
-21201 21202 21211 21213 21214 21217 
-   11    16     8     4     1     9 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; max(tabZ)</pre>
-
-<pre >[1] 16</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ[tabZ == max(tabZ)]</pre>
-
-<pre >21202 
-   16 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<p><code>which.max()</code> returns the FIRST entry/element number that contains the maximum and <code>which.min()</code> returns the FIRST entry that contains the minimum</p>
-
-<pre class = 'prettyprint lang-r'>&gt; which.max(tabZ) # this is the element number</pre>
-
-<pre >21202 
-    2 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ[which.max(tabZ)] # this is the actual maximum</pre>
-
-<pre >21202 
-   16 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; tabN = table(mon$neighborhood)
-&gt; tabN[which.max(tabN)] </pre>
-
-<pre >Johns Hopkins Homewood 
-                    17 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabC = table(mon$councilDistrict)
-&gt; tabC[which.max(tabC)] </pre>
-
-<pre >11 
-29 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabP = table(mon$policeDistrict)
-&gt; tabP[which.max(tabP)] </pre>
-
-<pre >CENTRAL 
-     27 </pre>
-
-</article></slide><slide class=''><hgroup><h2>Question 7</h2></hgroup><article  id="question-7">
-
-<ol>
-<li>Try reading in the tab-delimited <code>Monuments-tab.txt</code> file from: <a href='http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt' title=''>http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt</a></li>
-</ol>
-
-</article></slide><slide class=''><hgroup><h2>Question 7</h2></hgroup><article  id="question-7-1">
-
-<pre class = 'prettyprint lang-r'>&gt; monTab = read.delim(&quot;http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt&quot;,
-+                     header=TRUE, as.is=TRUE)
-&gt; identical(mon$name,monTab$name)</pre>
-
-<pre >[1] TRUE</pre></article></slide>
+<p>(via: <a href='http://statmethods.net/management/functions.html' title=''>http://statmethods.net/management/functions.html</a>)</p></article></slide>
 
 
   <slide class="backdrop"></slide>

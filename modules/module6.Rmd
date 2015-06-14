@@ -1,0 +1,274 @@
+---
+title: "Data Manipulation"
+subtitle: Module 6
+author: "Andrew Jaffe"
+date: "June 16, 2105"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+## Manipulating Data
+
+So far, we've covered how to read in data, and select specific rows and columns. 
+
+All of these steps help you set up your analysis or data exploration. 
+
+Now we are going to cover manipulating your data and summarizing it using basic statistics and visualizations.
+
+## Sorting and ordering
+
+`sort(x, decreasing=FALSE)`: 'sort (or order) a vector or factor (partially) into ascending or descending order.' Note that this returns an object that has been sorted/ordered
+
+`order(...,decreasing=FALSE)`: 'returns a permutation which rearranges its first argument into ascending or descending order, breaking ties by further arguments.' Note that this returns the indices corresponding to the sorted data.
+
+## Sorting and ordering
+
+```{r sortVorder, comment="",prompt=TRUE}
+x = c(1,4,7,6,4,12,9,3)
+sort(x)
+order(x)
+```
+
+Note you would have to assign the sorted variable to a new variable to retain it
+
+## Sorting and ordering {.smaller}
+
+```{r sortVorder1, comment="",prompt=TRUE}
+circ = read.csv("../data/charmcitycirc_reduced.csv", header=TRUE,as.is=TRUE)
+circ2 = circ[,c("day","date", "orangeAverage","purpleAverage",
+              "greenAverage","bannerAverage","daily")]
+head(order(circ2$daily,decreasing=TRUE))
+head(sort(circ2$daily,decreasing=TRUE))
+```
+The first indicates the rows of `circ2` ordered by daily average ridership. The second displays the actual sorted values of daily average ridership.
+
+## Sorting and ordering {.smaller}
+
+```{r sortVorder2, comment="",prompt=TRUE}
+circSorted = circ2[order(circ2$daily,decreasing=TRUE),]
+circSorted[1:5,]
+```
+
+## Sorting and ordering {.smaller}
+
+Note that the row names refer to their previous values. You can do something like this to fix:
+
+```{r sortVorder3, comment="",prompt=TRUE}
+rownames(circSorted)=NULL
+circSorted[1:5,]
+```
+
+## Creating categorical variables
+
+the `rep()` ["repeat"] function is useful for creating new variables 
+
+```{r rep1, comment="",prompt=TRUE}
+bg = rep(c("boy","girl"),each=50)
+head(bg)
+bg2 = rep(c("boy","girl"),times=50)
+head(bg2)
+length(bg)==length(bg2)
+```
+
+## Creating categorical variables
+
+One frequently-used tool is creating categorical variables out of continuous variables, like generating quantiles of a specific continuously measured variable. 
+
+A general function for creating new variables based on existing variables is the `ifelse()` function, which "returns a value with the same shape as test which is filled with elements selected from either yes or no depending on whether the element of test is `TRUE` or `FALSE`."
+
+```
+ifelse(test, yes, no)
+
+# test: an object which can be coerced
+    to logical mode.
+# yes: return values for true elements of test.
+# no: return values for false elements of test.
+```
+
+## Creating categorical variables
+
+For example, we can create a new variable that records whether daily ridership on the Circulator was above 10,000.
+
+```{r ifelse1, comment="",prompt=TRUE}
+hi_rider = ifelse(circ$daily > 10000, 1, 0)
+head(hi_rider)
+table(hi_rider)
+```
+
+## Creating categorical variables
+
+You can also nest `ifelse()` within itself to create 3 levels of a variable.
+
+```{r ifelse2, comment="",prompt=TRUE}
+riderLevels = ifelse(circ$daily < 10000, "low", 
+                  ifelse(circ$daily > 20000,
+                  "high", "med"))
+head(riderLevels)
+table(riderLevels)
+```
+
+## Creating categorical variables
+
+However, it's much easier to use `cut()` to create categorical variables from continuous variables. 
+
+'cut divides the range of x into intervals and codes the values in x according to which interval they fall. The leftmost interval corresponds to level one, the next leftmost to level two and so on.'
+
+```
+cut(x, breaks, labels = NULL, include.lowest = FALSE, 
+  right = TRUE, dig.lab = 3,
+  ordered_result = FALSE, ...)
+```
+
+## Creating categorical variables
+
+`x`: a numeric vector which is to be converted to a factor by cutting.
+
+`breaks`: either a numeric vector of two or more unique cut points or a single number (greater than or equal to 2) giving the number of intervals into which x is to be cut.
+
+`labels`: labels for the levels of the resulting category. By default, labels are constructed using "(a,b]" interval notation. If `labels = FALSE`, simple integer codes are returned instead of a factor.
+
+## Factors
+
+Factors are used to represent categorical data, and can also be used for ordinal data (ie categories have an intrinsic ordering)
+
+Note that R reads in character strings as factors by default in functions like `read.table()`
+
+'The function factor is used to encode a vector as a factor (the terms 'category' and 'enumerated type' are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered.'
+
+```
+factor(x = character(), levels, labels = levels,
+       exclude = NA, ordered = is.ordered(x))
+```
+
+## Factors
+
+Suppose we have a vector of case-control status
+
+```{r factor1, comment="", prompt=TRUE}
+cc = factor(c("case","case","case",
+        "control","control","control"))
+cc
+levels(cc) = c("control","case")
+cc
+```
+
+## Factors
+
+Note that the levels are alphabetically ordered by default. We can also specify the levels within the factor call
+
+```{r factor2, comment="", prompt=TRUE}
+factor(c("case","case","case","control",
+          "control","control"), 
+        levels =c("control","case") )
+factor(c("case","case","case","control",
+            "control","control"), 
+        levels =c("control","case"), ordered=TRUE)
+```
+
+## Factors
+
+Factors can be converted to `numeric` or `character` very easily
+
+```{r factor3, comment="", prompt=TRUE}
+x = factor(c("case","case","case","control",
+      "control","control"),
+        levels =c("control","case") )
+as.character(x)
+as.numeric(x)
+```
+
+## Cut
+
+Now that we know more about factors, `cut()` will make more sense:
+
+```{r cut1, comment="", prompt=TRUE}
+x = 1:100
+cx = cut(x, breaks=c(0,10,25,50,100))
+head(cx)  
+table(cx)
+```
+
+---
+
+We can also leave off the labels
+
+```{r cut2, comment="", prompt=TRUE}
+cx = cut(x, breaks=c(0,10,25,50,100), labels=FALSE)
+head(cx)  
+table(cx)
+```
+
+---
+
+Note that you have to specify the endpoints of the data, otherwise some of the categories will not be created
+
+```{r cut3, comment="", prompt=TRUE}
+cx = cut(x, breaks=c(10,25,50), labels=FALSE)
+head(cx)  
+table(cx)
+table(cx,useNA="ifany")
+```
+
+## Adding to data frames {.smaller}
+
+```{r addingVar, comment="",prompt=TRUE}
+circ2$riderLevels = cut(circ2$daily, 
+      breaks = c(0,10000,20000,100000))
+circ2[1:2,]
+table(circ2$riderLevels, useNA="always")
+```
+
+## Adding rows and columns
+
+```{r mat1, comment="",prompt=TRUE}
+m1 = matrix(1:9, nrow = 3, 
+      ncol = 3, byrow = FALSE)
+m1
+m2 = matrix(1:9, nrow = 3, 
+      ncol = 3, byrow = TRUE)
+m2
+```
+
+## Adding rows and columns {.smaller}
+
+More generally, you can add columns (or another matrix/data frame) to a data frame or matrix using `cbind()` ('column bind'). You can also add rows (or another matrix/data frame) using `rbind()` ('row bind'). 
+
+Note that the vector you are adding has to have the same length as the number of rows (for `cbind()`) or the number of columns (`rbind()`)
+
+When binding two matrices, they must have either the same number of rows or columns
+
+```{r mat2, comment="",prompt=TRUE}
+cbind(m1,m2)
+```
+
+## Adding rows and columns {.smaller}
+
+```{r mat3, comment="",prompt=TRUE}
+rbind(m1,m2)
+```
+
+## Adding columns manually {.smaller}
+
+```{r cbind, comment="",prompt=TRUE}
+circ2$riderLevels = NULL
+rider = cut(circ2$daily, breaks = c(0,10000,20000,100000))
+circ2 = cbind(circ2,rider)
+circ2[1:2,]
+```
+
+## Other manipulations
+
+* `abs(x)`:  absolute value
+* `sqrt(x)`:  square root
+* `ceiling(x)`:  ceiling(3.475) is 4
+* `floor(x)`:	floor(3.475) is 3
+* `trunc(x)`:	trunc(5.99) is 5
+* `round(x, digits=n)`:	round(3.475, digits=2) is 3.48
+* `signif(x, digits=n)`:	signif(3.475, digits=2) is 3.5
+* `log(x)`:	natural logarithm
+* `log10(x)`:	common logarithm
+* `exp(x)`:	e^x
+
+(via: http://statmethods.net/management/functions.html)
+

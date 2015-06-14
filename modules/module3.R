@@ -47,7 +47,7 @@ length(x1)
 ## ----subset2, comment="",prompt=TRUE-------------------------------------
 x1[1] # selecting first element
 x1[3:4] # selecting third and fourth elements
-x1[c(1, 5, 7)] # selecting first, fifth, and seventh elements
+x1[c(1, 5, 7)] # first, fifth, and seventh elements
 
 ## ----matrix, comment="", prompt=TRUE-------------------------------------
 n = 1:9 # sequence from first number to second number incrementing by 1

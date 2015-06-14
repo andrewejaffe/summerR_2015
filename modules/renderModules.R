@@ -9,5 +9,5 @@ for(file in files) {
     render(file, output_format = 'ioslides_presentation')
     
     ## Make pdf version
-    render(file, output_format = 'pdf_document')
+    render(file,  output_format = 'pdf_document')
 }

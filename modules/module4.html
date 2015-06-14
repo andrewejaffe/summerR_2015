@@ -163,7 +163,7 @@ read.table( file, # filename
 ##     fill = TRUE, comment.char = &quot;&quot;, ...) 
 ## read.table(file = file, header = header, sep = sep, quote = quote, 
 ##     dec = dec, fill = fill, comment.char = comment.char, ...)
-## &lt;bytecode: 0x0000000006a84618&gt;
+## &lt;bytecode: 0x000000000a4e3370&gt;
 ## &lt;environment: namespace:utils&gt;</pre>
 
 <p>Note: the <code>...</code> designates extra/optional arguments that can be passed to <code>read.table()</code> if needed</p>
@@ -247,12 +247,14 @@ head(mon)</pre>
  [4] &quot;module1.Rmd&quot;     &quot;module2.html&quot;    &quot;module2.pdf&quot;    
  [7] &quot;module2.R&quot;       &quot;module2.Rmd&quot;     &quot;module3.html&quot;   
 [10] &quot;module3.pdf&quot;     &quot;module3.R&quot;       &quot;module3.Rmd&quot;    
-[13] &quot;module4.Rmd&quot;     &quot;renderModules.R&quot; &quot;styles.css&quot;     </pre>
+[13] &quot;module4.html&quot;    &quot;module4.R&quot;       &quot;module4.Rmd&quot;    
+[16] &quot;module5.html&quot;    &quot;module5.Rmd&quot;     &quot;module6.html&quot;   
+[19] &quot;module6.Rmd&quot;     &quot;renderModules.R&quot; &quot;styles.css&quot;     </pre>
 
 <pre class = 'prettyprint lang-r'>&gt; dir(&quot;..&quot;)</pre>
 
-<pre >[1] &quot;data&quot;       &quot;docs&quot;       &quot;index.html&quot; &quot;index.pdf&quot;  &quot;index.Rmd&quot; 
-[6] &quot;labs&quot;       &quot;modules&quot;    &quot;pdf&quot;        &quot;README.md&quot; </pre>
+<pre >[1] &quot;data&quot;       &quot;docs&quot;       &quot;index.html&quot; &quot;index.Rmd&quot;  &quot;labs&quot;      
+[6] &quot;modules&quot;    &quot;pdf&quot;        &quot;README.md&quot; </pre>
 
 </article></slide><slide class=''><hgroup><h2>Working Directory</h2></hgroup><article  id="working-directory-1">
 
@@ -279,8 +281,6 @@ head(mon)</pre>
  $ policeDistrict : chr  &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; ...
  $ Location.1     : chr  &quot;408 CHARLES ST\nBaltimore, MD\n&quot; &quot;&quot; &quot;&quot; &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot; ...</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Data Input</h2></hgroup><article  id="data-input-8">
 
 <p>Changing variable names in <code>data.frame</code>s works using the <code>names()</code> function, which is analagous to <code>colnames()</code> for data frames (they can be used interchangeably)</p>
@@ -297,8 +297,6 @@ head(mon)</pre>
 <pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
 [5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting">
 
 <p>Now we will introduce subsetting rows/observations of data using logical statements. Recall that the <code>logical</code> class consists of either <code>TRUE</code> or <code>FALSE</code></p>
@@ -312,7 +310,7 @@ head(mon)</pre>
 
 <pre >[1] 2</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting-1">
 
 <p>And recall again that the logical class does NOT use quotes.</p>
 
@@ -328,8 +326,6 @@ head(mon)</pre>
 
 <p>Useful: <code>identical()</code> checks if two R objects are exactly identical/equal.</p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements">
 
 <p>Almost every R object can be evaluated and converted to the <code>logical</code> class using different logical statements (this mirrors computer science/programming syntax)</p>
@@ -343,8 +339,6 @@ head(mon)</pre>
 <li>&#39;&lt;=&#39;: less than or equal to</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-1">
 
 <pre class = 'prettyprint lang-r'>&gt; x = 1:6
@@ -355,8 +349,6 @@ head(mon)</pre>
 <pre class = 'prettyprint lang-r'>&gt; x == 3</pre>
 
 <pre >[1] FALSE FALSE  TRUE FALSE FALSE FALSE</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-2">
 
@@ -375,7 +367,7 @@ FALSE  TRUE
 
 <pre class = 'prettyprint lang-r'>&gt; mon2 = mon[Index,] </pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-3" class="smaller">
 
 <pre class = 'prettyprint lang-r'>&gt; dim(mon2)</pre>
 
@@ -398,8 +390,6 @@ FALSE  TRUE
 6              11        CENTRAL  100 CALVERT ST\nBaltimore, MD\n
 7              11        CENTRAL      101 GAY ST\nBaltimore, MD\n</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Which</h2></hgroup><article  id="which">
 
 <p><code>which()</code>: &quot;Give the <code>TRUE</code> indices of a logical object, allowing for array indices.&quot;</p>
@@ -421,8 +411,6 @@ FALSE  TRUE
 [24] 31 32 33 34 35 36 37 38 41 42 43 44 45 46 47 50 54 55 57 58 59 60 61
 [47] 68 69 70 71 72 73 76 78 79 80 81 84</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 </article></slide><slide class=''><hgroup><h2>Missing Data</h2></hgroup><article  id="missing-data">
 
 <ul>
@@ -431,277 +419,7 @@ FALSE  TRUE
 <li><p>Many summarization functions do not the calculation you expect (e.g. they return <code>NA</code>) if there is ANY missing data, and these ofen have an argument <code>na.rm=FALSE</code>. Changing this to <code>na.rm=TRUE</code> will ignore the missing values in the calculation (i.e. <code>mean()</code>, <code>median()</code>, <code>max()</code>, <code>sum()</code>)</p></li>
 </ul>
 
-<p>Here is a good link with more information: <a href='http://www.statmethods.net/input/missingdata.html' title=''>http://www.statmethods.net/input/missingdata.html</a></p>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<h3>Lab Review</h3>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 1</h2></hgroup><article  id="question-1">
-
-<p>Names are just an attribute of the data frame (recall <code>str</code>) that you can change to any valid character name</p>
-
-<p>Valid character names are case-sensitive, contain a-z, 0-9, underscores, and periods (but cannot start with a number).</p>
-
-<p>For the <code>data.frame</code> class, <code>colnames()</code> and <code>names()</code> return the same attribute.</p>
-
-<pre class = 'prettyprint lang-r'>&gt; names(mon)</pre>
-
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; names(mon)[6] = &quot;location&quot;
-&gt; names(mon)</pre>
-
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;location&quot;       </pre>
-
-<p>These naming rules also apply for creating R objects</p>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 2</h2></hgroup><article  id="question-2">
-
-<p>There are several ways to return the number of rows of a data frame or matrix</p>
-
-<pre class = 'prettyprint lang-r'>&gt; nrow(mon)</pre>
-
-<pre >[1] 84</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; dim(mon)</pre>
-
-<pre >[1] 84  6</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(mon$name)</pre>
-
-<pre >[1] 84</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 3</h2></hgroup><article  id="question-3">
-
-<p><code>unique()</code> returns the unique entries in a vector</p>
-
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$zipCode)</pre>
-
-<pre > [1] 21201 21202 21211 21213 21217 21218 21224 21230 21231 21214 21223
-[12] 21225 21251</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$policeDistrict)</pre>
-
-<pre >[1] &quot;CENTRAL&quot;      &quot;NORTHERN&quot;     &quot;NORTHEASTERN&quot; &quot;WESTERN&quot;     
-[5] &quot;SOUTHEASTERN&quot; &quot;SOUTHERN&quot;     &quot;EASTERN&quot;     </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$councilDistrict)</pre>
-
-<pre > [1] 11  7 14 13  1 10  3  2  9 12</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$neighborhood)</pre>
-
-<pre > [1] &quot;Downtown&quot;                        &quot;Remington&quot;                      
- [3] &quot;Clifton Park&quot;                    &quot;Johns Hopkins Homewood&quot;         
- [5] &quot;Mid-Town Belvedere&quot;              &quot;Madison Park&quot;                   
- [7] &quot;Upton&quot;                           &quot;Reservoir Hill&quot;                 
- [9] &quot;Harlem Park&quot;                     &quot;Coldstream Homestead Montebello&quot;
-[11] &quot;Guilford&quot;                        &quot;McElderry Park&quot;                 
-[13] &quot;Patterson Park&quot;                  &quot;Canton&quot;                         
-[15] &quot;Middle Branch/Reedbird Parks&quot;    &quot;Locust Point Industrial Area&quot;   
-[17] &quot;Federal Hill&quot;                    &quot;Washington Hill&quot;                
-[19] &quot;Inner Harbor&quot;                    &quot;Herring Run Park&quot;               
-[21] &quot;Ednor Gardens-Lakeside&quot;          &quot;Fells Point&quot;                    
-[23] &quot;Hopkins Bayview&quot;                 &quot;New Southwest/Mount Clare&quot;      
-[25] &quot;Brooklyn&quot;                        &quot;Stadium Area&quot;                   
-[27] &quot;Mount Vernon&quot;                    &quot;Druid Hill Park&quot;                
-[29] &quot;Morgan State University&quot;         &quot;Dunbar-Broadway&quot;                
-[31] &quot;Carrollton Ridge&quot;                &quot;Union Square&quot;                   </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$zipCode))</pre>
-
-<pre >[1] 13</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$policeDistrict))</pre>
-
-<pre >[1] 7</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$councilDistrict))</pre>
-
-<pre >[1] 10</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$neighborhood))</pre>
-
-<pre >[1] 32</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<p>Also note that table() can work, which tabulates a specific variable (or cross-tabulates two variables)</p>
-
-<pre class = 'prettyprint lang-r'>&gt; table(mon$zipCode)</pre>
-
-<pre >
-21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-   11    16     8     4     1     9    14     4     8     1     3     4 
-21251 
-    1 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(table(mon$zipCode))</pre>
-
-<pre >[1] 13</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 4</h2></hgroup><article  id="question-4">
-
-<p>The &quot;by hand&quot; way is cross-tabulating the zip codes and neighborhoods,</p>
-
-<pre class = 'prettyprint lang-r'>&gt; tab = table(mon$zipCode, mon$neighborhood)
-&gt; # tab
-&gt; tab[,&quot;Downtown&quot;]</pre>
-
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(tab[,&quot;Downtown&quot;]))</pre>
-
-<pre >[1] 3</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; tt = tab[,&quot;Downtown&quot;]
-&gt; tt</pre>
-
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tt == 0 # which entries are equal to 0</pre>
-
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE 
-21251 
- TRUE </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; tab[,&quot;Downtown&quot;] !=0</pre>
-
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
- TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE 
-21251 
-FALSE </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Downtown&quot;] !=0)</pre>
-
-<pre >[1] 2</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Johns Hopkins Homewood&quot;] !=0)</pre>
-
-<pre >[1] 2</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<p>We could also subset the data into neighborhoods:</p>
-
-<pre class = 'prettyprint lang-r'>&gt; dt = mon[mon$neighborhood == &quot;Downtown&quot;,]
-&gt; head(mon$neighborhood == &quot;Downtown&quot;,10)</pre>
-
-<pre > [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; dim(dt)</pre>
-
-<pre >[1] 11  6</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; length(unique(dt$zipCode))</pre>
-
-<pre >[1] 2</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 5</h2></hgroup><article  id="question-5">
-
-<pre class = 'prettyprint lang-r'>&gt; head(mon$location)</pre>
-
-<pre >[1] &quot;408 CHARLES ST\nBaltimore, MD\n&quot;  &quot;&quot;                                
-[3] &quot;&quot;                                 &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot;
-[5] &quot;50 MARKET PL\nBaltimore, MD\n&quot;    &quot;100 CALVERT ST\nBaltimore, MD\n&quot; </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; table(mon$location != &quot;&quot;) # FALSE=DO NOT and TRUE=DO</pre>
-
-<pre >
-FALSE  TRUE 
-   26    58 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 6</h2></hgroup><article  id="question-6">
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ = table(mon$zipCode)
-&gt; head(tabZ)</pre>
-
-<pre >
-21201 21202 21211 21213 21214 21217 
-   11    16     8     4     1     9 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; max(tabZ)</pre>
-
-<pre >[1] 16</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ[tabZ == max(tabZ)]</pre>
-
-<pre >21202 
-   16 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<p><code>which.max()</code> returns the FIRST entry/element number that contains the maximum and <code>which.min()</code> returns the FIRST entry that contains the minimum</p>
-
-<pre class = 'prettyprint lang-r'>&gt; which.max(tabZ) # this is the element number</pre>
-
-<pre >21202 
-    2 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabZ[which.max(tabZ)] # this is the actual maximum</pre>
-
-<pre >21202 
-   16 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; tabN = table(mon$neighborhood)
-&gt; tabN[which.max(tabN)] </pre>
-
-<pre >Johns Hopkins Homewood 
-                    17 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabC = table(mon$councilDistrict)
-&gt; tabC[which.max(tabC)] </pre>
-
-<pre >11 
-29 </pre>
-
-<pre class = 'prettyprint lang-r'>&gt; tabP = table(mon$policeDistrict)
-&gt; tabP[which.max(tabP)] </pre>
-
-<pre >CENTRAL 
-     27 </pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-</article></slide><slide class=''><hgroup><h2>Question 7</h2></hgroup><article  id="question-7">
-
-<pre class = 'prettyprint lang-r'>&gt; monTab = read.delim(&quot;http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt&quot;,
-+                     header=TRUE, as.is=TRUE)
-&gt; identical(mon$name,monTab$name)</pre>
-
-<pre >[1] TRUE</pre></article></slide>
+<p>Here is a good link with more information: <a href='http://www.statmethods.net/input/missingdata.html' title=''>http://www.statmethods.net/input/missingdata.html</a></p></article></slide>
 
 
   <slide class="backdrop"></slide>

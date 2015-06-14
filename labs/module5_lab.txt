@@ -1,0 +1,56 @@
+## 140.886
+## Module 5 Quiz
+## 6/15/2015
+
+1)	What do the following functions do?
+
+a.	nrow()
+
+b.	seq()
+
+c.	length()
+
+d.	c()
+
+e.	which()
+
+2)	What code would do the following?
+
+a.	Reads in a tab delimited spreadsheet named `file.txt`
+
+b.	Returns the class of an R object called `test`
+
+c.	Shows the first 4 elements of the character vector `char`
+
+d.	Displays the unique elements of the integer vector `year`
+
+3)	Pretend the following is a real R function:
+
+`bball(x, dribble=TRUE, shoot=TRUE, score=FALSE)`
+
+a.	What is the name of this function?
+
+b.	How many arguments does it take?
+
+c.	How many arguments are required?
+
+d.	Which arguments have default values? What are these values?
+
+4)	For numeric R objects `A` and `B`, where `length(A) = length(B)`, 
+		translate the following from "logical" to "English":
+
+a.	Example: B < 4: "B less than 4"
+
+b.	A > 2
+
+c.	B == 2
+
+d.	A < B
+
+e.	A < 3 & B ==2
+
+f.	A < -2 | B > 1
+
+g.	A < 6 & A > 2 & B > 1
+
+h.	A != B & B > 4

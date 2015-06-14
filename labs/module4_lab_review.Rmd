@@ -183,12 +183,12 @@ tabP[which.max(tabP)]
 ## Question 7
 
 7. Try reading in the tab-delimited `Monuments-tab.txt` file from:
-		"http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt"
+		http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt
   
 ## Question 7
   
 ```{r q7, comment="", prompt=TRUE}
-monTab = read.delim("http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt",
+monTab = read.delim("http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt",
                     header=TRUE, as.is=TRUE)
 identical(mon$name,monTab$name)
 ```

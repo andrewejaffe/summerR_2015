@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab 4 Review</title>
+  <title>Data I/O + Subset</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2105-06-15" />
+  <meta name="date" content="2105-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,8 +26,8 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Lab 4 Review',
-                        subtitle: 'Module 4',
+                title: 'Data I/O + Subset',
+                        subtitle: 'Module 5',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -76,6 +76,7 @@
 
   </style>
 
+  <link href="data:text/css,pre%20%7B%0A%20%20font%2Dfamily%3A%20%27Source%20Code%20Pro%27%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2028px%3B%0A%20%20line%2Dheight%3A%2028px%3B%0A%20%20padding%3A%2010px%200%2010px%2060px%3B%0A%20%20letter%2Dspacing%3A%20%2D1px%3B%0A%20%20margin%2Dbottom%3A%208px%3B%0A%20%20width%3A%20106%25%3B%0A%20%20left%3A%20%2D60px%3B%0A%20%20position%3A%20relative%3B%0A%20%20%2Dwebkit%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2Dmoz%2Dbox%2Dsizing%3A%20border%2Dbox%3B%0A%20%20box%2Dsizing%3A%20border%2Dbox%3B%0A%20%20%2F%2Aoverflow%3A%20hidden%3B%2A%2F%0A%7D%0A%0A%2F%2A%20Whole%20document%3A%20%2A%2F%0Abody%7B%0A%20%20font%2Dfamily%3A%20Helvetica%3B%0A%20%20font%2Dsize%3A%2016pt%3B%0A%7D%0A%0A%2F%2A%20Headers%20%2A%2F%0Ah1%7B%0A%20%20font%2Dsize%3A%2032pt%3B%0A%7D%0Ah2%7B%0A%20%20font%2Dsize%3A%2028pt%3B%0A%7D%0Ah3%7B%0A%20%20font%2Dsize%3A%2024pt%3B%0A%7D%0A%0A%0A%2Eemphasized%20%7B%0A%20%20%20font%2Dsize%3A%201%2E2em%3B%0A%7D%0A%0A%2Esmall%20%7B%0A%20%20%20font%2Dsize%3A%200%2E8em%3B%0A%7D" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -90,309 +91,310 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">June 15, 2105</p>
+            <p style="margin-top: 6px; margin-left: -2px;">June 16, 2105</p>
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Question 1</h2></hgroup><article  id="question-1">
+<slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output" class="smaller">
 
-<ol>
-<li>Change the name of the &quot;Location.1&quot; column to &quot;location&quot;</li>
-</ol>
+<p>While its nice to be able to read in a variety of data formats, it&#39;s equally important to be able to output data somewhere.</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 1</h2></hgroup><article  id="question-1-1" class="smaller">
+<p><code>write.table()</code>: prints its required argument <code>x</code> (after converting it to a <code>data.frame</code> if it is not one nor a <code>matrix</code>) to a file or connection.</p>
 
-<p>Names are just an attribute of the data frame (recall <code>str</code>) that you can change to any valid character name</p>
+<pre >write.table(x,file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;,
+            eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE,
+            col.names = TRUE, qmethod = c(&quot;escape&quot;, &quot;double&quot;),
+            fileEncoding = &quot;&quot;)</pre>
 
-<p>Valid character names are case-sensitive, contain a-z, 0-9, underscores, and periods (but cannot start with a number).</p>
+</article></slide><slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output-1">
 
-<p>For the <code>data.frame</code> class, <code>colnames()</code> and <code>names()</code> return the same attribute.</p>
+<p><code>x</code>: the R <code>data.frame</code> or <code>matrix</code> you want to write</p>
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)</pre>
+<p><code>file</code>: the file name where you want to R object written. It can be an absolute path, or a filename (which writes the file to your working directory)</p>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
+<p><code>sep</code>: what character separates the columns? * &quot;,&quot; = .csv - Note there is also a <code>write.csv()</code> function * &quot;&quot; = tab delimited</p>
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)[6] = &quot;location&quot;
-&gt; names(mon)</pre>
+<p><code>row.names</code>: I like setting this to FALSE because I email these to collaborators who open them in Excel</p>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;location&quot;       </pre>
+</article></slide><slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output-2" class="smaller">
 
-<p>These naming rules also apply for creating R objects</p>
+<p>For example, from the Homework 2 Dataset:</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 2</h2></hgroup><article  id="question-2">
+<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;, header=TRUE,as.is=TRUE)
+&gt; circ2 = circ[,c(&quot;day&quot;,&quot;date&quot;, &quot;orangeAverage&quot;,&quot;purpleAverage&quot;,&quot;greenAverage&quot;,
++                 &quot;bannerAverage&quot;,&quot;daily&quot;)]
+&gt; write.csv(circ2, file=&quot;../data/charmcitycirc_reduced.csv&quot;, row.names=FALSE)</pre>
 
-<ol>
-<li>How many monuments are in Baltimore (at least this collection&#8230;)?</li>
-</ol>
+<p>Note that <code>row.names=TRUE</code> would make the first column contain the row names, here just the numbers <code>1:nrow(circ2)</code>, which is not very useful for Excel. Note that row names can be useful/informative in R if they contain information (but then they would just be a separate column).</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 2</h2></hgroup><article  id="question-2-1">
+</article></slide><slide class=''><hgroup><h2>Data Input - Excel</h2></hgroup><article  id="data-input---excel">
 
-<p>There are several ways to return the number of rows of a data frame or matrix</p>
+<p>Many data analysts collaborate with researchers who use Excel to enter and curate their data. Often times, this is the input data for an analysis. You therefore have two options for getting this data into R: * Saving the Excel sheet as a .csv file, and using <code>read.csv()</code> * Using an add-on package called <code>xlsx</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; nrow(mon)</pre>
+<p>For single worksheet .xlsx files, I often just save the spreadsheet as a .csv file (because I often have to strip off additional summary data from the columns)</p>
 
-<pre >[1] 84</pre>
+<p>For an .xlsx file with multiple well-formated worksheets, I use the <code>xlsx</code> package for reading in the data.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; dim(mon)</pre>
+</article></slide><slide class=''><hgroup><h2>More on Packages</h2></hgroup><article  id="more-on-packages">
 
-<pre >[1] 84  6</pre>
+<p>Packages are add-ons that are commonly written by users comprised of functions, data, and vignettes</p>
 
-<pre class = 'prettyprint lang-r'>&gt; length(mon$name)</pre>
+<ul>
+<li>Use <code>library()</code> or <code>require()</code> to load the package into memory so you can use its functions</li>
+<li>Install packages using <code>install.packages(&quot;PackageName&quot;)</code></li>
+<li>Use <code>help(package=&quot;PackageName&quot;)</code> to see what contents the package has</li>
+<li><a href='http://cran.r-project.org/web/packages/available_packages_by_name.html' title=''><a href='http://cran.r-project.org/web/packages/available_packages_by_name.html' title=''>http://cran.r-project.org/web/packages/available_packages_by_name.html</a></a></li>
+</ul>
 
-<pre >[1] 84</pre>
+</article></slide><slide class=''><hgroup><h2>More on Packages</h2></hgroup><article  id="more-on-packages-1">
 
-</article></slide><slide class=''><hgroup><h2>Question 3</h2></hgroup><article  id="question-3">
+<p>Some useful data input/output packages</p>
 
-<p>What are the:</p>
+<ul>
+<li>foreign package - read data from Stata/SPSS/SAS</li>
+<li>sas7bdat - read SAS data</li>
+<li>xlsx - reads in XLS files</li>
+</ul>
 
-<ol>
-<li><p>zip codes</p></li>
-<li><p>neighborhoods</p></li>
-<li><p>council districts, and</p></li>
-<li><p>police districts</p></li>
-</ol>
+</article></slide><slide class=''><hgroup><h2>Installing Packages</h2></hgroup><article  id="installing-packages">
 
-<p>that contain monuments, and how many monuments are in each?</p>
+<pre class = 'prettyprint lang-r'>&gt; install.packages(&quot;xlsx&quot;) # OR:
+&gt; install.packages(&quot;xlsx&quot;,
++     repos=&quot;http://cran.us.r-project.org&quot;)
+&gt; library(xlsx) # or require(xlsx)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 3</h2></hgroup><article  id="question-3-1">
+<p>Note you will need a stand-alone version of Java to use this</p>
 
-<p><code>unique()</code> returns the unique entries in a vector</p>
+</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$zipCode)</pre>
+<p>It&#39;s very useful to be able to save collections of R objects for future analyses.</p>
 
-<pre > [1] 21201 21202 21211 21213 21217 21218 21224 21230 21231 21214 21223
-[12] 21225 21251</pre>
+<p>For example, if a task takes several hours(/days) to run, it might be nice to run it once and save the results for downstream analyses.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$policeDistrict)</pre>
+<p><code>save(...,file=&quot;[name].rda&quot;)</code></p>
 
-<pre >[1] &quot;CENTRAL&quot;      &quot;NORTHERN&quot;     &quot;NORTHEASTERN&quot; &quot;WESTERN&quot;     
-[5] &quot;SOUTHEASTERN&quot; &quot;SOUTHERN&quot;     &quot;EASTERN&quot;     </pre>
+<p>where <code>...</code> is as many R objects, referenced by unquoted variable names, as you want to save.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$councilDistrict)</pre>
+<p>For example, from the homework:</p>
 
-<pre > [1] 11  7 14 13  1 10  3  2  9 12</pre>
+<pre class = 'prettyprint lang-r'>&gt; save(circ,circ2,file=&quot;../data/charmcirc.rda&quot;)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-1">
 
-<pre class = 'prettyprint lang-r'>&gt; unique(mon$neighborhood)</pre>
+<p>You also probably have noticed the prompt when you close R about saving your workspace. The workspace is the collection of R objects and custom R functions in your current environment. You can check the workspace with <code>ls()</code> or view it in the &quot;Workspace&quot; tab:</p>
 
-<pre > [1] &quot;Downtown&quot;                        &quot;Remington&quot;                      
- [3] &quot;Clifton Park&quot;                    &quot;Johns Hopkins Homewood&quot;         
- [5] &quot;Mid-Town Belvedere&quot;              &quot;Madison Park&quot;                   
- [7] &quot;Upton&quot;                           &quot;Reservoir Hill&quot;                 
- [9] &quot;Harlem Park&quot;                     &quot;Coldstream Homestead Montebello&quot;
-[11] &quot;Guilford&quot;                        &quot;McElderry Park&quot;                 
-[13] &quot;Patterson Park&quot;                  &quot;Canton&quot;                         
-[15] &quot;Middle Branch/Reedbird Parks&quot;    &quot;Locust Point Industrial Area&quot;   
-[17] &quot;Federal Hill&quot;                    &quot;Washington Hill&quot;                
-[19] &quot;Inner Harbor&quot;                    &quot;Herring Run Park&quot;               
-[21] &quot;Ednor Gardens-Lakeside&quot;          &quot;Fells Point&quot;                    
-[23] &quot;Hopkins Bayview&quot;                 &quot;New Southwest/Mount Clare&quot;      
-[25] &quot;Brooklyn&quot;                        &quot;Stadium Area&quot;                   
-[27] &quot;Mount Vernon&quot;                    &quot;Druid Hill Park&quot;                
-[29] &quot;Morgan State University&quot;         &quot;Dunbar-Broadway&quot;                
-[31] &quot;Carrollton Ridge&quot;                &quot;Union Square&quot;                   </pre>
+<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre > [1] &quot;Charm_City_Circulator_Ridership&quot; &quot;circ&quot;                           
+ [3] &quot;circ2&quot;                           &quot;df&quot;                             
+ [5] &quot;file&quot;                            &quot;files&quot;                          
+ [7] &quot;Index&quot;                           &quot;iris&quot;                           
+ [9] &quot;iris2&quot;                           &quot;mat&quot;                            
+[11] &quot;mon&quot;                             &quot;mon2&quot;                           
+[13] &quot;n&quot;                               &quot;name&quot;                           
+[15] &quot;name2&quot;                           &quot;x&quot;                              
+[17] &quot;x1&quot;                              &quot;y&quot;                              
+[19] &quot;z&quot;                               &quot;z2&quot;                             </pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$zipCode))</pre>
+</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-2">
 
-<pre >[1] 13</pre>
+<p>Saving the workspace will save all of these files in your current working directory as a hidden file called &quot;.Rdata&quot;. The function <code>save.image()</code> also saves the entire workspace, but you can give your desired file name as an input (which is nicer because the file is not hidden).</p>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$policeDistrict))</pre>
+<p>Note that R Studio should be able to open any .rda or .Rdata file. Opening one of these file types from Windows Explorer or OSX&#39;s Finder loads all of the objects into your workspace and changes your working directory to wherever the file was located.</p>
 
-<pre >[1] 7</pre>
+</article></slide><slide class=''><hgroup><h2>Loading R Data</h2></hgroup><article  id="loading-r-data">
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$councilDistrict))</pre>
+<p>You can easily load any &#39;.rda&#39; or &#39;.Rdata&#39; file with the <code>load()</code> function:</p>
 
-<pre >[1] 10</pre>
+<pre class = 'prettyprint lang-r'>&gt; tmp=load(&quot;../data/charmcirc.rda&quot;)
+&gt; tmp</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(mon$neighborhood))</pre>
+<pre >[1] &quot;circ&quot;  &quot;circ2&quot;</pre>
 
-<pre >[1] 32</pre>
+<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre > [1] &quot;Charm_City_Circulator_Ridership&quot; &quot;circ&quot;                           
+ [3] &quot;circ2&quot;                           &quot;df&quot;                             
+ [5] &quot;file&quot;                            &quot;files&quot;                          
+ [7] &quot;Index&quot;                           &quot;iris&quot;                           
+ [9] &quot;iris2&quot;                           &quot;mat&quot;                            
+[11] &quot;mon&quot;                             &quot;mon2&quot;                           
+[13] &quot;n&quot;                               &quot;name&quot;                           
+[15] &quot;name2&quot;                           &quot;tmp&quot;                            
+[17] &quot;x&quot;                               &quot;x1&quot;                             
+[19] &quot;y&quot;                               &quot;z&quot;                              
+[21] &quot;z2&quot;                             </pre>
 
-<p>Also note that table() can work, which tabulates a specific variable (or cross-tabulates two variables)</p>
+<p>Note that this saves the R object names as character strings in an object called &#39;tmp&#39;, which is nice if you already have a lot of items in your working directory, and/or you don&#39;t know exactly which got loaded in</p>
 
-<pre class = 'prettyprint lang-r'>&gt; table(mon$zipCode)</pre>
+</article></slide><slide class=''><hgroup><h2>Removing R Data</h2></hgroup><article  id="removing-r-data">
 
-<pre >
-21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-   11    16     8     4     1     9    14     4     8     1     3     4 
-21251 
-    1 </pre>
+<p>You can easily remove any R object(s) using the <code>rm()</code> or <code>remove()</code> functions, and they are no longer in your R environment (which you can confirm with running <code>ls()</code>)</p>
 
-<pre class = 'prettyprint lang-r'>&gt; length(table(mon$zipCode))</pre>
+<p>You can also remove all of the objects you have added to your workplace with:</p>
 
-<pre >[1] 13</pre>
+<p><code>&gt; rm(list = ls())</code></p>
 
-</article></slide><slide class=''><hgroup><h2>Question 4</h2></hgroup><article  id="question-4">
+</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data">
 
-<p>The &quot;by hand&quot; way is cross-tabulating the zip codes and neighborhoods,</p>
+<p>Often you only want to look at subsets of a data set at any given time. As a review, elements of an R object are selected using the brackets.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tab = table(mon$zipCode, mon$neighborhood)
-&gt; # tab
-&gt; tab[,&quot;Downtown&quot;]</pre>
+<p>Today we are going to look at more flexible ways of identifying which rows of a dataset to select.</p>
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data-1">
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(tab[,&quot;Downtown&quot;]))</pre>
+<p>You can put a <code>-</code> before integers inside brackets to remove these indices from the data.</p>
 
-<pre >[1] 3</pre>
+<pre class = 'prettyprint lang-r'>&gt; x = c(1,3,77,54,23,7,76,5)
+&gt; x[1:3] # first 3</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre >[1]  1  3 77</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tt = tab[,&quot;Downtown&quot;]
-&gt; tt</pre>
+<pre class = 'prettyprint lang-r'>&gt; x[-2] # all but the second</pre>
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-    2     9     0     0     0     0     0     0     0     0     0     0 
-21251 
-    0 </pre>
+<pre >[1]  1 77 54 23  7 76  5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tt == 0 # which entries are equal to 0</pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data-2">
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
-FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE 
-21251 
- TRUE </pre>
+<p>Note that you have to be careful with this syntax when dropping more than 1 element:</p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre class = 'prettyprint lang-r'>&gt; x[-c(1,2,3)] # drop first 3</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tab[,&quot;Downtown&quot;] !=0</pre>
+<pre >[1] 54 23  7 76  5</pre>
 
-<pre >21201 21202 21211 21213 21214 21217 21218 21223 21224 21225 21230 21231 
- TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE 
-21251 
-FALSE </pre>
+<pre class = 'prettyprint lang-r'>&gt; # x[-1:3] # shorthand. R sees as -1 to 3
+&gt; x[-(1:3)] # needs parentheses</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Downtown&quot;] !=0)</pre>
+<pre >[1] 54 23  7 76  5</pre>
 
-<pre >[1] 2</pre>
+</article></slide><slide class=''><hgroup><h2>Selecting on multiple queries</h2></hgroup><article  id="selecting-on-multiple-queries">
 
-<pre class = 'prettyprint lang-r'>&gt; sum(tab[,&quot;Johns Hopkins Homewood&quot;] !=0)</pre>
+<p>What about selecting rows based on the values of two variables? We can &#39;chain&#39; together logical statements using the following:</p>
 
-<pre >[1] 2</pre>
+<ul>
+<li><code>&amp;</code> : AND</li>
+<li><code>|</code> : OR</li>
+</ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre class = 'prettyprint lang-r'>&gt; # which Mondays had more than 3000 average riders?
+&gt; which(circ$day ==&quot;Monday&quot; &amp; circ$daily &gt; 3000)[1:20] </pre>
 
-<p>We could also subset the data into neighborhoods:</p>
+<pre > [1] 148 155 162 169 176 183 190 197 204 211 218 225 232 239 246 253 260
+[18] 267 274 281</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; dt = mon[mon$neighborhood == &quot;Downtown&quot;,]
-&gt; head(mon$neighborhood == &quot;Downtown&quot;,10)</pre>
+</article></slide><slide class=''><hgroup><h2>AND</h2></hgroup><article  id="and" class="smaller">
 
-<pre > [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</pre>
+<p>Which days had more than 10000 riders overall and more than 3000 riders on the purple line?</p>
 
-<pre class = 'prettyprint lang-r'>&gt; dim(dt)</pre>
+<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 &amp; circ$purpleAverage &gt; 3000)
+&gt; length(Index) # the number of days</pre>
 
-<pre >[1] 11  6</pre>
+<pre >[1] 280</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(unique(dt$zipCode))</pre>
+<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
 
-<pre >[1] 2</pre>
+<pre >         day       date orangeBoardings orangeAlightings orangeAverage
+551   Friday 07/15/2011            4616             4794          4705
+552 Saturday 07/16/2011            4540             4708          4624
+    purpleBoardings purpleAlightings purpleAverage greenBoardings
+551            6464             6122          6293             NA
+552            7797             7447          7622             NA
+    greenAlightings greenAverage bannerBoardings bannerAlightings
+551              NA           NA              NA               NA
+552              NA           NA              NA               NA
+    bannerAverage daily
+551            NA 10998
+552            NA 12246</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 5</h2></hgroup><article  id="question-5">
+</article></slide><slide class=''><hgroup><h2>OR</h2></hgroup><article  id="or" class="smaller">
 
-<p>How many monuments (a) do and (b) do not have an exact location/address?</p>
+<p>Which days had more than 10000 riders overall or more than 3000 riders on the purple line?</p>
 
-</article></slide><slide class=''><hgroup><h2>Question 5</h2></hgroup><article  id="question-5-1">
+<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 | circ$purpleAverage &gt; 3000)
+&gt; length(Index) # the number of days</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(mon$location)</pre>
+<pre >[1] 693</pre>
 
-<pre >[1] &quot;408 CHARLES ST\nBaltimore, MD\n&quot;  &quot;&quot;                                
-[3] &quot;&quot;                                 &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot;
-[5] &quot;50 MARKET PL\nBaltimore, MD\n&quot;    &quot;100 CALVERT ST\nBaltimore, MD\n&quot; </pre>
+<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; table(mon$location != &quot;&quot;) # FALSE=DO NOT and TRUE=DO</pre>
+<pre >         day       date orangeBoardings orangeAlightings orangeAverage
+180   Friday 07/09/2010            2807             2887          2847
+188 Saturday 07/17/2010            1528             1498          1513
+    purpleBoardings purpleAlightings purpleAverage greenBoardings
+180            3228             2960        3094.0             NA
+188            3726             3399        3562.5             NA
+    greenAlightings greenAverage bannerBoardings bannerAlightings
+180              NA           NA              NA               NA
+188              NA           NA              NA               NA
+    bannerAverage  daily
+180            NA 5941.0
+188            NA 5075.5</pre>
 
-<pre >
-FALSE  TRUE 
-   26    58 </pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data">
 
-</article></slide><slide class=''><hgroup><h2>Question 6</h2></hgroup><article  id="question-6">
+<p>Note that logical statements cannot evaluate missing values, and therefore returns an <code>NA</code>:</p>
 
-<p>Which:</p>
+<pre class = 'prettyprint lang-r'>&gt; circ$purpleAverage[1:10] &gt; 0</pre>
 
-<ol>
-<li>zip code,</li>
-<li>neighborhood,</li>
-<li>council district, and</li>
-<li>police district</li>
-</ol>
+<pre > [1] NA NA NA NA NA NA NA NA NA NA</pre>
 
-<p>contains the most number of monuments?</p>
+<pre class = 'prettyprint lang-r'>&gt; which(circ$purpleAverage &gt; 0)[1:10]</pre>
 
-</article></slide><slide class=''><hgroup><h2>Question 6</h2></hgroup><article  id="question-6-1" class="smaller">
+<pre > [1] 148 149 150 151 152 153 154 155 156 157</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tabZ = table(mon$zipCode)
-&gt; head(tabZ)</pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data-1">
 
-<pre >
-21201 21202 21211 21213 21214 21217 
-   11    16     8     4     1     9 </pre>
+<p>You can use the <code>complete.cases()</code> function on a data frame, matrix, or vector, which returns a logical vector indicating which cases are complete, i.e., they have no missing values.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; max(tabZ)</pre>
+</article></slide><slide class=''><hgroup><h2>Selecting on multiple categories</h2></hgroup><article  id="selecting-on-multiple-categories" class="smaller">
 
-<pre >[1] 16</pre>
+<p>You can select rows where a value is allowed to be several categories. In the homework, we had to subset the Charm City Circulator dataset by each day. How can we select rows that are 1 of 2 days?</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tabZ[tabZ == max(tabZ)]</pre>
+<p>The <code>%in%</code> operator proves useful: &quot;<code>%in%</code> is a more intuitive interface as a binary operator, which returns a logical vector indicating if there is a match or not for its left operand.&quot; It also returns <code>FALSE</code> for <code>NAs</code></p>
 
-<pre >21202 
-   16 </pre>
+<pre class = 'prettyprint lang-r'>&gt; (circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # select entries that are monday or tuesday</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre > [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
+[12] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE</pre>
 
-<p><code>which.max()</code> returns the FIRST entry/element number that contains the maximum and <code>which.min()</code> returns the FIRST entry that contains the minimum</p>
+<pre class = 'prettyprint lang-r'>&gt; which(circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # which indices are true?</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; which.max(tabZ) # this is the element number</pre>
+<pre > [1]  1  2  8  9 15 16 22 23 29 30 36 37 43 44 50 51 57 58 64 65</pre>
 
-<pre >21202 
-    2 </pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns">
 
-<pre class = 'prettyprint lang-r'>&gt; tabZ[which.max(tabZ)] # this is the actual maximum</pre>
+<p>We touched on this last class. You can select columns using the variable/column names or column index</p>
 
-<pre >21202 
-   16 </pre>
+<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(&quot;purpleAverage&quot;,&quot;orangeAverage&quot;)]</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+<pre >  purpleAverage orangeAverage
+1            NA         952.0
+2            NA         796.0
+3            NA        1211.5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tabN = table(mon$neighborhood)
-&gt; tabN[which.max(tabN)] </pre>
+<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(7,5)]</pre>
 
-<pre >Johns Hopkins Homewood 
-                    17 </pre>
+<pre >  purpleAlightings orangeAverage
+1               NA         952.0
+2               NA         796.0
+3               NA        1211.5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tabC = table(mon$councilDistrict)
-&gt; tabC[which.max(tabC)] </pre>
+</article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns-1" class="smaller">
 
-<pre >11 
-29 </pre>
+<p>You can also remove a column by setting its value to NULL</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tabP = table(mon$policeDistrict)
-&gt; tabP[which.max(tabP)] </pre>
+<pre class = 'prettyprint lang-r'>&gt; tmp = circ2
+&gt; tmp$daily=NULL
+&gt; tmp[1:3,]</pre>
 
-<pre >CENTRAL 
-     27 </pre>
-
-</article></slide><slide class=''><hgroup><h2>Question 7</h2></hgroup><article  id="question-7">
-
-<ol>
-<li>Try reading in the tab-delimited <code>Monuments-tab.txt</code> file from: <a href='http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt' title=''>http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt</a></li>
-</ol>
-
-</article></slide><slide class=''><hgroup><h2>Question 7</h2></hgroup><article  id="question-7-1">
-
-<pre class = 'prettyprint lang-r'>&gt; monTab = read.delim(&quot;http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt&quot;,
-+                     header=TRUE, as.is=TRUE)
-&gt; identical(mon$name,monTab$name)</pre>
-
-<pre >[1] TRUE</pre></article></slide>
+<pre >        day       date orangeAverage purpleAverage greenAverage
+1    Monday 01/11/2010         952.0            NA           NA
+2   Tuesday 01/12/2010         796.0            NA           NA
+3 Wednesday 01/13/2010        1211.5            NA           NA
+  bannerAverage
+1            NA
+2            NA
+3            NA</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

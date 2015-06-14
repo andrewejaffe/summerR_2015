@@ -18,4 +18,4 @@
 #	and (d) police district contains the most number of monuments?
 
 # 7. Try reading in the tab-delimited `Monuments-tab.txt` file from:
-# 		"http://biostat.jhsph.edu/~ajaffe/winterR_2015/data/Monuments-tab.txt"
+# 		"http://www.aejaffe.com/summerR_2015/data/Monuments-tab.txt"
