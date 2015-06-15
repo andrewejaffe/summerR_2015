@@ -54,6 +54,8 @@ Class:
 
 -->
 
+Feel free to submit typos/errors/etc via the github repository associated with the class: 
+https://github.com/andrewejaffe/summerR_2015
 
 ```{r, eval = FALSE, echo = FALSE}
 ## Render this file:
