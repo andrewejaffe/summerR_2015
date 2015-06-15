@@ -65,7 +65,7 @@ Note, when you type your command, R inherently thinks you want to print the resu
 
 * The R console is a full calculator
 * Try to play around with it:
-    * +, -, /, * are add, subtract, multiply, and divide
+    * +, -, /, * are add, subtract, divide and multiply
     * ^ or ** is power
     * parentheses -- ( and ) -- work with order of operations 
 
