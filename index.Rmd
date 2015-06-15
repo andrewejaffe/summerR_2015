@@ -36,6 +36,7 @@ Class:
 | 1  | 2015-06-15  | Module 3  | [Lecture](modules/module3.html), [pdf](modules/module3.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module3.R), [lab](labs/module3_lab.R)  | Data Classes  |
 | 1  | 2015-06-15  | Module 4  | [Lecture](modules/module4.html), [pdf](modules/module4.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module4.R), [lab](labs/module4_lab.R)  | Data Input  |
 |---|---|---|---|---|
+
 <!-- Add links to the rest of the material as we go
 
 | 2  | 2015-06-16  | Module 5  | [Lecture](modules/module5.html), [pdf](modules/module5.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module5.R), [lab](labs/module5_lab.txt)  | Data I/O + Subset |
@@ -52,8 +53,6 @@ Class:
 | 5  | 2015-06-19  | Module X  | [Lecture](modules/moduleX.html), [code](), [lab](), [key]()  |   |
 
 -->
-
-
 
 
 ```{r, eval = FALSE, echo = FALSE}
