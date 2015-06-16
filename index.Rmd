@@ -34,7 +34,8 @@ Class:
 | 1  | 2015-06-15  | Module 1  | [Lecture](modules/module1.html), [pdf](modules/module1.pdf)  | Introduction to R  |
 | 1  | 2015-06-15  | Module 2  | [Lecture](modules/module2.html), [pdf](modules/module2.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module2.R), [lab](labs/module2_lab.R), [key](labs/module2_lab_key.R)| R variables  |
 | 1  | 2015-06-15  | Module 3  | [Lecture](modules/module3.html), [pdf](modules/module3.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module3.R), [lab](labs/module3_lab.R),[key](labs/module3_lab_key.R)  | Data Classes  |
-| 2  | 2015-06-15  | Module 4  | [Lecture](modules/module4.html), [pdf](modules/module4.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module4.R), [lab](labs/module4_lab.R)  | Data Input  |
+| 2  | 2015-06-16  | HW2  | [code](hw/Homework2.R)  | Data Classes  |
+| 2  | 2015-06-16  | Module 4  | [Lecture](modules/module4.html), [pdf](modules/module4.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module4.R), [lab](labs/module4_lab.R)  | Data Input  |
 | 2  | 2015-06-16  | Module 5  | [Lecture](modules/module5.html), [pdf](modules/module5.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module5.R), [lab](labs/module5_lab.txt)  | Data I/O + Subset |
 | 2  | 2015-06-16  | Module 6  | [Lecture](modules/module6.html), [pdf](modules/module6.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module6.R), [lab](labs/module6_lab.R)  | Manipulation |
 |---|---|---|---|---|
