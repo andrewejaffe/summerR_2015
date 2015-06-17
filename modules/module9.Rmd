@@ -22,7 +22,7 @@ We covered some basic plots previously, but we are going to expand the ability t
 set.seed(3) 
 ```
 
-## Read in Data {.smaller}
+## Read in Data
 
 ```{r plotEx}
 death = read.csv("http://biostat.jhsph.edu/~ajaffe/files/indicatordeadkids35.csv",
