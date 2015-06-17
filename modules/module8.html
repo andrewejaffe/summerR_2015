@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Data I/O + Subset</title>
+  <title>Data Cleaning</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2015-06-16" />
+  <meta name="date" content="2015-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,8 +26,8 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Data I/O + Subset',
-                        subtitle: 'Module 5',
+                title: 'Data Cleaning',
+                        subtitle: 'Module 8',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -91,301 +91,617 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">June 16, 2015</p>
+            <p style="margin-top: 6px; margin-left: -2px;">June 17, 2015</p>
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output" class="smaller">
-
-<p>While its nice to be able to read in a variety of data formats, it&#39;s equally important to be able to output data somewhere.</p>
-
-<p><code>write.table()</code>: prints its required argument <code>x</code> (after converting it to a <code>data.frame</code> if it is not one nor a <code>matrix</code>) to a file or connection.</p>
-
-<pre >write.table(x,file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;,
-            eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE,
-            col.names = TRUE, qmethod = c(&quot;escape&quot;, &quot;double&quot;),
-            fileEncoding = &quot;&quot;)</pre>
-
-</article></slide><slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output-1">
-
-<p><code>x</code>: the R <code>data.frame</code> or <code>matrix</code> you want to write</p>
-
-<p><code>file</code>: the file name where you want to R object written. It can be an absolute path, or a filename (which writes the file to your working directory)</p>
-
-<p><code>sep</code>: what character separates the columns?</p>
+<slide class=''><hgroup><h2>Data</h2></hgroup><article  id="data">
 
 <ul>
-<li>&quot;,&quot; = .csv - Note there is also a <code>write.csv()</code> function</li>
-<li>&quot;&quot; = tab delimited</li>
-</ul>
-
-<p><code>row.names</code>: I like setting this to FALSE because I email these to collaborators who open them in Excel</p>
-
-</article></slide><slide class=''><hgroup><h2>Data Output</h2></hgroup><article  id="data-output-2" class="smaller">
-
-<p>For example, from the Homework 2 Dataset:</p>
-
-<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;, header=TRUE,as.is=TRUE)
-&gt; circ2 = circ[,c(&quot;day&quot;,&quot;date&quot;, &quot;orangeAverage&quot;,&quot;purpleAverage&quot;,&quot;greenAverage&quot;,
-+                 &quot;bannerAverage&quot;,&quot;daily&quot;)]
-&gt; write.csv(circ2, file=&quot;../data/charmcitycirc_reduced.csv&quot;, row.names=FALSE)</pre>
-
-<p>Note that <code>row.names=TRUE</code> would make the first column contain the row names, here just the numbers <code>1:nrow(circ2)</code>, which is not very useful for Excel. Note that row names can be useful/informative in R if they contain information (but then they would just be a separate column).</p>
-
-</article></slide><slide class=''><hgroup><h2>Data Input - Excel</h2></hgroup><article  id="data-input---excel">
-
-<p>Many data analysts collaborate with researchers who use Excel to enter and curate their data. Often times, this is the input data for an analysis. You therefore have two options for getting this data into R:</p>
+<li>We will be using multiple data sets in this lecture:
 
 <ul>
-<li>Saving the Excel sheet as a .csv file, and using <code>read.csv()</code></li>
-<li>Using an add-on package called <code>xlsx</code></li>
-</ul>
-
-<p>For single worksheet .xlsx files, I often just save the spreadsheet as a .csv file (because I often have to strip off additional summary data from the columns)</p>
-
-<p>For an .xlsx file with multiple well-formated worksheets, I use the <code>xlsx</code> package for reading in the data.</p>
-
-</article></slide><slide class=''><hgroup><h2>More on Packages</h2></hgroup><article  id="more-on-packages">
-
-<p>Packages are add-ons that are commonly written by users comprised of functions, data, and vignettes</p>
+<li>Salary, Monument, Circulator, and Restaurant from OpenBaltimore: <a href='https://data.baltimorecity.gov/browse?limitTo=datasets' title=''>https://data.baltimorecity.gov/browse?limitTo=datasets</a></li>
+<li>Gap Minder - very interesting way of viewing longitudinal data
 
 <ul>
-<li>Use <code>library()</code> or <code>require()</code> to load the package into memory so you can use its functions</li>
-<li>Install packages using <code>install.packages(&quot;PackageName&quot;)</code></li>
-<li>Use <code>help(package=&quot;PackageName&quot;)</code> to see what contents the package has</li>
-<li><a href='http://cran.r-project.org/web/packages/available_packages_by_name.html' title=''><a href='http://cran.r-project.org/web/packages/available_packages_by_name.html' title=''>http://cran.r-project.org/web/packages/available_packages_by_name.html</a></a></li>
+<li>Data is here - <a href='http://www.gapminder.org/data/' title=''>http://www.gapminder.org/data/</a></li>
+</ul></li>
+<li><a href='http://spreadsheets.google.com/pub?key=rMsQHawTObBb6_U2ESjKXYw&amp;output=xls' title=''><a href='http://spreadsheets.google.com/pub?key=rMsQHawTObBb6_U2ESjKXYw&amp;output=xls' title=''>http://spreadsheets.google.com/pub?key=rMsQHawTObBb6_U2ESjKXYw&amp;output=xls</a></a></li>
+</ul></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>More on Packages</h2></hgroup><article  id="more-on-packages-1">
+</article></slide><slide class=''><hgroup><h2>Data Cleaning</h2></hgroup><article  id="data-cleaning">
 
-<p>Some useful data input/output packages</p>
+<p>In general, data cleaning is a process of investigating your data for inaccuracies, or recoding it in a way that makes it more manageable.</p>
+
+<p>MOST IMPORTANT RULE - LOOK AT YOUR DATA!</p>
+
+<p>Again - <code>table</code>, <code>summarize</code>, <code>is.na</code>, <code>any</code>, <code>all</code> are useful.</p>
+
+</article></slide><slide class=''><hgroup><h2>Data Cleaning</h2></hgroup><article  id="data-cleaning-1" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; table(c(0, 1, 2, 3, NA, 3, 3, 2,2, 3), 
++         useNA=&quot;ifany&quot;)</pre>
+
+<pre >
+   0    1    2    3 &lt;NA&gt; 
+   1    1    3    4    1 </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
++         useNA=&quot;always&quot;)</pre>
+
+<pre >
+   0    1    2    3 &lt;NA&gt; 
+   1    1    4    4    0 </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; tab &lt;- table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
++              c(0, 1, 2, 3, 2, 3, 3, 4, 4, 3), 
++               useNA=&quot;always&quot;)
+&gt; margin.table(tab, 2)</pre>
+
+<pre >
+   0    1    2    3    4 &lt;NA&gt; 
+   1    1    2    4    2    0 </pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>&gt; prop.table(tab)</pre>
+
+<pre >      
+         0   1   2   3   4 &lt;NA&gt;
+  0    0.1 0.0 0.0 0.0 0.0  0.0
+  1    0.0 0.1 0.0 0.0 0.0  0.0
+  2    0.0 0.0 0.2 0.0 0.2  0.0
+  3    0.0 0.0 0.0 0.4 0.0  0.0
+  &lt;NA&gt; 0.0 0.0 0.0 0.0 0.0  0.0</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; prop.table(tab,1)</pre>
+
+<pre >      
+         0   1   2   3   4 &lt;NA&gt;
+  0    1.0 0.0 0.0 0.0 0.0  0.0
+  1    0.0 1.0 0.0 0.0 0.0  0.0
+  2    0.0 0.0 0.5 0.0 0.5  0.0
+  3    0.0 0.0 0.0 1.0 0.0  0.0
+  &lt;NA&gt;                         </pre>
+
+</article></slide><slide class=''><hgroup><h2>Download Salary FY2014 Data</h2></hgroup><article  id="download-salary-fy2014-data">
+
+<p><a href='https://data.baltimorecity.gov/City-Government/Baltimore-City-Employee-Salaries-FY2014/2j28-xzd7' title=''>https://data.baltimorecity.gov/City-Government/Baltimore-City-Employee-Salaries-FY2014/2j28-xzd7</a></p>
+
+<p>Download as a CSV and then read it into R as the variable <code>Sal</code></p>
+
+<pre class = 'prettyprint lang-r'>&gt; Sal = read.csv(&quot;../data/Baltimore_City_Employee_Salaries_FY2014.csv&quot;,
++                 as.is=TRUE)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Cleaning</h2></hgroup><article  id="data-cleaning-2" class="smaller">
 
 <ul>
-<li>foreign package - read data from Stata/SPSS/SAS</li>
-<li>sas7bdat - read SAS data</li>
-<li>xlsx - reads in XLS files</li>
+<li><code>any()</code> - checks if there are any TRUES</li>
+<li><code>all()</code> - checks if ALL are true</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Installing Packages</h2></hgroup><article  id="installing-packages">
+<pre class = 'prettyprint lang-r'>&gt; Sal[1:4,]</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; install.packages(&quot;xlsx&quot;) # OR:
-&gt; install.packages(&quot;xlsx&quot;,
-+     repos=&quot;http://cran.us.r-project.org&quot;)
-&gt; library(xlsx) # or require(xlsx)</pre>
+<pre >                Name                      JobTitle AgencyID
+1    Aaron,Keontae E                AIDE BLUE CHIP   W02200
+2   Aaron,Patricia G Facilities/Office Services II   A03031
+3      Aaron,Petra L    ASSISTANT STATE&#39;S ATTORNEY   A29005
+4 Abaineh,Yohannes T                EPIDEMIOLOGIST   A65026
+                    Agency   HireDate AnnualSalary  GrossPay
+1           Youth Summer   06/10/2013    $11310.00   $873.63
+2      OED-Employment Dev  10/24/1979    $53428.00 $52868.38
+3 States Attorneys Office  09/25/2006    $68300.00 $67439.19
+4  HLTH-Health Department  07/23/2009    $62000.00 $58654.74</pre>
 
-<p>Note you will need a stand-alone version of Java to use this</p>
+<pre class = 'prettyprint lang-r'>&gt; any(is.na(Sal$Name))</pre>
 
-</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data" class="smaller">
+<pre >[1] FALSE</pre>
 
-<p>It&#39;s very useful to be able to save collections of R objects for future analyses.</p>
+</article></slide><slide class=''><hgroup><h2>Example of Cleaning:</h2></hgroup><article  id="example-of-cleaning">
 
-<p>For example, if a task takes several hours(/days) to run, it might be nice to run it once and save the results for downstream analyses.</p>
+<p>For example, let&#39;s say gender was coded as Male, M, m, Female, F, f. Using Excel to find all of these would be a matter of filtering and changing all by hand or using if statements.</p>
 
-<p><code>save(...,file=&quot;[name].rda&quot;)</code></p>
+<p>In R, you can simply do something like:</p>
 
-<p>where <code>...</code> is as many R objects, referenced by unquoted variable names, as you want to save.</p>
+<pre >data$gender[data$gender %in% 
+    c(&quot;Male&quot;, &quot;M&quot;, &quot;m&quot;)] &lt;- &quot;Male&quot;</pre>
 
-<p>For example, from the homework:</p>
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; save(circ,circ2,file=&quot;../data/charmcirc.rda&quot;)</pre>
+<p>Sometimes though, it&#39;s not so simple. That&#39;s where functions that find patterns come in very useful.</p>
 
-</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-1">
+<pre class = 'prettyprint lang-r'>&gt; table(gender)</pre>
 
-<p>You also probably have noticed the prompt when you close R about saving your workspace. The workspace is the collection of R objects and custom R functions in your current environment. You can check the workspace with <code>ls()</code> or view it in the &quot;Workspace&quot; tab:</p>
+<pre >gender
+     F FeMAle FEMALE     Fm      M     Ma   mAle   Male   MaLe   MALE 
+    75     82     74     89     89     79     87     89     88     95 
+   Man  Woman 
+    73     80 </pre>
 
-<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
-
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot;</pre>
-
-</article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-2">
-
-<p>Saving the workspace will save all of these files in your current working directory as a hidden file called &quot;.Rdata&quot;. The function <code>save.image()</code> also saves the entire workspace, but you can give your desired file name as an input (which is nicer because the file is not hidden).</p>
-
-<p>Note that R Studio should be able to open any .rda or .Rdata file. Opening one of these file types from Windows Explorer or OSX&#39;s Finder loads all of the objects into your workspace and changes your working directory to wherever the file was located.</p>
-
-</article></slide><slide class=''><hgroup><h2>Loading R Data</h2></hgroup><article  id="loading-r-data">
-
-<p>You can easily load any &#39;.rda&#39; or &#39;.Rdata&#39; file with the <code>load()</code> function:</p>
-
-<pre class = 'prettyprint lang-r'>&gt; tmp=load(&quot;../data/charmcirc.rda&quot;)
-&gt; tmp</pre>
-
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
-
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot; &quot;tmp&quot;  </pre>
-
-<p>Note that this saves the R object names as character strings in an object called &#39;tmp&#39;, which is nice if you already have a lot of items in your working directory, and/or you don&#39;t know exactly which got loaded in</p>
-
-</article></slide><slide class=''><hgroup><h2>Removing R Data</h2></hgroup><article  id="removing-r-data">
-
-<p>You can easily remove any R object(s) using the <code>rm()</code> or <code>remove()</code> functions, and they are no longer in your R environment (which you can confirm with running <code>ls()</code>)</p>
-
-<p>You can also remove all of the objects you have added to your workplace with:</p>
-
-<p><code>&gt; rm(list = ls())</code></p>
-
-</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data">
-
-<p>Often you only want to look at subsets of a data set at any given time. As a review, elements of an R object are selected using the brackets.</p>
-
-<p>Today we are going to look at more flexible ways of identifying which rows of a dataset to select.</p>
-
-</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data-1">
-
-<p>You can put a <code>-</code> before integers inside brackets to remove these indices from the data.</p>
-
-<pre class = 'prettyprint lang-r'>&gt; x = c(1,3,77,54,23,7,76,5)
-&gt; x[1:3] # first 3</pre>
-
-<pre >[1]  1  3 77</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; x[-2] # all but the second</pre>
-
-<pre >[1]  1 77 54 23  7 76  5</pre>
-
-</article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data-2">
-
-<p>Note that you have to be careful with this syntax when dropping more than 1 element:</p>
-
-<pre class = 'prettyprint lang-r'>&gt; x[-c(1,2,3)] # drop first 3</pre>
-
-<pre >[1] 54 23  7 76  5</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; # x[-1:3] # shorthand. R sees as -1 to 3
-&gt; x[-(1:3)] # needs parentheses</pre>
-
-<pre >[1] 54 23  7 76  5</pre>
-
-</article></slide><slide class=''><hgroup><h2>Selecting on multiple queries</h2></hgroup><article  id="selecting-on-multiple-queries">
-
-<p>What about selecting rows based on the values of two variables? We can &#39;chain&#39; together logical statements using the following:</p>
+</article></slide><slide class=''><hgroup><h2>Find/Replace and Regular Expressions</h2></hgroup><article  id="findreplace-and-regular-expressions">
 
 <ul>
-<li><code>&amp;</code> : AND</li>
-<li><code>|</code> : OR</li>
+<li>R can do much more than find exact matches for a whole string</li>
+<li>Like Perl and other languages, it can use regular expressions.</li>
+<li>What are regular expressions?</li>
+<li>Ways to search for specific strings</li>
+<li>Can be very complicated or simple</li>
+<li>Highly Useful</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; # which Mondays had more than 3000 average riders?
-&gt; which(circ$day ==&quot;Monday&quot; &amp; circ$daily &gt; 3000)[1:20] </pre>
+</article></slide><slide class=''><hgroup><h2>&#39;Find&#39; functions</h2></hgroup><article  id="find-functions">
 
-<pre > [1] 148 155 162 169 176 183 190 197 204 211 218 225 232 239 246 253 260
-[18] 267 274 281</pre>
+<p><code>grep</code>: <code>grep</code>, <code>grepl</code>, <code>regexpr</code> and <code>gregexpr</code> search for matches to argument pattern within each element of a character vector: they differ in the format of and amount of detail in the results.</p>
 
-</article></slide><slide class=''><hgroup><h2>AND</h2></hgroup><article  id="and" class="smaller">
+<p><code>grep(pattern, x, fixed=FALSE)</code>, where:</p>
 
-<p>Which days had more than 10000 riders overall and more than 3000 riders on the purple line?</p>
+<ul>
+<li><p>pattern = character string containing a regular expression to be matched in the given character vector.</p></li>
+<li><p>x = a character vector where matches are sought, or an object which can be coerced by as.character to a character vector.</p></li>
+<li><p>If fixed=TRUE, it will do exact matching for the phrase anywhere in the vector (regular find)</p></li>
+</ul>
 
-<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 &amp; circ$purpleAverage &gt; 3000)
-&gt; length(Index) # the number of days</pre>
+</article></slide><slide class=''><hgroup><h2>&#39;Find&#39; functions</h2></hgroup><article  id="find-functions-1">
 
-<pre >[1] 280</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name)</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
+<pre >[1] 13832 13833 13834 13835</pre>
 
-<pre >         day       date orangeBoardings orangeAlightings orangeAverage
-551   Friday 07/15/2011            4616             4794          4705
-552 Saturday 07/16/2011            4540             4708          4624
-    purpleBoardings purpleAlightings purpleAverage greenBoardings
-551            6464             6122          6293             NA
-552            7797             7447          7622             NA
-    greenAlightings greenAverage bannerBoardings bannerAlightings
-551              NA           NA              NA               NA
-552              NA           NA              NA               NA
-    bannerAverage daily
-551            NA 10998
-552            NA 12246</pre>
+<p>These are the indices/elements where the pattern match occurs</p>
 
-</article></slide><slide class=''><hgroup><h2>OR</h2></hgroup><article  id="or" class="smaller">
+<p><code>grep()</code> returns something similar to which() on a logical statement</p>
 
-<p>Which days had more than 10000 riders overall or more than 3000 riders on the purple line?</p>
+</article></slide><slide class=''><hgroup><h2>&#39;Find&#39; functions</h2></hgroup><article  id="find-functions-2" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 | circ$purpleAverage &gt; 3000)
-&gt; length(Index) # the number of days</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name)</pre>
 
-<pre >[1] 693</pre>
+<pre >[1] 13832 13833 13834 13835</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name,value=TRUE)</pre>
 
-<pre >         day       date orangeBoardings orangeAlightings orangeAverage
-180   Friday 07/09/2010            2807             2887          2847
-188 Saturday 07/17/2010            1528             1498          1513
-    purpleBoardings purpleAlightings purpleAverage greenBoardings
-180            3228             2960        3094.0             NA
-188            3726             3399        3562.5             NA
-    greenAlightings greenAverage bannerBoardings bannerAlightings
-180              NA           NA              NA               NA
-188              NA           NA              NA               NA
-    bannerAverage  daily
-180            NA 5941.0
-188            NA 5075.5</pre>
+<pre >[1] &quot;Rawlings,Kellye A&quot;          &quot;Rawlings,MarqWell D&quot;       
+[3] &quot;Rawlings,Paula M&quot;           &quot;Rawlings-Blake,Stephanie C&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data">
+<pre class = 'prettyprint lang-r'>&gt; Sal[grep(&quot;Rawlings&quot;,Sal$Name),]</pre>
 
-<p>Note that logical statements cannot evaluate missing values, and therefore returns an <code>NA</code>:</p>
+<pre >                            Name             JobTitle AgencyID
+13832          Rawlings,Kellye A EMERGENCY DISPATCHER   A40302
+13833        Rawlings,MarqWell D       AIDE BLUE CHIP   W02384
+13834           Rawlings,Paula M       COMMUNITY AIDE   A04015
+13835 Rawlings-Blake,Stephanie C                MAYOR   A01001
+                    Agency   HireDate AnnualSalary   GrossPay
+13832 M-R Info Technology  01/06/2003    $47980.00  $68426.73
+13833       Youth Summer   06/15/2012    $11310.00    $507.50
+13834      R&amp;P-Recreation  12/10/2007    $19802.00   $8195.79
+13835       Mayors Office  12/07/1995   $163365.00 $161219.24</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; circ$purpleAverage[1:10] &gt; 0</pre>
+</article></slide><slide class=''><hgroup><h2><code>grep()</code> Options</h2></hgroup><article  id="grep-options">
 
-<pre > [1] NA NA NA NA NA NA NA NA NA NA</pre>
+<pre class = 'prettyprint lang-r'>&gt; head(grep(&quot;Tajhgh&quot;,Sal$Name, value=TRUE))</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; which(circ$purpleAverage &gt; 0)[1:10]</pre>
+<pre >[1] &quot;Reynold,Tajhgh J&quot;</pre>
 
-<pre > [1] 148 149 150 151 152 153 154 155 156 157</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Jaffe&quot;,Sal$Name)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data-1">
+<pre >[1] 8603</pre>
 
-<p>You can use the <code>complete.cases()</code> function on a data frame, matrix, or vector, which returns a logical vector indicating which cases are complete, i.e., they have no missing values.</p>
+<pre class = 'prettyprint lang-r'>&gt; length(grep(&quot;Jaffe&quot;,Sal$Name))</pre>
 
-</article></slide><slide class=''><hgroup><h2>Selecting on multiple categories</h2></hgroup><article  id="selecting-on-multiple-categories" class="smaller">
+<pre >[1] 1</pre>
 
-<p>You can select rows where a value is allowed to be several categories. In the homework, we had to subset the Charm City Circulator dataset by each day. How can we select rows that are 1 of 2 days?</p>
+</article></slide><slide class=''><hgroup><h2>A bit on Regular Expressions</h2></hgroup><article  id="a-bit-on-regular-expressions">
 
-<p>The <code>%in%</code> operator proves useful: &quot;<code>%in%</code> is a more intuitive interface as a binary operator, which returns a logical vector indicating if there is a match or not for its left operand.&quot; It also returns <code>FALSE</code> for <code>NAs</code></p>
+<ul>
+<li><a href='http://www.regular-expressions.info/reference.html' title=''>http://www.regular-expressions.info/reference.html</a></li>
+<li>They can use to match a large number of strings in one statement</li>
+<li><code>.</code> matches any single character</li>
+<li><code>*</code> means repeat as many (even if 0) more times the last character</li>
+<li><code>?</code> makes the last thing optional</li>
+</ul>
 
-<pre class = 'prettyprint lang-r'>&gt; (circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # select entries that are monday or tuesday</pre>
+</article></slide><slide class=''><hgroup><h2>Using Regular Expressions</h2></hgroup><article  id="using-regular-expressions">
 
-<pre > [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
-[12] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE</pre>
+<ul>
+<li>Look for any name that starts with:
 
-<pre class = 'prettyprint lang-r'>&gt; which(circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # which indices are true?</pre>
+<ul>
+<li>Payne at the beginning,</li>
+<li>Leonard and then an S</li>
+<li>Spence then a capital C</li>
+</ul></li>
+</ul>
 
-<pre > [1]  1  2  8  9 15 16 22 23 29 30 36 37 43 44 50 51 57 58 64 65</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Payne.*&quot;, x=Sal$Name, value=TRUE)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns">
+<pre > [1] &quot;Payne El,Jackie&quot;         &quot;Payne Johnson,Nickole A&quot;
+ [3] &quot;Payne,Chanel&quot;            &quot;Payne,Connie T&quot;         
+ [5] &quot;Payne,Denise I&quot;          &quot;Payne,Dominic R&quot;        
+ [7] &quot;Payne,James R&quot;           &quot;Payne,Jasman T&quot;         
+ [9] &quot;Payne,Joey D&quot;            &quot;Payne,Jordan A&quot;         
+[11] &quot;Payne,Karen V&quot;           &quot;Payne,Karen V&quot;          
+[13] &quot;Payne,Leonard S&quot;         &quot;Payne,Mary A&quot;           
+[15] &quot;Payne,Micah W&quot;           &quot;Payne,Michael C&quot;        
+[17] &quot;Payne,Michael N&quot;         &quot;Payne,Morag&quot;            
+[19] &quot;Payne,Nora M&quot;            &quot;Payne,Shelley F&quot;        </pre>
 
-<p>We touched on this last class. You can select columns using the variable/column names or column index</p>
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(&quot;purpleAverage&quot;,&quot;orangeAverage&quot;)]</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Leonard.?S&quot;, x=Sal$Name, value=TRUE)</pre>
 
-<pre >  purpleAverage orangeAverage
-1            NA         952.0
-2            NA         796.0
-3            NA        1211.5</pre>
+<pre >[1] &quot;Payne,Leonard S&quot;      &quot;Szumlanski,Leonard S&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(7,5)]</pre>
+<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Spence.*C.*&quot;, x=Sal$Name, value=TRUE)</pre>
 
-<pre >  purpleAlightings orangeAverage
-1               NA         952.0
-2               NA         796.0
-3               NA        1211.5</pre>
+<pre >[1] &quot;Greene,Spencer C&quot;    &quot;Spencer,Charles A&quot;   &quot;Spencer,Christian O&quot;
+[4] &quot;Spencer,Clarence W&quot;  &quot;Spencer,Michael C&quot;  </pre>
 
-</article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns-1" class="smaller">
+</article></slide><slide class=''><hgroup><h2>Replace</h2></hgroup><article  id="replace">
 
-<p>You can also remove a column by setting its value to NULL</p>
+<p>Let&#39;s say we wanted to sort the data set by Annual Salary:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tmp = circ2
-&gt; tmp$daily=NULL
-&gt; tmp[1:3,]</pre>
+<pre class = 'prettyprint lang-r'>&gt; class(Sal$AnnualSalary)</pre>
 
-<pre >        day       date orangeAverage purpleAverage greenAverage
-1    Monday 01/11/2010         952.0            NA           NA
-2   Tuesday 01/12/2010         796.0            NA           NA
-3 Wednesday 01/13/2010        1211.5            NA           NA
-  bannerAverage
-1            NA
-2            NA
-3            NA</pre></article></slide>
+<pre >[1] &quot;character&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; sort(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;)) #  not sort correctly (order simply ranks the data)</pre>
+
+<pre >[1] &quot;1&quot;  &quot;10&quot; &quot;2&quot; </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; order(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;))</pre>
+
+<pre >[1] 1 3 2</pre>
+
+</article></slide><slide class=''><hgroup><h2>Replace</h2></hgroup><article  id="replace-1">
+
+<p>So we must change the annual pay into a numeric:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; head(as.numeric(Sal$AnnualSalary), 4)</pre>
+
+<pre >Warning in head(as.numeric(Sal$AnnualSalary), 4): NAs introduced by
+coercion</pre>
+
+<pre >[1] NA NA NA NA</pre>
+
+<p>R didn&#39;t like the $ so it thought turned them all to <code>NA</code>.</p>
+
+<p><code>sub()</code> and <code>gsub()</code> can do the replacing part.</p>
+
+</article></slide><slide class=''><hgroup><h2>Replacing and subbing</h2></hgroup><article  id="replacing-and-subbing" class="smaller">
+
+<p>Now we can replace the <code>$</code> with nothing (used fixed=TRUE because $ means something in regular expressions):</p>
+
+<pre class = 'prettyprint lang-r'>&gt; Sal$AnnualSalary &lt;- as.numeric(gsub(pattern=&quot;$&quot;, replacement=&quot;&quot;, 
++                               Sal$AnnualSalary, fixed=TRUE))
+&gt; Sal &lt;- Sal[order(Sal$AnnualSalary,decreasing=TRUE), ] # use negative to sort descending
+&gt; Sal[1:5, c(&quot;Name&quot;, &quot;AnnualSalary&quot;, &quot;JobTitle&quot;)]</pre>
+
+<pre >                   Name AnnualSalary              JobTitle
+1222  Bernstein,Gregg L       238772      STATE&#39;S ATTORNEY
+3175   Charles,Ronnie E       200000   EXECUTIVE LEVEL III
+985     Batts,Anthony W       193800   EXECUTIVE LEVEL III
+1343      Black,Harry E       190000   EXECUTIVE LEVEL III
+16352     Swift,Michael       187200 CONTRACT SERV SPEC II</pre>
+
+</article></slide><slide class=''><hgroup><h2>Useful String Functions</h2></hgroup><article  id="useful-string-functions">
+
+<p>Useful String functions</p>
+
+<ul>
+<li><code>toupper()</code>, <code>tolower()</code> - uppercase or lowercase your data:</li>
+<li><code>str_trim()</code> (in the <code>stringr</code> package) - will trim whitespace</li>
+<li><code>nchar</code> - get the number of characters in a string</li>
+<li><code>substr(x, start, stop)</code> - substrings from position start to position stop</li>
+<li><code>strsplit(x, split)</code> - splits strings up - returns list!</li>
+<li><code>paste()</code> - paste strings together - look at <code>?paste</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Paste</h2></hgroup><article  id="paste">
+
+<p>Paste can be very useful for joining vectors together:</p>
+
+<pre class = 'prettyprint lang-r'>&gt; paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;)</pre>
+
+<pre >[1] &quot;Visit_1&quot; &quot;Visit_2&quot; &quot;Visit_3&quot; &quot;Visit_4&quot; &quot;Visit_5&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;, collapse=&quot; &quot;)</pre>
+
+<pre >[1] &quot;Visit_1 Visit_2 Visit_3 Visit_4 Visit_5&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; paste(&quot;To&quot;, &quot;is going be the &quot;, &quot;we go to the store!&quot;, sep=&quot;day &quot;)</pre>
+
+<pre >[1] &quot;Today is going be the day we go to the store!&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; # and paste0 can be even simpler see ?paste0 
+&gt; paste0(&quot;Visit&quot;,1:5)</pre>
+
+<pre >[1] &quot;Visit1&quot; &quot;Visit2&quot; &quot;Visit3&quot; &quot;Visit4&quot; &quot;Visit5&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>&gt; paste(1:5, letters[1:5], sep=&quot;_&quot;)</pre>
+
+<pre >[1] &quot;1_a&quot; &quot;2_b&quot; &quot;3_c&quot; &quot;4_d&quot; &quot;5_e&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; paste(6:10, 11:15, 2000:2005, sep=&quot;/&quot;)</pre>
+
+<pre >[1] &quot;6/11/2000&quot;  &quot;7/12/2001&quot;  &quot;8/13/2002&quot;  &quot;9/14/2003&quot;  &quot;10/15/2004&quot;
+[6] &quot;6/11/2005&quot; </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; paste(paste(&quot;x&quot;,1:5,sep=&quot;&quot;),collapse=&quot;+&quot;)</pre>
+
+<pre >[1] &quot;x1+x2+x3+x4+x5&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Strsplit</h2></hgroup><article  id="strsplit">
+
+<pre class = 'prettyprint lang-r'>&gt; x &lt;- c(&quot;I really&quot;, &quot;like writing&quot;, &quot;R code&quot;)
+&gt; y &lt;- strsplit(x, split=&quot; &quot;)
+&gt; y[[2]]</pre>
+
+<pre >[1] &quot;like&quot;    &quot;writing&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; sapply(y, &quot;[&quot;, 1) # on the fly</pre>
+
+<pre >[1] &quot;I&quot;    &quot;like&quot; &quot;R&quot;   </pre>
+
+<pre class = 'prettyprint lang-r'>&gt; sapply(y, &quot;[&quot;, 2) # on the fly</pre>
+
+<pre >[1] &quot;really&quot;  &quot;writing&quot; &quot;code&quot;   </pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Merging/Append</h2></hgroup><article  id="data-mergingappend">
+
+<ul>
+<li>Merging - joining data sets together - usually on key variables, usually &quot;id&quot;</li>
+<li><code>merge()</code> is the most common way to do this with data sets</li>
+<li><code>rbind</code>/<code>cbind</code> - row/column bind, respectively
+
+<ul>
+<li><code>rbind</code> is the equivalent of &quot;appending&quot; in Stata or &quot;setting&quot; in SAS</li>
+<li><code>cbind</code> allows you to add columns in addition to the previous ways</li>
+</ul></li>
+<li><code>reshape2</code> package also has a lot of information about different ways to reshape data (wide to long, etc) - but has a different (and sometimes more intuitive syntax)</li>
+<li><code>t()</code> is a function that will transpose the data</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Merging</h2></hgroup><article  id="merging" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; base &lt;- data.frame(id=1:10, Age= seq(55,60, length=10))
+&gt; base[1:2,]</pre>
+
+<pre >  id      Age
+1  1 55.00000
+2  2 55.55556</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; visits &lt;- data.frame(id=rep(1:8, 3), visit= rep(1:3, 8),
++                     Outcome= seq(10,50, length=24))
+&gt; visits[1:2,]</pre>
+
+<pre >  id visit  Outcome
+1  1     1 10.00000
+2  2     2 11.73913</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>&gt; merged.data &lt;- merge(base, visits, by=&quot;id&quot;)
+&gt; merged.data[1:5,]</pre>
+
+<pre >  id      Age visit  Outcome
+1  1 55.00000     1 10.00000
+2  1 55.00000     3 23.91304
+3  1 55.00000     2 37.82609
+4  2 55.55556     2 11.73913
+5  2 55.55556     1 25.65217</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; dim(merged.data)</pre>
+
+<pre >[1] 24  4</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>&gt; all.data &lt;- merge(base, visits, by=&quot;id&quot;, all=TRUE)
+&gt; tail(all.data)</pre>
+
+<pre >   id      Age visit  Outcome
+21  7 58.33333     2 48.26087
+22  8 58.88889     2 22.17391
+23  8 58.88889     1 36.08696
+24  8 58.88889     3 50.00000
+25  9 59.44444    NA       NA
+26 10 60.00000    NA       NA</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; dim(all.data)</pre>
+
+<pre >[1] 26  4</pre>
+
+</article></slide><slide class=''><hgroup><h2>Aside: Dates</h2></hgroup><article  id="aside-dates" class="smaller">
+
+<p>You can convert date-like strings in the <code>Date</code> class (<a href='http://www.statmethods.net/input/dates.html' title=''>http://www.statmethods.net/input/dates.html</a> for more info)</p>
+
+<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;,as.is=TRUE)
+&gt; head(sort(circ$date))</pre>
+
+<pre >[1] &quot;01/01/2011&quot; &quot;01/01/2012&quot; &quot;01/01/2013&quot; &quot;01/02/2011&quot; &quot;01/02/2012&quot;
+[6] &quot;01/02/2013&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; circ$date &lt;- as.Date(circ$date, &quot;%m/%d/%Y&quot;) # creating a date for sorting
+&gt; head(circ$date)</pre>
+
+<pre >[1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
+[6] &quot;2010-01-16&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; head(sort(circ$date))</pre>
+
+<pre >[1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
+[6] &quot;2010-01-16&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping">
+
+<p>Disclaimer: the <code>reshape</code> command in R is not remarkably intuitive.</p>
+
+<ul>
+<li>Wide - multiple measurements are variables / columns so that the data gets wider with more measurements</li>
+<li>Long - multiple measurements are rows so data gets longer with more measurements</li>
+<li>One example would be many ids with multiple visits</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Example of Long/Wide</h2></hgroup><article  id="example-of-longwide">
+
+<pre class = 'prettyprint lang-r'>&gt; head(wide)</pre>
+
+<pre >  id visit1 visit2 visit3
+1  1   Good   Good    Bad</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; head(long)</pre>
+
+<pre >  id visit Outcome
+1  1     1    Good
+2  1     2    Good
+3  1     3     Bad</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-1">
+
+<ul>
+<li>Good resource: <a href='http://www.ats.ucla.edu/stat/r/faq/reshape.htm' title=''>http://www.ats.ucla.edu/stat/r/faq/reshape.htm</a></li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>&gt; head(Indometh) # this is long</pre>
+
+<pre >  Subject time conc
+1       1 0.25 1.50
+2       1 0.50 0.94
+3       1 0.75 0.78
+4       1 1.00 0.48
+5       1 1.25 0.37
+6       1 2.00 0.19</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-2" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; wide &lt;- reshape(Indometh, v.names = &quot;conc&quot;, idvar = &quot;Subject&quot;,
++                 timevar = &quot;time&quot;, direction = &quot;wide&quot;)
+&gt; head(wide)</pre>
+
+<pre >   Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
+1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
+12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
+23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
+34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
+45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
+56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
+   conc.4 conc.5 conc.6 conc.8
+1    0.11   0.08   0.07   0.05
+12   0.20   0.25   0.12   0.08
+23   0.12   0.11   0.08   0.08
+34   0.11   0.10   0.07   0.07
+45   0.11   0.08   0.10   0.06
+56   0.17   0.13   0.10   0.09</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-3" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; dim(Indometh)</pre>
+
+<pre >[1] 66  3</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; wide</pre>
+
+<pre >   Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
+1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
+12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
+23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
+34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
+45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
+56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
+   conc.4 conc.5 conc.6 conc.8
+1    0.11   0.08   0.07   0.05
+12   0.20   0.25   0.12   0.08
+23   0.12   0.11   0.08   0.08
+34   0.11   0.10   0.07   0.07
+45   0.11   0.08   0.10   0.06
+56   0.17   0.13   0.10   0.09</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-4">
+
+<ul>
+<li>If you&#39;ve reshaped a data set - to get it back, just reshape it again</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>&gt; reshape(wide, direction = &quot;long&quot;)[1:10,]</pre>
+
+<pre >       Subject time conc
+1.0.25       1 0.25 1.50
+2.0.25       2 0.25 2.03
+3.0.25       3 0.25 2.72
+4.0.25       4 0.25 1.85
+5.0.25       5 0.25 2.05
+6.0.25       6 0.25 2.31
+1.0.5        1 0.50 0.94
+2.0.5        2 0.50 1.63
+3.0.5        3 0.50 1.49
+4.0.5        4 0.50 1.39</pre>
+
+<p>Note the row name change</p>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping - A Better Example</h2></hgroup><article  id="data-reshaping---a-better-example" class="smaller">
+
+<pre >Loading required package: rJava
+Loading required package: xlsxjars</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; TB &lt;- read.xlsx(file=&quot;../data/indicator_estimatedincidencealltbper100000.xlsx&quot;,
++                 sheetName=&quot;Data&quot;)
+&gt; head(TB, 1)</pre>
+
+<pre >  TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
+1                                               Afghanistan   168   168
+  X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
+1   168   168   168   168   168   168   168   168   168   168   168   168
+  X2004 X2005 X2006 X2007 NA.
+1   168   168   168   168  NA</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; TB$NA. &lt;- NULL
+&gt; head(TB, 1)</pre>
+
+<pre >  TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
+1                                               Afghanistan   168   168
+  X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
+1   168   168   168   168   168   168   168   168   168   168   168   168
+  X2004 X2005 X2006 X2007
+1   168   168   168   168</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping - A Better Example</h2></hgroup><article  id="data-reshaping---a-better-example-1" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; colnames(TB) &lt;- c(&quot;Country&quot;, paste(&quot;Year&quot;, 
++                           1990:2007, sep=&quot;.&quot;))
+&gt; head(TB,1)</pre>
+
+<pre >      Country Year.1990 Year.1991 Year.1992 Year.1993 Year.1994 Year.1995
+1 Afghanistan       168       168       168       168       168       168
+  Year.1996 Year.1997 Year.1998 Year.1999 Year.2000 Year.2001 Year.2002
+1       168       168       168       168       168       168       168
+  Year.2003 Year.2004 Year.2005 Year.2006 Year.2007
+1       168       168       168       168       168</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Reshaping - More is better!</h2></hgroup><article  id="data-reshaping---more-is-better" class="smaller">
+
+<pre class = 'prettyprint lang-r'>&gt; TB.long &lt;- reshape(TB, idvar=&quot;Country&quot;, 
++             v.names=&quot;Cases&quot;, times=1990:2007, 
++                    direction=&quot;long&quot;, timevar=&quot;Year&quot;, 
++                    varying = paste(&quot;Year&quot;, 1990:2007, sep=&quot;.&quot;))
+&gt; head(TB.long, 4)</pre>
+
+<pre >                           Country Year Cases
+Afghanistan.1990       Afghanistan 1990   168
+Albania.1990               Albania 1990    25
+Algeria.1990               Algeria 1990    38
+American Samoa.1990 American Samoa 1990    21</pre>
+
+<pre class = 'prettyprint lang-r'>&gt; rownames(TB.long) &lt;- NULL
+&gt; head(TB.long, 4)</pre>
+
+<pre >         Country Year Cases
+1    Afghanistan 1990   168
+2        Albania 1990    25
+3        Algeria 1990    38
+4 American Samoa 1990    21</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

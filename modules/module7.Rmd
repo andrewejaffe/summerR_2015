@@ -1,0 +1,149 @@
+---
+title: "Data Summarization"
+subtitle: Module 7
+author: "Andrew Jaffe"
+date: "June 17, 2015"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+## Data Summarization
+
+* Basic statistical summarization
+    * `mean(x)`: takes the mean of x
+    * `sd(x)`: takes the standard deviation of x
+    * `median(x)`: takes the median of x
+    * `quantile(x)`: displays sample quantities of x. Default is min, IQR, max
+    * `range(x)`: displays the range. Same as c(min(x), max(x))
+
+* Basic summarization plots
+    * `plot(x,y)`: scatterplot of x and y
+    * `boxplot(y~x)`: boxplot of y against levels of x
+    * `hist(x)`: histogram of x
+    * `density(X)`: kernel density plot of x
+
+## Data Summarization on matrices/data frames
+
+* Basic statistical summarization
+    * `rowMeans(x)`: takes the means of each row of x
+    * `colMeans(x)`: takes the means of each column of x
+    * `rowSums(x)`: takes the sum of each row of x
+    * `colSums(x)`: takes the sum of each column of x
+    * `summary(x)`: for data frames, displays the quantile information
+    
+* Basic summarization plots
+    * `matplot(x,y)`: scatterplot of two matrices, x and y
+    * `pairs(x,y)`: plots pairwise scatter plots of matrices x and y, column by column
+
+## column and row means
+
+```{r colMeans, prompt=TRUE,comment=""}
+circ2 = read.csv("../data/charmcitycirc_reduced.csv", 
+            header=TRUE,as.is=TRUE)
+colMeans(circ2[,3:6],na.rm=TRUE)
+head(rowMeans(circ2[,3:6],na.rm=TRUE))
+```
+
+## Summary
+
+```{r summary1, prompt=TRUE,comment=""}
+summary(circ2)
+```
+
+## Apply statements
+
+You can apply more general functions to the rows or columns of a matrix or data frame, beyond the mean and sum.
+
+```
+apply(X, MARGIN, FUN, ...)
+```
+
+> X : an array, including a matrix.
+> 
+> MARGIN : a vector giving the subscripts which the function will be applied over. E.g., for a matrix 1 indicates rows, 2 indicates columns, c(1, 2) indicates rows and columns. Where X has named dimnames, it can be a character vector selecting dimension names.
+> 
+> FUN	: the function to be applied: see 'Details'. 
+> 
+> ...	: optional arguments to FUN.
+
+## Apply statements
+
+```{r apply1, prompt=TRUE,comment=""}
+tmp = circ2[,3:6]
+apply(tmp,2,mean,na.rm=TRUE) # column means
+apply(tmp,2,sd,na.rm=TRUE) # columns sds
+apply(tmp,2,max,na.rm=TRUE) # column maxs
+```
+
+## Other Apply Statements
+
+* `tapply()`: 'table' apply
+* `lapply()`: 'list' apply [tomorrow]
+* `sapply()`: 'simple' apply [tomorrow]
+* Other less used ones...
+
+See more details here: http://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
+
+## `tapply()`
+
+From the help file: "Apply a function to each cell of a ragged array, that is to each (non-empty) group of values given by a unique combination of the levels of certain factors."
+
+```
+tapply(X, INDEX, FUN = NULL, ..., simplify = TRUE)
+```
+
+Simply put, you can apply function `FUN` to `X` within each categorical level of `INDEX`. It is very useful for assessing properties of continuous data by levels of categorical data.
+
+## `tapply()`
+
+For example, we can estimate the highest average daily ridership for each day of the week in 1 line in the Circulator dataset. 
+
+```{r tapply1, comment="",prompt=TRUE}
+tapply(circ2$daily, circ2$day, max, na.rm=TRUE)
+```
+
+## Basic Plots
+
+Plotting is an important component of exploratory data analysis. We will review some of the more useful and informative plots here. We will go over formatting and making plots look nicer in additional lectures.
+
+## Scatterplot
+
+```{r scatter1, comment="",prompt=TRUE}
+data(cars)
+plot(cars$speed, cars$dist)
+```
+
+## Histograms
+
+```{r hist1, comment="",prompt=TRUE}
+hist(circ2$daily)
+```
+
+## Density
+
+```{r dens1, comment="",prompt=TRUE,fig.width=5,fig.height=5}
+## plot(density(circ2$daily))
+plot(density(circ2$daily,na.rm=TRUE))
+```
+
+## Boxplots
+
+
+```{r box1, comment="",prompt=TRUE}
+boxplot(circ2$daily ~ circ2$day)
+```
+
+## Boxplots
+
+
+```{r box2, comment="",prompt=TRUE}
+boxplot(daily ~ day, data=circ2)
+```
+
+## Matrix plot
+
+```{r matplot1, comment="",prompt=TRUE}
+matplot(circ2[,3:6])
+```
+

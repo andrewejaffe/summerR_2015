@@ -28,6 +28,7 @@ write.table(x,file = "", append = FALSE, quote = TRUE, sep = " ",
 `file`: the file name where you want to R object written. It can be an absolute path, or a filename (which writes the file to your working directory)
 
 `sep`: what character separates the columns? 
+
 * "," = .csv - Note there is also a `write.csv()` function
 * "\t" = tab delimited
 
@@ -49,6 +50,7 @@ Note that `row.names=TRUE` would make the first column contain the row names, he
 ## Data Input - Excel
 
 Many data analysts collaborate with researchers who use Excel to enter and curate their data. Often times, this is the input data for an analysis. You therefore have two options for getting this data into R:
+
 * Saving the Excel sheet as a .csv file, and using `read.csv()`
 * Using an add-on package called `xlsx`
 
