@@ -1,7 +1,7 @@
 pre {
   font-family: 'Source Code Pro', 'Courier New', monospace;
-  font-size: 28px;
-  line-height: 28px;
+  font-size: 24px;
+  line-height: 24px;
   padding: 10px 0 10px 60px;
   letter-spacing: -1px;
   margin-bottom: 8px;
@@ -22,13 +22,13 @@ body{
 
 /* Headers */
 h1{
-  font-size: 32pt;
-}
-h2{
   font-size: 28pt;
 }
-h3{
+h2{
   font-size: 24pt;
+}
+h3{
+  font-size: 20pt;
 }
 
 
