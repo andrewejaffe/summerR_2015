@@ -19,6 +19,7 @@ tab=tapply(bike$length,bike$project,
 tab[which.max(tab)]
 
 #	(b) What was the average bike lane length per year that they were installed?
+bike$dateInstalled[bike$dateInstalled == "0"] = NA
 tapply(bike$length,bike$dateInstalled,
        mean,na.rm=TRUE)
 
@@ -31,7 +32,8 @@ hist(bike$length,breaks=100)
 
 hist(log2(bike$length),breaks=100)
 
-# 3. Then describe as above, after stratifying by i) type then ii) number of lanes
+# 3. Then describe as above, after stratifying by
+# i) type then ii) number of lanes
 boxplot(bike$length~bike$type)
 boxplot(bike$length~bike$type,las=3)
 levels(factor(bike$type)) # this is the order of boxes
@@ -51,17 +53,22 @@ tapply(bike$length,bike$numLanes,
 kids = read.csv("http://www.aejaffe.com/summerR_2015/data/indicatordeadkids35.csv",
                  as.is=TRUE,row.names=1)
 
-# 4. Plot the distribution of average country's count across all year.
+# 4. Plot the distribution of average country's
+#  count across all year.
 rowMeans(kids,na.rm=TRUE)
 hist(rowMeans(kids,na.rm=TRUE))
 
 # 5.(a) How many entries are less than 1?
-kids < 1
+(kids < 1)[1:5,1:5]
+nrow(kids)*ncol(kids)
+mean(is.na(kids))
+
 sum(kids < 1,na.rm=TRUE)
 mean(kids < 1,na.rm=TRUE)
 
-#	(b) Which array indices do they correspond to? [hint: `arr.ind` argument in `which()`]
-head(which(kids<1,arr.ind=FALSE))
+#	(b) Which array indices do they correspond to?
+#   [hint: `arr.ind` argument in `which()`]
+head(which(kids<1))
 head(which(kids<1,arr.ind=TRUE))
 ind =which(kids<1,arr.ind=TRUE) 
 
