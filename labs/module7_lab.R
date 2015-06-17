@@ -21,7 +21,7 @@
 
 ## Part B
 
-# Download the CSV: http://biostat.jhsph.edu/~ajaffe/files/indicatordeadkids35.csv
+# Download the CSV: http://www.aejaffe.com/summerR_2015/data/indicatordeadkids35.csv
 # Via: http://www.gapminder.org/data/
 # Definition of indicator: How many children the average couple had that die before the age 35.
 

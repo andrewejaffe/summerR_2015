@@ -20,7 +20,7 @@ sum(bike$length)/5280
 sum(bike$length/5280)
 
 # 3. How many types of bike lanes are there? 
-# Which type has (a) the most number of and (b) longest average bike lane length?
+# Which type has (a) the most number of lanes and (b) longest average bike lane length?
 length(unique(bike$type))
 tab=table(bike$type)
 tab[which.max(tab)]
