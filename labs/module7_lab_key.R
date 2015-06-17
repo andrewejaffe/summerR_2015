@@ -9,9 +9,8 @@
 # https://data.baltimorecity.gov/Transportation/Bike-Lanes/xzfj-gyms
 # Download as a CSV (like the Monuments dataset) in your current working directory
 
-bike = read.csv("data/Bike_Lanes.csv",as.is=TRUE,
+bike = read.csv("../data/Bike_Lanes.csv",as.is=TRUE,
                   na.strings=" ")
-
 
 # 1. Using tapply():
 # 	(a) Which project category has the longest average bike lane?
@@ -49,22 +48,22 @@ tapply(bike$length,bike$numLanes,
 # Via: http://www.gapminder.org/data/
 # Definition of indicator: How many children the average couple had that die before the age 35.
 
-death = read.csv("http://www.aejaffe.com/summerR_2015/data/indicatordeadkids35.csv",
+kids = read.csv("http://www.aejaffe.com/summerR_2015/data/indicatordeadkids35.csv",
                  as.is=TRUE,row.names=1)
 
 # 4. Plot the distribution of average country's count across all year.
-rowMeans(death,na.rm=TRUE)
-hist(rowMeans(death,na.rm=TRUE))
+rowMeans(kids,na.rm=TRUE)
+hist(rowMeans(kids,na.rm=TRUE))
 
 # 5.(a) How many entries are less than 1?
-death < 1
-sum(death < 1,na.rm=TRUE)
-mean(death < 1,na.rm=TRUE)
+kids < 1
+sum(kids < 1,na.rm=TRUE)
+mean(kids < 1,na.rm=TRUE)
 
 #	(b) Which array indices do they correspond to? [hint: `arr.ind` argument in `which()`]
-head(which(death<1,arr.ind=FALSE))
-head(which(death<1,arr.ind=TRUE))
-ind =which(death<1,arr.ind=TRUE) 
+head(which(kids<1,arr.ind=FALSE))
+head(which(kids<1,arr.ind=TRUE))
+ind =which(kids<1,arr.ind=TRUE) 
 
 # 6. Plot the count for each country across year in a line plot [hint: `matplot()`]
-matplot(death,type="l")
+matplot(kids,type="l")
