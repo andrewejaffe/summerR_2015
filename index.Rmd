@@ -38,6 +38,9 @@ Class:
 | 2  | 2015-06-16  | Module 4  | [Lecture](modules/module4.html), [pdf](modules/module4.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module4.R), [lab](labs/module4_lab.R), [key](labs/module4_lab_review.html)  | Data Input  |
 | 2  | 2015-06-16  | Module 5  | [Lecture](modules/module5.html), [pdf](modules/module5.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module5.R), [lab](labs/module5_lab.txt)  | Data I/O + Subset |
 | 2  | 2015-06-16  | Module 6  | [Lecture](modules/module6.html), [pdf](modules/module6.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module6.R), [lab](labs/module6_lab.R)  | Manipulation |
+| 3  | 2015-06-17  | Module 7  | [Lecture](modules/module7.html), [pdf](modules/module6.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module7.R), [lab](labs/module7_lab.R)  | Summarization |
+| 3  | 2015-06-17  | Module 8  | [Lecture](modules/module8.html), [pdf](modules/module6.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module8.R), [lab](labs/module8_lab.R)  | Cleaning |
+| 3  | 2015-06-17  | Module 9  | [Lecture](modules/module9.html), [pdf](modules/module9.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module9.R), [lab](labs/module9_lab.R)  | Visualization |
 |---|---|---|---|---|
 
 <!-- Add links to the rest of the material as we go
