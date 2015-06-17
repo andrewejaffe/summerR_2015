@@ -1,7 +1,7 @@
 ## ----knit-setup, echo=FALSE, results='hide'------------------------------
 library(knitr)
 opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE,
-               comment = "")
+               comment = "", dev="pdf")
 
 ## ----seed,echo=FALSE,results='hide'--------------------------------------
 set.seed(3) 
