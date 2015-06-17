@@ -121,50 +121,50 @@
 
 </article></slide><slide class=''><hgroup><h2>Data Cleaning</h2></hgroup><article  id="data-cleaning-1" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; table(c(0, 1, 2, 3, NA, 3, 3, 2,2, 3), 
-+         useNA=&quot;ifany&quot;)</pre>
+<pre class = 'prettyprint lang-r'>table(c(0, 1, 2, 3, NA, 3, 3, 2,2, 3), 
+        useNA=&quot;ifany&quot;)</pre>
 
-<pre >
-   0    1    2    3 &lt;NA&gt; 
-   1    1    3    4    1 </pre>
+<pre >## 
+##    0    1    2    3 &lt;NA&gt; 
+##    1    1    3    4    1</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
-+         useNA=&quot;always&quot;)</pre>
+<pre class = 'prettyprint lang-r'>table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
+        useNA=&quot;always&quot;)</pre>
 
-<pre >
-   0    1    2    3 &lt;NA&gt; 
-   1    1    4    4    0 </pre>
+<pre >## 
+##    0    1    2    3 &lt;NA&gt; 
+##    1    1    4    4    0</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tab &lt;- table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
-+              c(0, 1, 2, 3, 2, 3, 3, 4, 4, 3), 
-+               useNA=&quot;always&quot;)
-&gt; margin.table(tab, 2)</pre>
+<pre class = 'prettyprint lang-r'>tab &lt;- table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
+             c(0, 1, 2, 3, 2, 3, 3, 4, 4, 3), 
+              useNA=&quot;always&quot;)
+margin.table(tab, 2)</pre>
 
-<pre >
-   0    1    2    3    4 &lt;NA&gt; 
-   1    1    2    4    2    0 </pre>
+<pre >## 
+##    0    1    2    3    4 &lt;NA&gt; 
+##    1    1    2    4    2    0</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; prop.table(tab)</pre>
+<pre class = 'prettyprint lang-r'>prop.table(tab)</pre>
 
-<pre >      
-         0   1   2   3   4 &lt;NA&gt;
-  0    0.1 0.0 0.0 0.0 0.0  0.0
-  1    0.0 0.1 0.0 0.0 0.0  0.0
-  2    0.0 0.0 0.2 0.0 0.2  0.0
-  3    0.0 0.0 0.0 0.4 0.0  0.0
-  &lt;NA&gt; 0.0 0.0 0.0 0.0 0.0  0.0</pre>
+<pre >##       
+##          0   1   2   3   4 &lt;NA&gt;
+##   0    0.1 0.0 0.0 0.0 0.0  0.0
+##   1    0.0 0.1 0.0 0.0 0.0  0.0
+##   2    0.0 0.0 0.2 0.0 0.2  0.0
+##   3    0.0 0.0 0.0 0.4 0.0  0.0
+##   &lt;NA&gt; 0.0 0.0 0.0 0.0 0.0  0.0</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; prop.table(tab,1)</pre>
+<pre class = 'prettyprint lang-r'>prop.table(tab,1)</pre>
 
-<pre >      
-         0   1   2   3   4 &lt;NA&gt;
-  0    1.0 0.0 0.0 0.0 0.0  0.0
-  1    0.0 1.0 0.0 0.0 0.0  0.0
-  2    0.0 0.0 0.5 0.0 0.5  0.0
-  3    0.0 0.0 0.0 1.0 0.0  0.0
-  &lt;NA&gt;                         </pre>
+<pre >##       
+##          0   1   2   3   4 &lt;NA&gt;
+##   0    1.0 0.0 0.0 0.0 0.0  0.0
+##   1    0.0 1.0 0.0 0.0 0.0  0.0
+##   2    0.0 0.0 0.5 0.0 0.5  0.0
+##   3    0.0 0.0 0.0 1.0 0.0  0.0
+##   &lt;NA&gt;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Download Salary FY2014 Data</h2></hgroup><article  id="download-salary-fy2014-data">
 
@@ -172,8 +172,8 @@
 
 <p>Download as a CSV and then read it into R as the variable <code>Sal</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; Sal = read.csv(&quot;../data/Baltimore_City_Employee_Salaries_FY2014.csv&quot;,
-+                 as.is=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>Sal = read.csv(&quot;../data/Baltimore_City_Employee_Salaries_FY2014.csv&quot;,
+                as.is=TRUE)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Cleaning</h2></hgroup><article  id="data-cleaning-2" class="smaller">
 
@@ -182,22 +182,22 @@
 <li><code>all()</code> - checks if ALL are true</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; Sal[1:4,]</pre>
+<pre class = 'prettyprint lang-r'>Sal[1:4,]</pre>
 
-<pre >                Name                      JobTitle AgencyID
-1    Aaron,Keontae E                AIDE BLUE CHIP   W02200
-2   Aaron,Patricia G Facilities/Office Services II   A03031
-3      Aaron,Petra L    ASSISTANT STATE&#39;S ATTORNEY   A29005
-4 Abaineh,Yohannes T                EPIDEMIOLOGIST   A65026
-                    Agency   HireDate AnnualSalary  GrossPay
-1           Youth Summer   06/10/2013    $11310.00   $873.63
-2      OED-Employment Dev  10/24/1979    $53428.00 $52868.38
-3 States Attorneys Office  09/25/2006    $68300.00 $67439.19
-4  HLTH-Health Department  07/23/2009    $62000.00 $58654.74</pre>
+<pre >##                 Name                      JobTitle AgencyID
+## 1    Aaron,Keontae E                AIDE BLUE CHIP   W02200
+## 2   Aaron,Patricia G Facilities/Office Services II   A03031
+## 3      Aaron,Petra L    ASSISTANT STATE&#39;S ATTORNEY   A29005
+## 4 Abaineh,Yohannes T                EPIDEMIOLOGIST   A65026
+##                     Agency   HireDate AnnualSalary  GrossPay
+## 1           Youth Summer   06/10/2013    $11310.00   $873.63
+## 2      OED-Employment Dev  10/24/1979    $53428.00 $52868.38
+## 3 States Attorneys Office  09/25/2006    $68300.00 $67439.19
+## 4  HLTH-Health Department  07/23/2009    $62000.00 $58654.74</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; any(is.na(Sal$Name))</pre>
+<pre class = 'prettyprint lang-r'>any(is.na(Sal$Name))</pre>
 
-<pre >[1] FALSE</pre>
+<pre >## [1] FALSE</pre>
 
 </article></slide><slide class=''><hgroup><h2>Example of Cleaning:</h2></hgroup><article  id="example-of-cleaning">
 
@@ -212,13 +212,13 @@
 
 <p>Sometimes though, it&#39;s not so simple. That&#39;s where functions that find patterns come in very useful.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; table(gender)</pre>
+<pre class = 'prettyprint lang-r'>table(gender)</pre>
 
-<pre >gender
-     F FeMAle FEMALE     Fm      M     Ma   mAle   Male   MaLe   MALE 
-    75     82     74     89     89     79     87     89     88     95 
-   Man  Woman 
-    73     80 </pre>
+<pre >## gender
+##      F FeMAle FEMALE     Fm      M     Ma   mAle   Male   MaLe   MALE 
+##     75     82     74     89     89     79     87     89     88     95 
+##    Man  Woman 
+##     73     80</pre>
 
 </article></slide><slide class=''><hgroup><h2>Find/Replace and Regular Expressions</h2></hgroup><article  id="findreplace-and-regular-expressions">
 
@@ -245,9 +245,9 @@
 
 </article></slide><slide class=''><hgroup><h2>&#39;Find&#39; functions</h2></hgroup><article  id="find-functions-1">
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Rawlings&quot;,Sal$Name)</pre>
 
-<pre >[1] 13832 13833 13834 13835</pre>
+<pre >## [1] 13832 13833 13834 13835</pre>
 
 <p>These are the indices/elements where the pattern match occurs</p>
 
@@ -255,41 +255,41 @@
 
 </article></slide><slide class=''><hgroup><h2>&#39;Find&#39; functions</h2></hgroup><article  id="find-functions-2" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Rawlings&quot;,Sal$Name)</pre>
 
-<pre >[1] 13832 13833 13834 13835</pre>
+<pre >## [1] 13832 13833 13834 13835</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Rawlings&quot;,Sal$Name,value=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Rawlings&quot;,Sal$Name,value=TRUE)</pre>
 
-<pre >[1] &quot;Rawlings,Kellye A&quot;          &quot;Rawlings,MarqWell D&quot;       
-[3] &quot;Rawlings,Paula M&quot;           &quot;Rawlings-Blake,Stephanie C&quot;</pre>
+<pre >## [1] &quot;Rawlings,Kellye A&quot;          &quot;Rawlings,MarqWell D&quot;       
+## [3] &quot;Rawlings,Paula M&quot;           &quot;Rawlings-Blake,Stephanie C&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; Sal[grep(&quot;Rawlings&quot;,Sal$Name),]</pre>
+<pre class = 'prettyprint lang-r'>Sal[grep(&quot;Rawlings&quot;,Sal$Name),]</pre>
 
-<pre >                            Name             JobTitle AgencyID
-13832          Rawlings,Kellye A EMERGENCY DISPATCHER   A40302
-13833        Rawlings,MarqWell D       AIDE BLUE CHIP   W02384
-13834           Rawlings,Paula M       COMMUNITY AIDE   A04015
-13835 Rawlings-Blake,Stephanie C                MAYOR   A01001
-                    Agency   HireDate AnnualSalary   GrossPay
-13832 M-R Info Technology  01/06/2003    $47980.00  $68426.73
-13833       Youth Summer   06/15/2012    $11310.00    $507.50
-13834      R&amp;P-Recreation  12/10/2007    $19802.00   $8195.79
-13835       Mayors Office  12/07/1995   $163365.00 $161219.24</pre>
+<pre >##                             Name             JobTitle AgencyID
+## 13832          Rawlings,Kellye A EMERGENCY DISPATCHER   A40302
+## 13833        Rawlings,MarqWell D       AIDE BLUE CHIP   W02384
+## 13834           Rawlings,Paula M       COMMUNITY AIDE   A04015
+## 13835 Rawlings-Blake,Stephanie C                MAYOR   A01001
+##                     Agency   HireDate AnnualSalary   GrossPay
+## 13832 M-R Info Technology  01/06/2003    $47980.00  $68426.73
+## 13833       Youth Summer   06/15/2012    $11310.00    $507.50
+## 13834      R&amp;P-Recreation  12/10/2007    $19802.00   $8195.79
+## 13835       Mayors Office  12/07/1995   $163365.00 $161219.24</pre>
 
 </article></slide><slide class=''><hgroup><h2><code>grep()</code> Options</h2></hgroup><article  id="grep-options">
 
-<pre class = 'prettyprint lang-r'>&gt; head(grep(&quot;Tajhgh&quot;,Sal$Name, value=TRUE))</pre>
+<pre class = 'prettyprint lang-r'>head(grep(&quot;Tajhgh&quot;,Sal$Name, value=TRUE))</pre>
 
-<pre >[1] &quot;Reynold,Tajhgh J&quot;</pre>
+<pre >## [1] &quot;Reynold,Tajhgh J&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Jaffe&quot;,Sal$Name)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Jaffe&quot;,Sal$Name)</pre>
 
-<pre >[1] 8603</pre>
+<pre >## [1] 8603</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(grep(&quot;Jaffe&quot;,Sal$Name))</pre>
+<pre class = 'prettyprint lang-r'>length(grep(&quot;Jaffe&quot;,Sal$Name))</pre>
 
-<pre >[1] 1</pre>
+<pre >## [1] 1</pre>
 
 </article></slide><slide class=''><hgroup><h2>A bit on Regular Expressions</h2></hgroup><article  id="a-bit-on-regular-expressions">
 
@@ -313,56 +313,56 @@
 </ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Payne.*&quot;, x=Sal$Name, value=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Payne.*&quot;, x=Sal$Name, value=TRUE)</pre>
 
-<pre > [1] &quot;Payne El,Jackie&quot;         &quot;Payne Johnson,Nickole A&quot;
- [3] &quot;Payne,Chanel&quot;            &quot;Payne,Connie T&quot;         
- [5] &quot;Payne,Denise I&quot;          &quot;Payne,Dominic R&quot;        
- [7] &quot;Payne,James R&quot;           &quot;Payne,Jasman T&quot;         
- [9] &quot;Payne,Joey D&quot;            &quot;Payne,Jordan A&quot;         
-[11] &quot;Payne,Karen V&quot;           &quot;Payne,Karen V&quot;          
-[13] &quot;Payne,Leonard S&quot;         &quot;Payne,Mary A&quot;           
-[15] &quot;Payne,Micah W&quot;           &quot;Payne,Michael C&quot;        
-[17] &quot;Payne,Michael N&quot;         &quot;Payne,Morag&quot;            
-[19] &quot;Payne,Nora M&quot;            &quot;Payne,Shelley F&quot;        </pre>
+<pre >##  [1] &quot;Payne El,Jackie&quot;         &quot;Payne Johnson,Nickole A&quot;
+##  [3] &quot;Payne,Chanel&quot;            &quot;Payne,Connie T&quot;         
+##  [5] &quot;Payne,Denise I&quot;          &quot;Payne,Dominic R&quot;        
+##  [7] &quot;Payne,James R&quot;           &quot;Payne,Jasman T&quot;         
+##  [9] &quot;Payne,Joey D&quot;            &quot;Payne,Jordan A&quot;         
+## [11] &quot;Payne,Karen V&quot;           &quot;Payne,Karen V&quot;          
+## [13] &quot;Payne,Leonard S&quot;         &quot;Payne,Mary A&quot;           
+## [15] &quot;Payne,Micah W&quot;           &quot;Payne,Michael C&quot;        
+## [17] &quot;Payne,Michael N&quot;         &quot;Payne,Morag&quot;            
+## [19] &quot;Payne,Nora M&quot;            &quot;Payne,Shelley F&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Leonard.?S&quot;, x=Sal$Name, value=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Leonard.?S&quot;, x=Sal$Name, value=TRUE)</pre>
 
-<pre >[1] &quot;Payne,Leonard S&quot;      &quot;Szumlanski,Leonard S&quot;</pre>
+<pre >## [1] &quot;Payne,Leonard S&quot;      &quot;Szumlanski,Leonard S&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; grep(&quot;Spence.*C.*&quot;, x=Sal$Name, value=TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&quot;Spence.*C.*&quot;, x=Sal$Name, value=TRUE)</pre>
 
-<pre >[1] &quot;Greene,Spencer C&quot;    &quot;Spencer,Charles A&quot;   &quot;Spencer,Christian O&quot;
-[4] &quot;Spencer,Clarence W&quot;  &quot;Spencer,Michael C&quot;  </pre>
+<pre >## [1] &quot;Greene,Spencer C&quot;    &quot;Spencer,Charles A&quot;   &quot;Spencer,Christian O&quot;
+## [4] &quot;Spencer,Clarence W&quot;  &quot;Spencer,Michael C&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Replace</h2></hgroup><article  id="replace">
 
 <p>Let&#39;s say we wanted to sort the data set by Annual Salary:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; class(Sal$AnnualSalary)</pre>
+<pre class = 'prettyprint lang-r'>class(Sal$AnnualSalary)</pre>
 
-<pre >[1] &quot;character&quot;</pre>
+<pre >## [1] &quot;character&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sort(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;)) #  not sort correctly (order simply ranks the data)</pre>
+<pre class = 'prettyprint lang-r'>sort(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;)) #  not sort correctly (order simply ranks the data)</pre>
 
-<pre >[1] &quot;1&quot;  &quot;10&quot; &quot;2&quot; </pre>
+<pre >## [1] &quot;1&quot;  &quot;10&quot; &quot;2&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; order(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;))</pre>
+<pre class = 'prettyprint lang-r'>order(c(&quot;1&quot;, &quot;2&quot;, &quot;10&quot;))</pre>
 
-<pre >[1] 1 3 2</pre>
+<pre >## [1] 1 3 2</pre>
 
 </article></slide><slide class=''><hgroup><h2>Replace</h2></hgroup><article  id="replace-1">
 
 <p>So we must change the annual pay into a numeric:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; head(as.numeric(Sal$AnnualSalary), 4)</pre>
+<pre class = 'prettyprint lang-r'>head(as.numeric(Sal$AnnualSalary), 4)</pre>
 
-<pre >Warning in head(as.numeric(Sal$AnnualSalary), 4): NAs introduced by
-coercion</pre>
+<pre >## Warning in head(as.numeric(Sal$AnnualSalary), 4): NAs introduced by
+## coercion</pre>
 
-<pre >[1] NA NA NA NA</pre>
+<pre >## [1] NA NA NA NA</pre>
 
 <p>R didn&#39;t like the $ so it thought turned them all to <code>NA</code>.</p>
 
@@ -372,17 +372,17 @@ coercion</pre>
 
 <p>Now we can replace the <code>$</code> with nothing (used fixed=TRUE because $ means something in regular expressions):</p>
 
-<pre class = 'prettyprint lang-r'>&gt; Sal$AnnualSalary &lt;- as.numeric(gsub(pattern=&quot;$&quot;, replacement=&quot;&quot;, 
-+                               Sal$AnnualSalary, fixed=TRUE))
-&gt; Sal &lt;- Sal[order(Sal$AnnualSalary,decreasing=TRUE), ] # use negative to sort descending
-&gt; Sal[1:5, c(&quot;Name&quot;, &quot;AnnualSalary&quot;, &quot;JobTitle&quot;)]</pre>
+<pre class = 'prettyprint lang-r'>Sal$AnnualSalary &lt;- as.numeric(gsub(pattern=&quot;$&quot;, replacement=&quot;&quot;, 
+                              Sal$AnnualSalary, fixed=TRUE))
+Sal &lt;- Sal[order(Sal$AnnualSalary,decreasing=TRUE), ] # use negative to sort descending
+Sal[1:5, c(&quot;Name&quot;, &quot;AnnualSalary&quot;, &quot;JobTitle&quot;)]</pre>
 
-<pre >                   Name AnnualSalary              JobTitle
-1222  Bernstein,Gregg L       238772      STATE&#39;S ATTORNEY
-3175   Charles,Ronnie E       200000   EXECUTIVE LEVEL III
-985     Batts,Anthony W       193800   EXECUTIVE LEVEL III
-1343      Black,Harry E       190000   EXECUTIVE LEVEL III
-16352     Swift,Michael       187200 CONTRACT SERV SPEC II</pre>
+<pre >##                    Name AnnualSalary              JobTitle
+## 1222  Bernstein,Gregg L       238772      STATE&#39;S ATTORNEY
+## 3175   Charles,Ronnie E       200000   EXECUTIVE LEVEL III
+## 985     Batts,Anthony W       193800   EXECUTIVE LEVEL III
+## 1343      Black,Harry E       190000   EXECUTIVE LEVEL III
+## 16352     Swift,Michael       187200 CONTRACT SERV SPEC II</pre>
 
 </article></slide><slide class=''><hgroup><h2>Useful String Functions</h2></hgroup><article  id="useful-string-functions">
 
@@ -401,53 +401,53 @@ coercion</pre>
 
 <p>Paste can be very useful for joining vectors together:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;)</pre>
 
-<pre >[1] &quot;Visit_1&quot; &quot;Visit_2&quot; &quot;Visit_3&quot; &quot;Visit_4&quot; &quot;Visit_5&quot;</pre>
+<pre >## [1] &quot;Visit_1&quot; &quot;Visit_2&quot; &quot;Visit_3&quot; &quot;Visit_4&quot; &quot;Visit_5&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;, collapse=&quot; &quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(&quot;Visit&quot;, 1:5, sep=&quot;_&quot;, collapse=&quot; &quot;)</pre>
 
-<pre >[1] &quot;Visit_1 Visit_2 Visit_3 Visit_4 Visit_5&quot;</pre>
+<pre >## [1] &quot;Visit_1 Visit_2 Visit_3 Visit_4 Visit_5&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; paste(&quot;To&quot;, &quot;is going be the &quot;, &quot;we go to the store!&quot;, sep=&quot;day &quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(&quot;To&quot;, &quot;is going be the &quot;, &quot;we go to the store!&quot;, sep=&quot;day &quot;)</pre>
 
-<pre >[1] &quot;Today is going be the day we go to the store!&quot;</pre>
+<pre >## [1] &quot;Today is going be the day we go to the store!&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; # and paste0 can be even simpler see ?paste0 
-&gt; paste0(&quot;Visit&quot;,1:5)</pre>
+<pre class = 'prettyprint lang-r'># and paste0 can be even simpler see ?paste0 
+paste0(&quot;Visit&quot;,1:5)</pre>
 
-<pre >[1] &quot;Visit1&quot; &quot;Visit2&quot; &quot;Visit3&quot; &quot;Visit4&quot; &quot;Visit5&quot;</pre>
+<pre >## [1] &quot;Visit1&quot; &quot;Visit2&quot; &quot;Visit3&quot; &quot;Visit4&quot; &quot;Visit5&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; paste(1:5, letters[1:5], sep=&quot;_&quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(1:5, letters[1:5], sep=&quot;_&quot;)</pre>
 
-<pre >[1] &quot;1_a&quot; &quot;2_b&quot; &quot;3_c&quot; &quot;4_d&quot; &quot;5_e&quot;</pre>
+<pre >## [1] &quot;1_a&quot; &quot;2_b&quot; &quot;3_c&quot; &quot;4_d&quot; &quot;5_e&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; paste(6:10, 11:15, 2000:2005, sep=&quot;/&quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(6:10, 11:15, 2000:2005, sep=&quot;/&quot;)</pre>
 
-<pre >[1] &quot;6/11/2000&quot;  &quot;7/12/2001&quot;  &quot;8/13/2002&quot;  &quot;9/14/2003&quot;  &quot;10/15/2004&quot;
-[6] &quot;6/11/2005&quot; </pre>
+<pre >## [1] &quot;6/11/2000&quot;  &quot;7/12/2001&quot;  &quot;8/13/2002&quot;  &quot;9/14/2003&quot;  &quot;10/15/2004&quot;
+## [6] &quot;6/11/2005&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; paste(paste(&quot;x&quot;,1:5,sep=&quot;&quot;),collapse=&quot;+&quot;)</pre>
+<pre class = 'prettyprint lang-r'>paste(paste(&quot;x&quot;,1:5,sep=&quot;&quot;),collapse=&quot;+&quot;)</pre>
 
-<pre >[1] &quot;x1+x2+x3+x4+x5&quot;</pre>
+<pre >## [1] &quot;x1+x2+x3+x4+x5&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Strsplit</h2></hgroup><article  id="strsplit">
 
-<pre class = 'prettyprint lang-r'>&gt; x &lt;- c(&quot;I really&quot;, &quot;like writing&quot;, &quot;R code&quot;)
-&gt; y &lt;- strsplit(x, split=&quot; &quot;)
-&gt; y[[2]]</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- c(&quot;I really&quot;, &quot;like writing&quot;, &quot;R code&quot;)
+y &lt;- strsplit(x, split=&quot; &quot;)
+y[[2]]</pre>
 
-<pre >[1] &quot;like&quot;    &quot;writing&quot;</pre>
+<pre >## [1] &quot;like&quot;    &quot;writing&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sapply(y, &quot;[&quot;, 1) # on the fly</pre>
+<pre class = 'prettyprint lang-r'>sapply(y, &quot;[&quot;, 1) # on the fly</pre>
 
-<pre >[1] &quot;I&quot;    &quot;like&quot; &quot;R&quot;   </pre>
+<pre >## [1] &quot;I&quot;    &quot;like&quot; &quot;R&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sapply(y, &quot;[&quot;, 2) # on the fly</pre>
+<pre class = 'prettyprint lang-r'>sapply(y, &quot;[&quot;, 2) # on the fly</pre>
 
-<pre >[1] &quot;really&quot;  &quot;writing&quot; &quot;code&quot;   </pre>
+<pre >## [1] &quot;really&quot;  &quot;writing&quot; &quot;code&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Merging/Append</h2></hgroup><article  id="data-mergingappend">
 
@@ -466,74 +466,74 @@ coercion</pre>
 
 </article></slide><slide class=''><hgroup><h2>Merging</h2></hgroup><article  id="merging" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; base &lt;- data.frame(id=1:10, Age= seq(55,60, length=10))
-&gt; base[1:2,]</pre>
+<pre class = 'prettyprint lang-r'>base &lt;- data.frame(id=1:10, Age= seq(55,60, length=10))
+base[1:2,]</pre>
 
-<pre >  id      Age
-1  1 55.00000
-2  2 55.55556</pre>
+<pre >##   id      Age
+## 1  1 55.00000
+## 2  2 55.55556</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; visits &lt;- data.frame(id=rep(1:8, 3), visit= rep(1:3, 8),
-+                     Outcome= seq(10,50, length=24))
-&gt; visits[1:2,]</pre>
+<pre class = 'prettyprint lang-r'>visits &lt;- data.frame(id=rep(1:8, 3), visit= rep(1:3, 8),
+                    Outcome= seq(10,50, length=24))
+visits[1:2,]</pre>
 
-<pre >  id visit  Outcome
-1  1     1 10.00000
-2  2     2 11.73913</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>&gt; merged.data &lt;- merge(base, visits, by=&quot;id&quot;)
-&gt; merged.data[1:5,]</pre>
-
-<pre >  id      Age visit  Outcome
-1  1 55.00000     1 10.00000
-2  1 55.00000     3 23.91304
-3  1 55.00000     2 37.82609
-4  2 55.55556     2 11.73913
-5  2 55.55556     1 25.65217</pre>
-
-<pre class = 'prettyprint lang-r'>&gt; dim(merged.data)</pre>
-
-<pre >[1] 24  4</pre>
+<pre >##   id visit  Outcome
+## 1  1     1 10.00000
+## 2  2     2 11.73913</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>&gt; all.data &lt;- merge(base, visits, by=&quot;id&quot;, all=TRUE)
-&gt; tail(all.data)</pre>
+<pre class = 'prettyprint lang-r'>merged.data &lt;- merge(base, visits, by=&quot;id&quot;)
+merged.data[1:5,]</pre>
 
-<pre >   id      Age visit  Outcome
-21  7 58.33333     2 48.26087
-22  8 58.88889     2 22.17391
-23  8 58.88889     1 36.08696
-24  8 58.88889     3 50.00000
-25  9 59.44444    NA       NA
-26 10 60.00000    NA       NA</pre>
+<pre >##   id      Age visit  Outcome
+## 1  1 55.00000     1 10.00000
+## 2  1 55.00000     3 23.91304
+## 3  1 55.00000     2 37.82609
+## 4  2 55.55556     2 11.73913
+## 5  2 55.55556     1 25.65217</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; dim(all.data)</pre>
+<pre class = 'prettyprint lang-r'>dim(merged.data)</pre>
 
-<pre >[1] 26  4</pre>
+<pre >## [1] 24  4</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>all.data &lt;- merge(base, visits, by=&quot;id&quot;, all=TRUE)
+tail(all.data)</pre>
+
+<pre >##    id      Age visit  Outcome
+## 21  7 58.33333     2 48.26087
+## 22  8 58.88889     2 22.17391
+## 23  8 58.88889     1 36.08696
+## 24  8 58.88889     3 50.00000
+## 25  9 59.44444    NA       NA
+## 26 10 60.00000    NA       NA</pre>
+
+<pre class = 'prettyprint lang-r'>dim(all.data)</pre>
+
+<pre >## [1] 26  4</pre>
 
 </article></slide><slide class=''><hgroup><h2>Aside: Dates</h2></hgroup><article  id="aside-dates" class="smaller">
 
 <p>You can convert date-like strings in the <code>Date</code> class (<a href='http://www.statmethods.net/input/dates.html' title=''>http://www.statmethods.net/input/dates.html</a> for more info)</p>
 
-<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;,as.is=TRUE)
-&gt; head(sort(circ$date))</pre>
+<pre class = 'prettyprint lang-r'>circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;,as.is=TRUE)
+head(sort(circ$date))</pre>
 
-<pre >[1] &quot;01/01/2011&quot; &quot;01/01/2012&quot; &quot;01/01/2013&quot; &quot;01/02/2011&quot; &quot;01/02/2012&quot;
-[6] &quot;01/02/2013&quot;</pre>
+<pre >## [1] &quot;01/01/2011&quot; &quot;01/01/2012&quot; &quot;01/01/2013&quot; &quot;01/02/2011&quot; &quot;01/02/2012&quot;
+## [6] &quot;01/02/2013&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; circ$date &lt;- as.Date(circ$date, &quot;%m/%d/%Y&quot;) # creating a date for sorting
-&gt; head(circ$date)</pre>
+<pre class = 'prettyprint lang-r'>circ$date &lt;- as.Date(circ$date, &quot;%m/%d/%Y&quot;) # creating a date for sorting
+head(circ$date)</pre>
 
-<pre >[1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
-[6] &quot;2010-01-16&quot;</pre>
+<pre >## [1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
+## [6] &quot;2010-01-16&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(sort(circ$date))</pre>
+<pre class = 'prettyprint lang-r'>head(sort(circ$date))</pre>
 
-<pre >[1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
-[6] &quot;2010-01-16&quot;</pre>
+<pre >## [1] &quot;2010-01-11&quot; &quot;2010-01-12&quot; &quot;2010-01-13&quot; &quot;2010-01-14&quot; &quot;2010-01-15&quot;
+## [6] &quot;2010-01-16&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping">
 
@@ -547,17 +547,17 @@ coercion</pre>
 
 </article></slide><slide class=''><hgroup><h2>Example of Long/Wide</h2></hgroup><article  id="example-of-longwide">
 
-<pre class = 'prettyprint lang-r'>&gt; head(wide)</pre>
+<pre class = 'prettyprint lang-r'>head(wide)</pre>
 
-<pre >  id visit1 visit2 visit3
-1  1   Good   Good    Bad</pre>
+<pre >##   id visit1 visit2 visit3
+## 1  1   Good   Good    Bad</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(long)</pre>
+<pre class = 'prettyprint lang-r'>head(long)</pre>
 
-<pre >  id visit Outcome
-1  1     1    Good
-2  1     2    Good
-3  1     3     Bad</pre>
+<pre >##   id visit Outcome
+## 1  1     1    Good
+## 2  1     2    Good
+## 3  1     3     Bad</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-1">
 
@@ -565,59 +565,59 @@ coercion</pre>
 <li>Good resource: <a href='http://www.ats.ucla.edu/stat/r/faq/reshape.htm' title=''>http://www.ats.ucla.edu/stat/r/faq/reshape.htm</a></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; head(Indometh) # this is long</pre>
+<pre class = 'prettyprint lang-r'>head(Indometh) # this is long</pre>
 
-<pre >  Subject time conc
-1       1 0.25 1.50
-2       1 0.50 0.94
-3       1 0.75 0.78
-4       1 1.00 0.48
-5       1 1.25 0.37
-6       1 2.00 0.19</pre>
+<pre >##   Subject time conc
+## 1       1 0.25 1.50
+## 2       1 0.50 0.94
+## 3       1 0.75 0.78
+## 4       1 1.00 0.48
+## 5       1 1.25 0.37
+## 6       1 2.00 0.19</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-2" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; wide &lt;- reshape(Indometh, v.names = &quot;conc&quot;, idvar = &quot;Subject&quot;,
-+                 timevar = &quot;time&quot;, direction = &quot;wide&quot;)
-&gt; head(wide)</pre>
+<pre class = 'prettyprint lang-r'>wide &lt;- reshape(Indometh, v.names = &quot;conc&quot;, idvar = &quot;Subject&quot;,
+                timevar = &quot;time&quot;, direction = &quot;wide&quot;)
+head(wide)</pre>
 
-<pre >   Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
-1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
-12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
-23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
-34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
-45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
-56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
-   conc.4 conc.5 conc.6 conc.8
-1    0.11   0.08   0.07   0.05
-12   0.20   0.25   0.12   0.08
-23   0.12   0.11   0.08   0.08
-34   0.11   0.10   0.07   0.07
-45   0.11   0.08   0.10   0.06
-56   0.17   0.13   0.10   0.09</pre>
+<pre >##    Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
+## 1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
+## 12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
+## 23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
+## 34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
+## 45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
+## 56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
+##    conc.4 conc.5 conc.6 conc.8
+## 1    0.11   0.08   0.07   0.05
+## 12   0.20   0.25   0.12   0.08
+## 23   0.12   0.11   0.08   0.08
+## 34   0.11   0.10   0.07   0.07
+## 45   0.11   0.08   0.10   0.06
+## 56   0.17   0.13   0.10   0.09</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-3" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; dim(Indometh)</pre>
+<pre class = 'prettyprint lang-r'>dim(Indometh)</pre>
 
-<pre >[1] 66  3</pre>
+<pre >## [1] 66  3</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; wide</pre>
+<pre class = 'prettyprint lang-r'>wide</pre>
 
-<pre >   Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
-1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
-12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
-23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
-34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
-45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
-56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
-   conc.4 conc.5 conc.6 conc.8
-1    0.11   0.08   0.07   0.05
-12   0.20   0.25   0.12   0.08
-23   0.12   0.11   0.08   0.08
-34   0.11   0.10   0.07   0.07
-45   0.11   0.08   0.10   0.06
-56   0.17   0.13   0.10   0.09</pre>
+<pre >##    Subject conc.0.25 conc.0.5 conc.0.75 conc.1 conc.1.25 conc.2 conc.3
+## 1        1      1.50     0.94      0.78   0.48      0.37   0.19   0.12
+## 12       2      2.03     1.63      0.71   0.70      0.64   0.36   0.32
+## 23       3      2.72     1.49      1.16   0.80      0.80   0.39   0.22
+## 34       4      1.85     1.39      1.02   0.89      0.59   0.40   0.16
+## 45       5      2.05     1.04      0.81   0.39      0.30   0.23   0.13
+## 56       6      2.31     1.44      1.03   0.84      0.64   0.42   0.24
+##    conc.4 conc.5 conc.6 conc.8
+## 1    0.11   0.08   0.07   0.05
+## 12   0.20   0.25   0.12   0.08
+## 23   0.12   0.11   0.08   0.08
+## 34   0.11   0.10   0.07   0.07
+## 45   0.11   0.08   0.10   0.06
+## 56   0.17   0.13   0.10   0.09</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping</h2></hgroup><article  id="data-reshaping-4">
 
@@ -625,83 +625,83 @@ coercion</pre>
 <li>If you&#39;ve reshaped a data set - to get it back, just reshape it again</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; reshape(wide, direction = &quot;long&quot;)[1:10,]</pre>
+<pre class = 'prettyprint lang-r'>reshape(wide, direction = &quot;long&quot;)[1:10,]</pre>
 
-<pre >       Subject time conc
-1.0.25       1 0.25 1.50
-2.0.25       2 0.25 2.03
-3.0.25       3 0.25 2.72
-4.0.25       4 0.25 1.85
-5.0.25       5 0.25 2.05
-6.0.25       6 0.25 2.31
-1.0.5        1 0.50 0.94
-2.0.5        2 0.50 1.63
-3.0.5        3 0.50 1.49
-4.0.5        4 0.50 1.39</pre>
+<pre >##        Subject time conc
+## 1.0.25       1 0.25 1.50
+## 2.0.25       2 0.25 2.03
+## 3.0.25       3 0.25 2.72
+## 4.0.25       4 0.25 1.85
+## 5.0.25       5 0.25 2.05
+## 6.0.25       6 0.25 2.31
+## 1.0.5        1 0.50 0.94
+## 2.0.5        2 0.50 1.63
+## 3.0.5        3 0.50 1.49
+## 4.0.5        4 0.50 1.39</pre>
 
 <p>Note the row name change</p>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping - A Better Example</h2></hgroup><article  id="data-reshaping---a-better-example" class="smaller">
 
-<pre >Loading required package: rJava
-Loading required package: xlsxjars</pre>
+<pre >## Loading required package: rJava
+## Loading required package: xlsxjars</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; TB &lt;- read.xlsx(file=&quot;../data/indicator_estimatedincidencealltbper100000.xlsx&quot;,
-+                 sheetName=&quot;Data&quot;)
-&gt; head(TB, 1)</pre>
+<pre class = 'prettyprint lang-r'>TB &lt;- read.xlsx(file=&quot;../data/indicator_estimatedincidencealltbper100000.xlsx&quot;,
+                sheetName=&quot;Data&quot;)
+head(TB, 1)</pre>
 
-<pre >  TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
-1                                               Afghanistan   168   168
-  X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
-1   168   168   168   168   168   168   168   168   168   168   168   168
-  X2004 X2005 X2006 X2007 NA.
-1   168   168   168   168  NA</pre>
+<pre >##   TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
+## 1                                               Afghanistan   168   168
+##   X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
+## 1   168   168   168   168   168   168   168   168   168   168   168   168
+##   X2004 X2005 X2006 X2007 NA.
+## 1   168   168   168   168  NA</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; TB$NA. &lt;- NULL
-&gt; head(TB, 1)</pre>
+<pre class = 'prettyprint lang-r'>TB$NA. &lt;- NULL
+head(TB, 1)</pre>
 
-<pre >  TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
-1                                               Afghanistan   168   168
-  X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
-1   168   168   168   168   168   168   168   168   168   168   168   168
-  X2004 X2005 X2006 X2007
-1   168   168   168   168</pre>
+<pre >##   TB.incidence..all.forms..per.100.000.population.per.year. X1990 X1991
+## 1                                               Afghanistan   168   168
+##   X1992 X1993 X1994 X1995 X1996 X1997 X1998 X1999 X2000 X2001 X2002 X2003
+## 1   168   168   168   168   168   168   168   168   168   168   168   168
+##   X2004 X2005 X2006 X2007
+## 1   168   168   168   168</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping - A Better Example</h2></hgroup><article  id="data-reshaping---a-better-example-1" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; colnames(TB) &lt;- c(&quot;Country&quot;, paste(&quot;Year&quot;, 
-+                           1990:2007, sep=&quot;.&quot;))
-&gt; head(TB,1)</pre>
+<pre class = 'prettyprint lang-r'>colnames(TB) &lt;- c(&quot;Country&quot;, paste(&quot;Year&quot;, 
+                          1990:2007, sep=&quot;.&quot;))
+head(TB,1)</pre>
 
-<pre >      Country Year.1990 Year.1991 Year.1992 Year.1993 Year.1994 Year.1995
-1 Afghanistan       168       168       168       168       168       168
-  Year.1996 Year.1997 Year.1998 Year.1999 Year.2000 Year.2001 Year.2002
-1       168       168       168       168       168       168       168
-  Year.2003 Year.2004 Year.2005 Year.2006 Year.2007
-1       168       168       168       168       168</pre>
+<pre >##       Country Year.1990 Year.1991 Year.1992 Year.1993 Year.1994 Year.1995
+## 1 Afghanistan       168       168       168       168       168       168
+##   Year.1996 Year.1997 Year.1998 Year.1999 Year.2000 Year.2001 Year.2002
+## 1       168       168       168       168       168       168       168
+##   Year.2003 Year.2004 Year.2005 Year.2006 Year.2007
+## 1       168       168       168       168       168</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping - More is better!</h2></hgroup><article  id="data-reshaping---more-is-better" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; TB.long &lt;- reshape(TB, idvar=&quot;Country&quot;, 
-+             v.names=&quot;Cases&quot;, times=1990:2007, 
-+                    direction=&quot;long&quot;, timevar=&quot;Year&quot;, 
-+                    varying = paste(&quot;Year&quot;, 1990:2007, sep=&quot;.&quot;))
-&gt; head(TB.long, 4)</pre>
+<pre class = 'prettyprint lang-r'>TB.long &lt;- reshape(TB, idvar=&quot;Country&quot;, 
+            v.names=&quot;Cases&quot;, times=1990:2007, 
+                   direction=&quot;long&quot;, timevar=&quot;Year&quot;, 
+                   varying = paste(&quot;Year&quot;, 1990:2007, sep=&quot;.&quot;))
+head(TB.long, 4)</pre>
 
-<pre >                           Country Year Cases
-Afghanistan.1990       Afghanistan 1990   168
-Albania.1990               Albania 1990    25
-Algeria.1990               Algeria 1990    38
-American Samoa.1990 American Samoa 1990    21</pre>
+<pre >##                            Country Year Cases
+## Afghanistan.1990       Afghanistan 1990   168
+## Albania.1990               Albania 1990    25
+## Algeria.1990               Algeria 1990    38
+## American Samoa.1990 American Samoa 1990    21</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; rownames(TB.long) &lt;- NULL
-&gt; head(TB.long, 4)</pre>
+<pre class = 'prettyprint lang-r'>rownames(TB.long) &lt;- NULL
+head(TB.long, 4)</pre>
 
-<pre >         Country Year Cases
-1    Afghanistan 1990   168
-2        Albania 1990    25
-3        Algeria 1990    38
-4 American Samoa 1990    21</pre></article></slide>
+<pre >##          Country Year Cases
+## 1    Afghanistan 1990   168
+## 2        Albania 1990    25
+## 3        Algeria 1990    38
+## 4 American Samoa 1990    21</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -125,10 +125,10 @@
 
 <p>For example, from the Homework 2 Dataset:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;, header=TRUE,as.is=TRUE)
-&gt; circ2 = circ[,c(&quot;day&quot;,&quot;date&quot;, &quot;orangeAverage&quot;,&quot;purpleAverage&quot;,&quot;greenAverage&quot;,
-+                 &quot;bannerAverage&quot;,&quot;daily&quot;)]
-&gt; write.csv(circ2, file=&quot;../data/charmcitycirc_reduced.csv&quot;, row.names=FALSE)</pre>
+<pre class = 'prettyprint lang-r'>circ = read.csv(&quot;../data/Charm_City_Circulator_Ridership.csv&quot;, header=TRUE,as.is=TRUE)
+circ2 = circ[,c(&quot;day&quot;,&quot;date&quot;, &quot;orangeAverage&quot;,&quot;purpleAverage&quot;,&quot;greenAverage&quot;,
+                &quot;bannerAverage&quot;,&quot;daily&quot;)]
+write.csv(circ2, file=&quot;../data/charmcitycirc_reduced.csv&quot;, row.names=FALSE)</pre>
 
 <p>Note that <code>row.names=TRUE</code> would make the first column contain the row names, here just the numbers <code>1:nrow(circ2)</code>, which is not very useful for Excel. Note that row names can be useful/informative in R if they contain information (but then they would just be a separate column).</p>
 
@@ -168,10 +168,10 @@
 
 </article></slide><slide class=''><hgroup><h2>Installing Packages</h2></hgroup><article  id="installing-packages">
 
-<pre class = 'prettyprint lang-r'>&gt; install.packages(&quot;xlsx&quot;) # OR:
-&gt; install.packages(&quot;xlsx&quot;,
-+     repos=&quot;http://cran.us.r-project.org&quot;)
-&gt; library(xlsx) # or require(xlsx)</pre>
+<pre class = 'prettyprint lang-r'>install.packages(&quot;xlsx&quot;) # OR:
+install.packages(&quot;xlsx&quot;,
+    repos=&quot;http://cran.us.r-project.org&quot;)
+library(xlsx) # or require(xlsx)</pre>
 
 <p>Note you will need a stand-alone version of Java to use this</p>
 
@@ -187,15 +187,15 @@
 
 <p>For example, from the homework:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; save(circ,circ2,file=&quot;../data/charmcirc.rda&quot;)</pre>
+<pre class = 'prettyprint lang-r'>save(circ,circ2,file=&quot;../data/charmcirc.rda&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-1">
 
 <p>You also probably have noticed the prompt when you close R about saving your workspace. The workspace is the collection of R objects and custom R functions in your current environment. You can check the workspace with <code>ls()</code> or view it in the &quot;Workspace&quot; tab:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
+<pre class = 'prettyprint lang-r'>ls()</pre>
 
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot;</pre>
+<pre >## [1] &quot;circ&quot;  &quot;circ2&quot; &quot;file&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Saving R Data</h2></hgroup><article  id="saving-r-data-2">
 
@@ -207,14 +207,14 @@
 
 <p>You can easily load any &#39;.rda&#39; or &#39;.Rdata&#39; file with the <code>load()</code> function:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tmp=load(&quot;../data/charmcirc.rda&quot;)
-&gt; tmp</pre>
+<pre class = 'prettyprint lang-r'>tmp=load(&quot;../data/charmcirc.rda&quot;)
+tmp</pre>
 
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot;</pre>
+<pre >## [1] &quot;circ&quot;  &quot;circ2&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; ls()</pre>
+<pre class = 'prettyprint lang-r'>ls()</pre>
 
-<pre >[1] &quot;circ&quot;  &quot;circ2&quot; &quot;tmp&quot;  </pre>
+<pre >## [1] &quot;circ&quot;  &quot;circ2&quot; &quot;file&quot;  &quot;tmp&quot;</pre>
 
 <p>Note that this saves the R object names as character strings in an object called &#39;tmp&#39;, which is nice if you already have a lot of items in your working directory, and/or you don&#39;t know exactly which got loaded in</p>
 
@@ -236,27 +236,27 @@
 
 <p>You can put a <code>-</code> before integers inside brackets to remove these indices from the data.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = c(1,3,77,54,23,7,76,5)
-&gt; x[1:3] # first 3</pre>
+<pre class = 'prettyprint lang-r'>x = c(1,3,77,54,23,7,76,5)
+x[1:3] # first 3</pre>
 
-<pre >[1]  1  3 77</pre>
+<pre >## [1]  1  3 77</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; x[-2] # all but the second</pre>
+<pre class = 'prettyprint lang-r'>x[-2] # all but the second</pre>
 
-<pre >[1]  1 77 54 23  7 76  5</pre>
+<pre >## [1]  1 77 54 23  7 76  5</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting Data</h2></hgroup><article  id="subsetting-data-2">
 
 <p>Note that you have to be careful with this syntax when dropping more than 1 element:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x[-c(1,2,3)] # drop first 3</pre>
+<pre class = 'prettyprint lang-r'>x[-c(1,2,3)] # drop first 3</pre>
 
-<pre >[1] 54 23  7 76  5</pre>
+<pre >## [1] 54 23  7 76  5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; # x[-1:3] # shorthand. R sees as -1 to 3
-&gt; x[-(1:3)] # needs parentheses</pre>
+<pre class = 'prettyprint lang-r'># x[-1:3] # shorthand. R sees as -1 to 3
+x[-(1:3)] # needs parentheses</pre>
 
-<pre >[1] 54 23  7 76  5</pre>
+<pre >## [1] 54 23  7 76  5</pre>
 
 </article></slide><slide class=''><hgroup><h2>Selecting on multiple queries</h2></hgroup><article  id="selecting-on-multiple-queries">
 
@@ -267,71 +267,71 @@
 <li><code>|</code> : OR</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; # which Mondays had more than 3000 average riders?
-&gt; which(circ$day ==&quot;Monday&quot; &amp; circ$daily &gt; 3000)[1:20] </pre>
+<pre class = 'prettyprint lang-r'># which Mondays had more than 3000 average riders?
+which(circ$day ==&quot;Monday&quot; &amp; circ$daily &gt; 3000)[1:20] </pre>
 
-<pre > [1] 148 155 162 169 176 183 190 197 204 211 218 225 232 239 246 253 260
-[18] 267 274 281</pre>
+<pre >##  [1] 148 155 162 169 176 183 190 197 204 211 218 225 232 239 246 253 260
+## [18] 267 274 281</pre>
 
 </article></slide><slide class=''><hgroup><h2>AND</h2></hgroup><article  id="and" class="smaller">
 
 <p>Which days had more than 10000 riders overall and more than 3000 riders on the purple line?</p>
 
-<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 &amp; circ$purpleAverage &gt; 3000)
-&gt; length(Index) # the number of days</pre>
+<pre class = 'prettyprint lang-r'>Index=which(circ$daily &gt; 10000 &amp; circ$purpleAverage &gt; 3000)
+length(Index) # the number of days</pre>
 
-<pre >[1] 280</pre>
+<pre >## [1] 280</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
+<pre class = 'prettyprint lang-r'>head(circ[Index,],2) # first 2 rows</pre>
 
-<pre >         day       date orangeBoardings orangeAlightings orangeAverage
-551   Friday 07/15/2011            4616             4794          4705
-552 Saturday 07/16/2011            4540             4708          4624
-    purpleBoardings purpleAlightings purpleAverage greenBoardings
-551            6464             6122          6293             NA
-552            7797             7447          7622             NA
-    greenAlightings greenAverage bannerBoardings bannerAlightings
-551              NA           NA              NA               NA
-552              NA           NA              NA               NA
-    bannerAverage daily
-551            NA 10998
-552            NA 12246</pre>
+<pre >##          day       date orangeBoardings orangeAlightings orangeAverage
+## 551   Friday 07/15/2011            4616             4794          4705
+## 552 Saturday 07/16/2011            4540             4708          4624
+##     purpleBoardings purpleAlightings purpleAverage greenBoardings
+## 551            6464             6122          6293             NA
+## 552            7797             7447          7622             NA
+##     greenAlightings greenAverage bannerBoardings bannerAlightings
+## 551              NA           NA              NA               NA
+## 552              NA           NA              NA               NA
+##     bannerAverage daily
+## 551            NA 10998
+## 552            NA 12246</pre>
 
 </article></slide><slide class=''><hgroup><h2>OR</h2></hgroup><article  id="or" class="smaller">
 
 <p>Which days had more than 10000 riders overall or more than 3000 riders on the purple line?</p>
 
-<pre class = 'prettyprint lang-r'>&gt; Index=which(circ$daily &gt; 10000 | circ$purpleAverage &gt; 3000)
-&gt; length(Index) # the number of days</pre>
+<pre class = 'prettyprint lang-r'>Index=which(circ$daily &gt; 10000 | circ$purpleAverage &gt; 3000)
+length(Index) # the number of days</pre>
 
-<pre >[1] 693</pre>
+<pre >## [1] 693</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(circ[Index,],2) # first 2 rows</pre>
+<pre class = 'prettyprint lang-r'>head(circ[Index,],2) # first 2 rows</pre>
 
-<pre >         day       date orangeBoardings orangeAlightings orangeAverage
-180   Friday 07/09/2010            2807             2887          2847
-188 Saturday 07/17/2010            1528             1498          1513
-    purpleBoardings purpleAlightings purpleAverage greenBoardings
-180            3228             2960        3094.0             NA
-188            3726             3399        3562.5             NA
-    greenAlightings greenAverage bannerBoardings bannerAlightings
-180              NA           NA              NA               NA
-188              NA           NA              NA               NA
-    bannerAverage  daily
-180            NA 5941.0
-188            NA 5075.5</pre>
+<pre >##          day       date orangeBoardings orangeAlightings orangeAverage
+## 180   Friday 07/09/2010            2807             2887          2847
+## 188 Saturday 07/17/2010            1528             1498          1513
+##     purpleBoardings purpleAlightings purpleAverage greenBoardings
+## 180            3228             2960        3094.0             NA
+## 188            3726             3399        3562.5             NA
+##     greenAlightings greenAverage bannerBoardings bannerAlightings
+## 180              NA           NA              NA               NA
+## 188              NA           NA              NA               NA
+##     bannerAverage  daily
+## 180            NA 5941.0
+## 188            NA 5075.5</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data">
 
 <p>Note that logical statements cannot evaluate missing values, and therefore returns an <code>NA</code>:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; circ$purpleAverage[1:10] &gt; 0</pre>
+<pre class = 'prettyprint lang-r'>circ$purpleAverage[1:10] &gt; 0</pre>
 
-<pre > [1] NA NA NA NA NA NA NA NA NA NA</pre>
+<pre >##  [1] NA NA NA NA NA NA NA NA NA NA</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; which(circ$purpleAverage &gt; 0)[1:10]</pre>
+<pre class = 'prettyprint lang-r'>which(circ$purpleAverage &gt; 0)[1:10]</pre>
 
-<pre > [1] 148 149 150 151 152 153 154 155 156 157</pre>
+<pre >##  [1] 148 149 150 151 152 153 154 155 156 157</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting with missing data</h2></hgroup><article  id="subsetting-with-missing-data-1">
 
@@ -343,49 +343,49 @@
 
 <p>The <code>%in%</code> operator proves useful: &quot;<code>%in%</code> is a more intuitive interface as a binary operator, which returns a logical vector indicating if there is a match or not for its left operand.&quot; It also returns <code>FALSE</code> for <code>NAs</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; (circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # select entries that are monday or tuesday</pre>
+<pre class = 'prettyprint lang-r'>(circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # select entries that are monday or tuesday</pre>
 
-<pre > [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
-[12] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE</pre>
+<pre >##  [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
+## [12] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; which(circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # which indices are true?</pre>
+<pre class = 'prettyprint lang-r'>which(circ$day %in% c(&quot;Monday&quot;,&quot;Tuesday&quot;))[1:20] # which indices are true?</pre>
 
-<pre > [1]  1  2  8  9 15 16 22 23 29 30 36 37 43 44 50 51 57 58 64 65</pre>
+<pre >##  [1]  1  2  8  9 15 16 22 23 29 30 36 37 43 44 50 51 57 58 64 65</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns">
 
 <p>We touched on this last class. You can select columns using the variable/column names or column index</p>
 
-<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(&quot;purpleAverage&quot;,&quot;orangeAverage&quot;)]</pre>
+<pre class = 'prettyprint lang-r'>circ[1:3, c(&quot;purpleAverage&quot;,&quot;orangeAverage&quot;)]</pre>
 
-<pre >  purpleAverage orangeAverage
-1            NA         952.0
-2            NA         796.0
-3            NA        1211.5</pre>
+<pre >##   purpleAverage orangeAverage
+## 1            NA         952.0
+## 2            NA         796.0
+## 3            NA        1211.5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; circ[1:3, c(7,5)]</pre>
+<pre class = 'prettyprint lang-r'>circ[1:3, c(7,5)]</pre>
 
-<pre >  purpleAlightings orangeAverage
-1               NA         952.0
-2               NA         796.0
-3               NA        1211.5</pre>
+<pre >##   purpleAlightings orangeAverage
+## 1               NA         952.0
+## 2               NA         796.0
+## 3               NA        1211.5</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting columns</h2></hgroup><article  id="subsetting-columns-1" class="smaller">
 
 <p>You can also remove a column by setting its value to NULL</p>
 
-<pre class = 'prettyprint lang-r'>&gt; tmp = circ2
-&gt; tmp$daily=NULL
-&gt; tmp[1:3,]</pre>
+<pre class = 'prettyprint lang-r'>tmp = circ2
+tmp$daily=NULL
+tmp[1:3,]</pre>
 
-<pre >        day       date orangeAverage purpleAverage greenAverage
-1    Monday 01/11/2010         952.0            NA           NA
-2   Tuesday 01/12/2010         796.0            NA           NA
-3 Wednesday 01/13/2010        1211.5            NA           NA
-  bannerAverage
-1            NA
-2            NA
-3            NA</pre></article></slide>
+<pre >##         day       date orangeAverage purpleAverage greenAverage
+## 1    Monday 01/11/2010         952.0            NA           NA
+## 2   Tuesday 01/12/2010         796.0            NA           NA
+## 3 Wednesday 01/13/2010        1211.5            NA           NA
+##   bannerAverage
+## 1            NA
+## 2            NA
+## 3            NA</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

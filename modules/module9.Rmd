@@ -18,13 +18,13 @@ opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE,
 
 We covered some basic plots previously, but we are going to expand the ability to customize these basic graphics first. 
 
-```{r seed, comment="",echo=FALSE,prompt=TRUE,results='hide' }
+```{r seed,echo=FALSE,results='hide' }
 set.seed(3) 
 ```
 
 ## Read in Data {.smaller}
 
-```{r plotEx, comment="",prompt=TRUE, fig.align='center',cache=TRUE}
+```{r plotEx}
 death = read.csv("http://biostat.jhsph.edu/~ajaffe/files/indicatordeadkids35.csv",
                  as.is=TRUE,header=TRUE, row.names=1)
 death[1:2, 1:5]
@@ -41,7 +41,7 @@ head(year)
 
 ## Basic Plots  {.smaller}
 
-```{r plot1, comment="",prompt=TRUE, fig.width=4,fig.height=4, fig.align='center',cache=TRUE}
+```{r plot1, fig.width=4,fig.height=4}
 plot(as.numeric(death["Sweden",])~year)
 ```
 
@@ -49,7 +49,7 @@ plot(as.numeric(death["Sweden",])~year)
 
 The y-axis label isn't informative, and we can change the label of the y-axis using `ylab` (`xlab` for x), and `main` for the main title/label.
 
-```{r plotEx2, comment="",prompt=TRUE, fig.width=4,fig.height=4, fig.align='center',cache=TRUE}
+```{r plotEx2, fig.width=4,fig.height=4}
 plot(as.numeric(death["Sweden",])~year,
       ylab="# of deaths per family", main = "Sweden")
 ```
@@ -58,7 +58,7 @@ plot(as.numeric(death["Sweden",])~year,
 
 Let's drop any of the projections and keep it to year 2012, and change the points to blue. 
 
-```{r plotEx3, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r plotEx3, fig.width=4,fig.height=4}
 plot(as.numeric(death["Sweden",])~year,
       ylab="# of deaths per family", main = "Sweden",
      xlim = c(1760,2012), pch = 19, cex=1.2,col="blue")
@@ -68,7 +68,7 @@ plot(as.numeric(death["Sweden",])~year,
 
 Using `scatter.smooth` plots the points and runs a loess smoother through the data. 
 
-```{r plotEx4, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r plotEx4, fig.width=4,fig.height=4}
 scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,
       ylab="# of deaths per family", main = "Sweden",lwd=3,
      xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
@@ -76,7 +76,7 @@ scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,
 
 ## Basic Plots {.smaller}
 
-```{r plotEx5, comment="",prompt=TRUE, fig.width=8,fig.height=4,fig.align='center', cache=TRUE}
+```{r plotEx5, fig.width=8,fig.height=4}
 par(mfrow=c(1,2))
 scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,
       ylab="# of deaths per family", main = "Sweden",lwd=3,
@@ -88,7 +88,7 @@ scatter.smooth(as.numeric(death["United Kingdom",])~year,span=0.2,
 
 ## Basic Plots {.smaller}
 
-```{r plotEx6, comment="",prompt=TRUE, fig.width=8,fig.height=4,fig.align='center', cache=TRUE}
+```{r plotEx6, fig.width=8,fig.height=4}
 par(mfrow=c(1,2))
 yl = range(death[c("Sweden","United Kingdom"),])
 scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,ylim=yl,
@@ -103,7 +103,7 @@ scatter.smooth(as.numeric(death["United Kingdom",])~year,span=0.2,
 
 * Stacked Bar Charts are sometimes wanted to show distributions of data
 
-```{r barplot2, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r barplot2, fig.width=4,fig.height=4}
 ## Stacked Bar Charts
 cars = read.csv("http://biostat.jhsph.edu/~ajaffe/files/kaggleCarAuction.csv",
                 as.is=TRUE)
@@ -117,7 +117,7 @@ barplot(counts, main="Car Distribution by Age and Status",
 
 `prop.table` allows you to convert a table to proportions (depends on margin - either row percent or column percent)
 
-```{r barplot2a, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r barplot2a, fig.width=4,fig.height=4}
 ## Use percentages (column percentages)
 barplot(prop.table(counts, 2), 
     main="Car Distribution by Age and Status",
@@ -128,7 +128,7 @@ barplot(prop.table(counts, 2),
 ## Bar Plots {.smaller}
 
 Using the `beside` argument in `barplot`, you can get side-by-side barplots.
-```{r barplot3, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r barplot3, fig.width=4,fig.height=4}
 # Stacked Bar Plot with Colors and Legend    
 barplot(counts, main="Car Distribution by Age and Status",
   xlab="Vehicle Age", col=c("darkblue","red"),
@@ -172,7 +172,7 @@ Basically, you are creating a pdf file, and telling R to write any subsequent pl
 
 These are one of my favorite plots. They are way more informative than the barchart + antenna...
 
-```{r boxplots, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r boxplots, fig.width=4,fig.height=4}
 boxplot(weight ~ Diet, data=ChickWeight, outline=FALSE)
 points(ChickWeight$weight ~ jitter(as.numeric(ChickWeight$Diet),0.5))
 ```
@@ -189,7 +189,7 @@ boxplot(weight ~ Diet, data=ChickWeight, outline=FALSE)
 
 `ggplot2` is a package of plotting that is very popular and powerful.
 
-```{r geoboxplot, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r geoboxplot, fig.width=4,fig.height=4}
 library(ggplot2)
 qplot(factor(Diet), y= weight, data = ChickWeight, geom = "boxplot")
 ```
@@ -198,7 +198,7 @@ qplot(factor(Diet), y= weight, data = ChickWeight, geom = "boxplot")
 
 We can do the same plot, by just saying we want a boxplot and points (and jitter the points)
 
-```{r geoboxpoint, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r geoboxpoint, fig.width=4,fig.height=4}
 qplot(factor(Diet), y= weight, data = ChickWeight, geom = c("boxplot", "point"),
       position = c('identity', "jitter"))
 ```
@@ -207,13 +207,13 @@ qplot(factor(Diet), y= weight, data = ChickWeight, geom = c("boxplot", "point"),
  
 We can do histograms again using `hist`.  Let's do histograms of weight at all time points for the chick's weights.  We reiterate how useful these are to show your data.
 
-```{r hist, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r hist, fig.width=4,fig.height=4}
 hist(ChickWeight$weight, breaks=20)
 ```
 
 ## Multiple Histograms {.smaller}
 
-```{r ghist, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r ghist, fig.width=4,fig.height=4}
 qplot(x= weight, fill = Diet, data = ChickWeight, geom = c("histogram"))
 
 ```
@@ -221,7 +221,7 @@ qplot(x= weight, fill = Diet, data = ChickWeight, geom = c("histogram"))
 ## Multiple Histograms {.smaller}
 
 Alpha refers to the opacity of the color
-```{r ghist_alpha, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r ghist_alpha, fig.width=4,fig.height=4}
 qplot(x= weight, fill = Diet, data = ChickWeight,
       geom = c("histogram"), alpha=I(.7))
 ```
@@ -229,21 +229,21 @@ qplot(x= weight, fill = Diet, data = ChickWeight,
 ## Multiple Densities {.smaller}
 
 We cold also do densities
-```{r gdens, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r gdens, fig.width=4,fig.height=4}
 qplot(x= weight, fill = Diet, data = ChickWeight, 
       geom = c("density"), alpha=I(.7))
 ```
 
 ## Multiple Densities {.smaller}
 
-```{r gdens_alpha, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r gdens_alpha, fig.width=4,fig.height=4}
 qplot(x= weight, colour = Diet, data = ChickWeight, geom = c("density"), alpha=I(.7))
 ```
 
 ## Multiple Densities {.smaller}
 
 You can take off the lines of the bottom like this
-```{r gdens_line_alpha, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r gdens_line_alpha, fig.width=4,fig.height=4}
 qplot(x= weight,  colour = Diet, data = ChickWeight, 
       geom = c("line"), stat="density")
 ```
@@ -252,7 +252,7 @@ qplot(x= weight,  colour = Diet, data = ChickWeight,
  
 We can make a spaghetti plot by telling ggplot we want a "line", and each line is colored by Chick.
 
-```{r spaghetti, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r spaghetti, fig.width=4,fig.height=4}
 qplot(x=Time, y=weight, colour = Chick, 
       data = ChickWeight, geom = "line")
 ```
@@ -261,7 +261,7 @@ qplot(x=Time, y=weight, colour = Chick,
 
 In ggplot2, if you want separate plots for something, these are referred to as facets.
 
-```{r fac_spag, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r fac_spag, fig.width=4,fig.height=4}
 qplot(x=Time, y=weight, colour = Chick, 
       facets = ~ Diet, 
       data = ChickWeight, geom = "line")
@@ -271,7 +271,7 @@ qplot(x=Time, y=weight, colour = Chick,
 
 We can turn off the legend (referred to a "guide" in ggplot2). (Note - there is different syntax with the `+`)
 
-```{r fac_spag_noleg, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r fac_spag_noleg, fig.width=4,fig.height=4}
 qplot(x=Time, y=weight, colour = Chick, 
       facets = ~ Diet, 
       data = ChickWeight, geom = "line") +  
@@ -282,7 +282,7 @@ qplot(x=Time, y=weight, colour = Chick,
 
 R relies on color 'palettes'.
 
-```{r pal, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r pal, fig.width=4,fig.height=4}
 palette("default")
 plot(1:8, 1:8, type="n")
 text(1:8, 1:8, lab = palette(), col = 1:8)
@@ -292,7 +292,7 @@ text(1:8, 1:8, lab = palette(), col = 1:8)
 
 The default color palette is pretty bad, so you can try to make your own. 
 
-```{r pal2, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r pal2, fig.width=4,fig.height=4}
 palette(c("darkred","orange","blue"))
 plot(1:3,1:3,col=1:3,pch =19,cex=2)
 ```
@@ -309,7 +309,7 @@ You can also get a "sneak peek" of these palettes at: www.colorbrewer2.com . You
 
 ## Colors {.smaller}
 
-```{r pal3, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r pal3, fig.width=4,fig.height=4}
 palette("default")
 plot(weight ~ Time, data= ChickWeight, 
      pch = 19, col = Diet)
@@ -317,7 +317,7 @@ plot(weight ~ Time, data= ChickWeight,
 
 ---
 
-```{r pal4, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r pal4, fig.width=4,fig.height=4}
 library(RColorBrewer)
 palette(brewer.pal(5,"Dark2"))
 plot(weight ~ Time, data=ChickWeight, 
@@ -326,7 +326,7 @@ plot(weight ~ Time, data=ChickWeight,
 
 ---
 
-```{r pal5, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r pal5, fig.width=4,fig.height=4}
 library(RColorBrewer)
 palette(brewer.pal(5,"Dark2"))
 plot(weight ~ jitter(Time,amount=0.2),
@@ -346,9 +346,9 @@ pch, lwd: if you want points in the legend, give a pch value. if you want lines,
 
 col: give the color for each legend level
 
----
+##
 
-```{r leg1, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r leg1, fig.width=4,fig.height=4}
 palette(brewer.pal(5,"Dark2"))
 plot(weight ~ jitter(Time,amount=0.2),
      data=ChickWeight,
@@ -362,7 +362,7 @@ legend("topleft", paste("Diet",
 
 ## Coloring by variables  {.smaller}
 
-```{r circ, comment="",prompt=TRUE, fig.width=4.5,fig.height=4.5,fig.align='center', cache=FALSE}
+```{r circ, fig.width=4.5,fig.height=4.5}
 load("../data/charmcirc.rda")
 palette(brewer.pal(7,"Dark2"))
 dd = factor(circ$day)
@@ -373,7 +373,7 @@ legend("bottomright", levels(dd), col=1:length(dd), pch = 19)
 
 ## Coloring by variable  {.smaller}
 
-```{r circ2, comment="",prompt=TRUE, fig.width=4.5,fig.height=4.5,fig.align='center', cache=FALSE}
+```{r circ2, fig.width=4.5,fig.height=4.5}
 dd = factor(circ$day, levels=c("Monday","Tuesday","Wednesday","Thursday",
                               "Friday","Saturday","Sunday"))
 plot(orangeAverage ~ greenAverage, data=circ,
@@ -392,20 +392,20 @@ ggplot2: http://docs.ggplot2.org/current/index.html
 
 ## Lattice {.smaller}
 
-```{r lattice1, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r lattice1, fig.width=4,fig.height=4}
 library(lattice)
 xyplot(weight ~ Time | Diet, data = ChickWeight)
 ```
 
 ## Lattice {.smaller}
 
-```{r lattice2, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r lattice2, fig.width=4,fig.height=4}
 densityplot(~weight | Diet, data = ChickWeight)
 ```
 
 ## Lattice
 
-```{r levelplot1, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=FALSE}
+```{r levelplot1, fig.width=4,fig.height=4}
 rownames(circ2) = circ2$date
 mat = as.matrix(circ2[975:nrow(circ2),3:6])
 levelplot(t(mat), aspect = "fill")
@@ -414,7 +414,7 @@ levelplot(t(mat), aspect = "fill")
 
 ## Lattice {.smaller}
 
-```{r levelplot2, comment="",prompt=TRUE, fig.width=4,fig.height=4,fig.align='center', cache=TRUE}
+```{r levelplot2, fig.width=4,fig.height=4}
 library(RColorBrewer)
 theSeq = seq(0,max(mat,na.rm=TRUE), by=50)
 my.col = colorRampPalette(brewer.pal(
@@ -425,7 +425,7 @@ levelplot(t(mat), aspect = "fill",at = theSeq,
 
 ## Lattice {.smaller}
 
-```{r levelplot3, comment="",prompt=TRUE, fig.width=8,fig.height=4,fig.align='center',cache=TRUE}
+```{r levelplot3, fig.width=8,fig.height=4}
 tmp=death[grep("s$", rownames(death)), 200:251]
 yr = gsub("X","",names(tmp))
 theSeq = seq(0,max(tmp,na.rm=TRUE), by=0.05)

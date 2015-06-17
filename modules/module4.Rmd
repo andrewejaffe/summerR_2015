@@ -71,14 +71,14 @@ Note: the `...` designates extra/optional arguments that can be passed to `read.
 
 * Starting out, you can use RStudio --> Tools --> Import Dataset --> From Text File and select
 
-```{r readCSV2, comment=""}
+```{r readCSV2}
 mon = read.csv("../data/Monuments.csv",header=TRUE,as.is=TRUE)
 head(mon)
 ```
 
 ## Data Input {.smaller}
 
-```{r subset5, comment="", prompt=TRUE}
+```{r subset5}
 colnames(mon)
 head(mon$zipCode)
 head(mon$neighborhood)
@@ -90,7 +90,7 @@ head(mon$neighborhood)
 * It's always safer to set the working directory at the beginning of your script. Note that setting the working directory created the necessary code that you can copy into your script.
 * Example of help file
 
-```{r workingDirectory, comment="", prompt=TRUE,eval=FALSE}
+```{r workingDirectory,eval=FALSE}
 ## get the working directory
 getwd()
 # setwd("~/Dropbox/summerR_2015/Lectures")
@@ -110,7 +110,7 @@ getwd()
 
 Try some directory navigation: 
 
-```{r directoryNav, comment="", prompt=TRUE}
+```{r directoryNav}
 dir("./") # shows directory contents
 dir("..")
 ```
@@ -124,7 +124,7 @@ dir("..")
 
 The `read.table()` function returns a `data.frame`
 
-```{r readCSV3, comment="", prompt=TRUE}
+```{r readCSV3}
 class(mon)
 str(mon)
 ```
@@ -133,7 +133,7 @@ str(mon)
 
 Changing variable names in `data.frame`s works using the `names()` function, which is analagous to `colnames()` for data frames (they can be used interchangeably)
 
-```{r names1, comment="", prompt=TRUE}
+```{r names1}
 names(mon)[1] = "Name"
 names(mon)
 names(mon)[1] = "name"
@@ -144,7 +144,7 @@ names(mon)
 
 Now we will introduce subsetting rows/observations of data using logical statements. Recall that the `logical` class consists of either `TRUE` or `FALSE`
 
-```{r logical1, comment="", prompt=TRUE}
+```{r logical1}
 z = c(TRUE,FALSE,TRUE,FALSE)
 class(z)
 sum(z) # number of TRUEs
@@ -153,7 +153,7 @@ sum(z) # number of TRUEs
 ## Data Subsetting
 
 And recall again that the logical class does NOT use quotes. 
-```{r logical2, comment="", prompt=TRUE}
+```{r logical2}
 z2 = c("TRUE","FALSE","TRUE","FALSE")
 class(z2)
 # sum(z2)
@@ -175,7 +175,7 @@ Almost every R object can be evaluated and converted to the `logical` class usin
 
 ## Logical Statements
 
-```{r logical3, comment="", prompt=TRUE}
+```{r logical3}
 x = 1:6
 x > 4
 x == 3
@@ -185,7 +185,7 @@ x == 3
 
 These logical statements can be then used to subset your data.
 
-```{r logical4, comment="", prompt=TRUE}
+```{r logical4}
 Index = (mon$zipCode == 21202)
 sum(Index)
 table(Index)
@@ -194,7 +194,7 @@ mon2 = mon[Index,]
 
 ## Logical Statements {.smaller}
 
-```{r logical5, comment="", prompt=TRUE}
+```{r logical5}
 dim(mon2)
 head(mon2)
 ```
@@ -203,7 +203,7 @@ head(mon2)
 
 `which()`: "Give the `TRUE` indices of a logical object, allowing for array indices."
 
-```{r which, comment="", prompt=TRUE}
+```{r which}
 mon$Location.1 != ""
 which(mon$Location.1 != "")
 ```

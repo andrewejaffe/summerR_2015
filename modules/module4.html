@@ -163,7 +163,7 @@ read.table( file, # filename
 ##     fill = TRUE, comment.char = &quot;&quot;, ...) 
 ## read.table(file = file, header = header, sep = sep, quote = quote, 
 ##     dec = dec, fill = fill, comment.char = comment.char, ...)
-## &lt;bytecode: 0x000000000a4e3370&gt;
+## &lt;bytecode: 0x105846ae0&gt;
 ## &lt;environment: namespace:utils&gt;</pre>
 
 <p>Note: the <code>...</code> designates extra/optional arguments that can be passed to <code>read.table()</code> if needed</p>
@@ -177,35 +177,35 @@ read.table( file, # filename
 <pre class = 'prettyprint lang-r'>mon = read.csv(&quot;../data/Monuments.csv&quot;,header=TRUE,as.is=TRUE)
 head(mon)</pre>
 
-<pre >                              name zipCode neighborhood councilDistrict
-1           James Cardinal Gibbons   21201     Downtown              11
-2              The Battle Monument   21202     Downtown              11
-3 Negro Heroes of the U.S Monument   21202     Downtown              11
-4              Star Bangled Banner   21202     Downtown              11
-5  Flame at the Holocaust Monument   21202     Downtown              11
-6                   Calvert Statue   21202     Downtown              11
-  policeDistrict                       Location.1
-1        CENTRAL  408 CHARLES ST\nBaltimore, MD\n
-2        CENTRAL                                 
-3        CENTRAL                                 
-4        CENTRAL 100 HOLLIDAY ST\nBaltimore, MD\n
-5        CENTRAL    50 MARKET PL\nBaltimore, MD\n
-6        CENTRAL  100 CALVERT ST\nBaltimore, MD\n</pre>
+<pre >##                               name zipCode neighborhood councilDistrict
+## 1           James Cardinal Gibbons   21201     Downtown              11
+## 2              The Battle Monument   21202     Downtown              11
+## 3 Negro Heroes of the U.S Monument   21202     Downtown              11
+## 4              Star Bangled Banner   21202     Downtown              11
+## 5  Flame at the Holocaust Monument   21202     Downtown              11
+## 6                   Calvert Statue   21202     Downtown              11
+##   policeDistrict                       Location.1
+## 1        CENTRAL  408 CHARLES ST\nBaltimore, MD\n
+## 2        CENTRAL                                 
+## 3        CENTRAL                                 
+## 4        CENTRAL 100 HOLLIDAY ST\nBaltimore, MD\n
+## 5        CENTRAL    50 MARKET PL\nBaltimore, MD\n
+## 6        CENTRAL  100 CALVERT ST\nBaltimore, MD\n</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Input</h2></hgroup><article  id="data-input-6" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; colnames(mon)</pre>
+<pre class = 'prettyprint lang-r'>colnames(mon)</pre>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
+<pre >## [1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
+## [5] &quot;policeDistrict&quot;  &quot;Location.1&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(mon$zipCode)</pre>
+<pre class = 'prettyprint lang-r'>head(mon$zipCode)</pre>
 
-<pre >[1] 21201 21202 21202 21202 21202 21202</pre>
+<pre >## [1] 21201 21202 21202 21202 21202 21202</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(mon$neighborhood)</pre>
+<pre class = 'prettyprint lang-r'>head(mon$neighborhood)</pre>
 
-<pre >[1] &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot;</pre>
+<pre >## [1] &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Aside: Working Directory</h2></hgroup><article  id="aside-working-directory">
 
@@ -215,9 +215,9 @@ head(mon)</pre>
 <li>Example of help file</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; ## get the working directory
-&gt; getwd()
-&gt; # setwd(&quot;~/Dropbox/summerR_2015/Lectures&quot;)</pre>
+<pre class = 'prettyprint lang-r'>## get the working directory
+getwd()
+# setwd(&quot;~/Dropbox/summerR_2015/Lectures&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Aside: Working Directory</h2></hgroup><article  id="aside-working-directory-1">
 
@@ -241,22 +241,26 @@ head(mon)</pre>
 
 <p>Try some directory navigation:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; dir(&quot;./&quot;) # shows directory contents</pre>
+<pre class = 'prettyprint lang-r'>dir(&quot;./&quot;) # shows directory contents</pre>
 
-<pre > [1] &quot;module1.html&quot;    &quot;module1.pdf&quot;     &quot;module1.R&quot;      
- [4] &quot;module1.Rmd&quot;     &quot;module2.html&quot;    &quot;module2.pdf&quot;    
- [7] &quot;module2.R&quot;       &quot;module2.Rmd&quot;     &quot;module3.html&quot;   
-[10] &quot;module3.pdf&quot;     &quot;module3.R&quot;       &quot;module3.Rmd&quot;    
-[13] &quot;module4.html&quot;    &quot;module4.pdf&quot;     &quot;module4.R&quot;      
-[16] &quot;module4.Rmd&quot;     &quot;module5.html&quot;    &quot;module5.pdf&quot;    
-[19] &quot;module5.R&quot;       &quot;module5.Rmd&quot;     &quot;module6.html&quot;   
-[22] &quot;module6.pdf&quot;     &quot;module6.R&quot;       &quot;module6.Rmd&quot;    
-[25] &quot;renderModules.R&quot; &quot;styles.css&quot;     </pre>
+<pre >##  [1] &quot;module1.html&quot;    &quot;module1.pdf&quot;     &quot;module1.R&quot;      
+##  [4] &quot;module1.Rmd&quot;     &quot;module2.html&quot;    &quot;module2.pdf&quot;    
+##  [7] &quot;module2.R&quot;       &quot;module2.Rmd&quot;     &quot;module3.html&quot;   
+## [10] &quot;module3.pdf&quot;     &quot;module3.R&quot;       &quot;module3.Rmd&quot;    
+## [13] &quot;module4.html&quot;    &quot;module4.pdf&quot;     &quot;module4.R&quot;      
+## [16] &quot;module4.Rmd&quot;     &quot;module5.html&quot;    &quot;module5.pdf&quot;    
+## [19] &quot;module5.R&quot;       &quot;module5.Rmd&quot;     &quot;module6.html&quot;   
+## [22] &quot;module6.pdf&quot;     &quot;module6.R&quot;       &quot;module6.Rmd&quot;    
+## [25] &quot;module7.html&quot;    &quot;module7.pdf&quot;     &quot;module7.R&quot;      
+## [28] &quot;module7.Rmd&quot;     &quot;module8.html&quot;    &quot;module8.R&quot;      
+## [31] &quot;module8.Rmd&quot;     &quot;module9.html&quot;    &quot;module9.pdf&quot;    
+## [34] &quot;module9.R&quot;       &quot;module9.Rmd&quot;     &quot;renderModules.R&quot;
+## [37] &quot;styles.css&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; dir(&quot;..&quot;)</pre>
+<pre class = 'prettyprint lang-r'>dir(&quot;..&quot;)</pre>
 
-<pre >[1] &quot;data&quot;       &quot;docs&quot;       &quot;index.html&quot; &quot;index.Rmd&quot;  &quot;labs&quot;      
-[6] &quot;modules&quot;    &quot;pdf&quot;        &quot;README.md&quot; </pre>
+<pre >## [1] &quot;data&quot;       &quot;docs&quot;       &quot;hw&quot;         &quot;index.html&quot; &quot;index.Rmd&quot; 
+## [6] &quot;labs&quot;       &quot;modules&quot;    &quot;pdf&quot;        &quot;README.md&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Working Directory</h2></hgroup><article  id="working-directory-1">
 
@@ -269,62 +273,62 @@ head(mon)</pre>
 
 <p>The <code>read.table()</code> function returns a <code>data.frame</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; class(mon)</pre>
+<pre class = 'prettyprint lang-r'>class(mon)</pre>
 
-<pre >[1] &quot;data.frame&quot;</pre>
+<pre >## [1] &quot;data.frame&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; str(mon)</pre>
+<pre class = 'prettyprint lang-r'>str(mon)</pre>
 
-<pre >&#39;data.frame&#39;:   84 obs. of  6 variables:
- $ name           : chr  &quot;James Cardinal Gibbons&quot; &quot;The Battle Monument&quot; &quot;Negro Heroes of the U.S Monument&quot; &quot;Star Bangled Banner&quot; ...
- $ zipCode        : int  21201 21202 21202 21202 21202 21202 21202 21211 21213 21211 ...
- $ neighborhood   : chr  &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; ...
- $ councilDistrict: int  11 11 11 11 11 11 11 7 14 14 ...
- $ policeDistrict : chr  &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; ...
- $ Location.1     : chr  &quot;408 CHARLES ST\nBaltimore, MD\n&quot; &quot;&quot; &quot;&quot; &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot; ...</pre>
+<pre >## &#39;data.frame&#39;:    84 obs. of  6 variables:
+##  $ name           : chr  &quot;James Cardinal Gibbons&quot; &quot;The Battle Monument&quot; &quot;Negro Heroes of the U.S Monument&quot; &quot;Star Bangled Banner&quot; ...
+##  $ zipCode        : int  21201 21202 21202 21202 21202 21202 21202 21211 21213 21211 ...
+##  $ neighborhood   : chr  &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; &quot;Downtown&quot; ...
+##  $ councilDistrict: int  11 11 11 11 11 11 11 7 14 14 ...
+##  $ policeDistrict : chr  &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; &quot;CENTRAL&quot; ...
+##  $ Location.1     : chr  &quot;408 CHARLES ST\nBaltimore, MD\n&quot; &quot;&quot; &quot;&quot; &quot;100 HOLLIDAY ST\nBaltimore, MD\n&quot; ...</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Input</h2></hgroup><article  id="data-input-8">
 
 <p>Changing variable names in <code>data.frame</code>s works using the <code>names()</code> function, which is analagous to <code>colnames()</code> for data frames (they can be used interchangeably)</p>
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)[1] = &quot;Name&quot;
-&gt; names(mon)</pre>
+<pre class = 'prettyprint lang-r'>names(mon)[1] = &quot;Name&quot;
+names(mon)</pre>
 
-<pre >[1] &quot;Name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
+<pre >## [1] &quot;Name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
+## [5] &quot;policeDistrict&quot;  &quot;Location.1&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; names(mon)[1] = &quot;name&quot;
-&gt; names(mon)</pre>
+<pre class = 'prettyprint lang-r'>names(mon)[1] = &quot;name&quot;
+names(mon)</pre>
 
-<pre >[1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
-[5] &quot;policeDistrict&quot;  &quot;Location.1&quot;     </pre>
+<pre >## [1] &quot;name&quot;            &quot;zipCode&quot;         &quot;neighborhood&quot;    &quot;councilDistrict&quot;
+## [5] &quot;policeDistrict&quot;  &quot;Location.1&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting">
 
 <p>Now we will introduce subsetting rows/observations of data using logical statements. Recall that the <code>logical</code> class consists of either <code>TRUE</code> or <code>FALSE</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; z = c(TRUE,FALSE,TRUE,FALSE)
-&gt; class(z)</pre>
+<pre class = 'prettyprint lang-r'>z = c(TRUE,FALSE,TRUE,FALSE)
+class(z)</pre>
 
-<pre >[1] &quot;logical&quot;</pre>
+<pre >## [1] &quot;logical&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; sum(z) # number of TRUEs</pre>
+<pre class = 'prettyprint lang-r'>sum(z) # number of TRUEs</pre>
 
-<pre >[1] 2</pre>
+<pre >## [1] 2</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting-1">
 
 <p>And recall again that the logical class does NOT use quotes.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; z2 = c(&quot;TRUE&quot;,&quot;FALSE&quot;,&quot;TRUE&quot;,&quot;FALSE&quot;)
-&gt; class(z2)</pre>
+<pre class = 'prettyprint lang-r'>z2 = c(&quot;TRUE&quot;,&quot;FALSE&quot;,&quot;TRUE&quot;,&quot;FALSE&quot;)
+class(z2)</pre>
 
-<pre >[1] &quot;character&quot;</pre>
+<pre >## [1] &quot;character&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; # sum(z2)
-&gt; identical(z,z2)</pre>
+<pre class = 'prettyprint lang-r'># sum(z2)
+identical(z,z2)</pre>
 
-<pre >[1] FALSE</pre>
+<pre >## [1] FALSE</pre>
 
 <p>Useful: <code>identical()</code> checks if two R objects are exactly identical/equal.</p>
 
@@ -343,75 +347,75 @@ head(mon)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-1">
 
-<pre class = 'prettyprint lang-r'>&gt; x = 1:6
-&gt; x &gt; 4</pre>
+<pre class = 'prettyprint lang-r'>x = 1:6
+x &gt; 4</pre>
 
-<pre >[1] FALSE FALSE FALSE FALSE  TRUE  TRUE</pre>
+<pre >## [1] FALSE FALSE FALSE FALSE  TRUE  TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; x == 3</pre>
+<pre class = 'prettyprint lang-r'>x == 3</pre>
 
-<pre >[1] FALSE FALSE  TRUE FALSE FALSE FALSE</pre>
+<pre >## [1] FALSE FALSE  TRUE FALSE FALSE FALSE</pre>
 
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-2">
 
 <p>These logical statements can be then used to subset your data.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; Index = (mon$zipCode == 21202)
-&gt; sum(Index)</pre>
+<pre class = 'prettyprint lang-r'>Index = (mon$zipCode == 21202)
+sum(Index)</pre>
 
-<pre >[1] 16</pre>
+<pre >## [1] 16</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; table(Index)</pre>
+<pre class = 'prettyprint lang-r'>table(Index)</pre>
 
-<pre >Index
-FALSE  TRUE 
-   68    16 </pre>
+<pre >## Index
+## FALSE  TRUE 
+##    68    16</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; mon2 = mon[Index,] </pre>
+<pre class = 'prettyprint lang-r'>mon2 = mon[Index,] </pre>
 
 </article></slide><slide class=''><hgroup><h2>Logical Statements</h2></hgroup><article  id="logical-statements-3" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; dim(mon2)</pre>
+<pre class = 'prettyprint lang-r'>dim(mon2)</pre>
 
-<pre >[1] 16  6</pre>
+<pre >## [1] 16  6</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(mon2)</pre>
+<pre class = 'prettyprint lang-r'>head(mon2)</pre>
 
-<pre >                                     name zipCode neighborhood
-2                     The Battle Monument   21202     Downtown
-3        Negro Heroes of the U.S Monument   21202     Downtown
-4                     Star Bangled Banner   21202     Downtown
-5         Flame at the Holocaust Monument   21202     Downtown
-6                          Calvert Statue   21202     Downtown
-7 War Memorial Building/Aquatic Wa Horses   21202     Downtown
-  councilDistrict policeDistrict                       Location.1
-2              11        CENTRAL                                 
-3              11        CENTRAL                                 
-4              11        CENTRAL 100 HOLLIDAY ST\nBaltimore, MD\n
-5              11        CENTRAL    50 MARKET PL\nBaltimore, MD\n
-6              11        CENTRAL  100 CALVERT ST\nBaltimore, MD\n
-7              11        CENTRAL      101 GAY ST\nBaltimore, MD\n</pre>
+<pre >##                                      name zipCode neighborhood
+## 2                     The Battle Monument   21202     Downtown
+## 3        Negro Heroes of the U.S Monument   21202     Downtown
+## 4                     Star Bangled Banner   21202     Downtown
+## 5         Flame at the Holocaust Monument   21202     Downtown
+## 6                          Calvert Statue   21202     Downtown
+## 7 War Memorial Building/Aquatic Wa Horses   21202     Downtown
+##   councilDistrict policeDistrict                       Location.1
+## 2              11        CENTRAL                                 
+## 3              11        CENTRAL                                 
+## 4              11        CENTRAL 100 HOLLIDAY ST\nBaltimore, MD\n
+## 5              11        CENTRAL    50 MARKET PL\nBaltimore, MD\n
+## 6              11        CENTRAL  100 CALVERT ST\nBaltimore, MD\n
+## 7              11        CENTRAL      101 GAY ST\nBaltimore, MD\n</pre>
 
 </article></slide><slide class=''><hgroup><h2>Which</h2></hgroup><article  id="which">
 
 <p><code>which()</code>: &quot;Give the <code>TRUE</code> indices of a logical object, allowing for array indices.&quot;</p>
 
-<pre class = 'prettyprint lang-r'>&gt; mon$Location.1 != &quot;&quot;</pre>
+<pre class = 'prettyprint lang-r'>mon$Location.1 != &quot;&quot;</pre>
 
-<pre > [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
-[12] FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
-[34]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
-[45]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE
-[56] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-[67] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE
-[78]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</pre>
+<pre >##  [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
+## [12] FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+## [34]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+## [45]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE
+## [56] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+## [67] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+## [78]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; which(mon$Location.1 != &quot;&quot;)</pre>
+<pre class = 'prettyprint lang-r'>which(mon$Location.1 != &quot;&quot;)</pre>
 
-<pre > [1]  1  4  5  6  7  8  9 11 14 15 17 18 19 20 21 22 23 24 25 26 27 28 29
-[24] 31 32 33 34 35 36 37 38 41 42 43 44 45 46 47 50 54 55 57 58 59 60 61
-[47] 68 69 70 71 72 73 76 78 79 80 81 84</pre>
+<pre >##  [1]  1  4  5  6  7  8  9 11 14 15 17 18 19 20 21 22 23 24 25 26 27 28 29
+## [24] 31 32 33 34 35 36 37 38 41 42 43 44 45 46 47 50 54 55 57 58 59 60 61
+## [47] 68 69 70 71 72 73 76 78 79 80 81 84</pre>
 
 </article></slide><slide class=''><hgroup><h2>Missing Data</h2></hgroup><article  id="missing-data">
 

@@ -110,8 +110,8 @@
 <li>If you know the name of a function, <code>?[function name]</code> or <code>help([function name])</code> will pop up the help menu</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>&gt; ## ?str
-&gt; ## help(&quot;str&quot;)</pre>
+<pre class = 'prettyprint lang-r'>## ?str
+## help(&quot;str&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Functions - Intro</h2></hgroup><article  id="functions---intro-1">
 
@@ -152,13 +152,13 @@
 
 <p>We have already covered <code>character</code> and <code>numeric</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; class(c(&quot;Andrew&quot;, &quot;Jaffe&quot;))</pre>
+<pre class = 'prettyprint lang-r'>class(c(&quot;Andrew&quot;, &quot;Jaffe&quot;))</pre>
 
-<pre >[1] &quot;character&quot;</pre>
+<pre >## [1] &quot;character&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; class(c(1, 4, 7))</pre>
+<pre class = 'prettyprint lang-r'>class(c(1, 4, 7))</pre>
 
-<pre >[1] &quot;numeric&quot;</pre>
+<pre >## [1] &quot;numeric&quot;</pre>
 
 <p>Recall that <code>c()</code> and <code>class()</code> are both functions!</p>
 
@@ -168,14 +168,14 @@
 
 <p>A sequence of numbers is an example of the integer class</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = seq(from = 1, to = 5) # seq() is a function
-&gt; x</pre>
+<pre class = 'prettyprint lang-r'>x = seq(from = 1, to = 5) # seq() is a function
+x</pre>
 
-<pre >[1] 1 2 3 4 5</pre>
+<pre >## [1] 1 2 3 4 5</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
+<pre class = 'prettyprint lang-r'>class(x)</pre>
 
-<pre >[1] &quot;integer&quot;</pre>
+<pre >## [1] &quot;integer&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Integer</h2></hgroup><article  id="integer-1">
 
@@ -183,23 +183,23 @@
 
 <p>It makes consecutive integer sequence from <code>[num1]</code> to <code>[num2]</code> by 1</p>
 
-<pre class = 'prettyprint lang-r'>&gt; 1:5</pre>
+<pre class = 'prettyprint lang-r'>1:5</pre>
 
-<pre >[1] 1 2 3 4 5</pre>
+<pre >## [1] 1 2 3 4 5</pre>
 
 </article></slide><slide class=''><hgroup><h2>Factor</h2></hgroup><article  id="factor">
 
 <p><code>factor</code> are special <code>character</code> vectors where the elements have pre-defined groups or &#39;levels&#39;. You can think of these as qualitative or categorical variables:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = factor(c(&quot;boy&quot;, &quot;girl&quot;, &quot;girl&quot;, &quot;boy&quot;, &quot;girl&quot;))
-&gt; x </pre>
+<pre class = 'prettyprint lang-r'>x = factor(c(&quot;boy&quot;, &quot;girl&quot;, &quot;girl&quot;, &quot;boy&quot;, &quot;girl&quot;))
+x </pre>
 
-<pre >[1] boy  girl girl boy  girl
-Levels: boy girl</pre>
+<pre >## [1] boy  girl girl boy  girl
+## Levels: boy girl</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; class(x)</pre>
+<pre class = 'prettyprint lang-r'>class(x)</pre>
 
-<pre >[1] &quot;factor&quot;</pre>
+<pre >## [1] &quot;factor&quot;</pre>
 
 <p>Note that levels are, by default, alphabetical or alphanumerical order.</p>
 
@@ -207,10 +207,10 @@ Levels: boy girl</pre>
 
 <p><code>logical</code> is a class that only has two possible elements: <code>TRUE</code> and <code>FALSE</code></p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = c(TRUE, FALSE, TRUE, TRUE, FALSE)
-&gt; class(x)</pre>
+<pre class = 'prettyprint lang-r'>x = c(TRUE, FALSE, TRUE, TRUE, FALSE)
+class(x)</pre>
 
-<pre >[1] &quot;logical&quot;</pre>
+<pre >## [1] &quot;logical&quot;</pre>
 
 <p><code>sum()</code> and <code>mean()</code> work on <code>logical</code> vectors - they return the total and proportion of <code>TRUE</code> elements, respectively.</p>
 
@@ -218,10 +218,10 @@ Levels: boy girl</pre>
 
 <p>Note that <code>logical</code> elements are NOT in quotes.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; z = c(&quot;TRUE&quot;, &quot;FALSE&quot;, &quot;TRUE&quot;, &quot;FALSE&quot;)
-&gt; class(z)</pre>
+<pre class = 'prettyprint lang-r'>z = c(&quot;TRUE&quot;, &quot;FALSE&quot;, &quot;TRUE&quot;, &quot;FALSE&quot;)
+class(z)</pre>
 
-<pre >[1] &quot;character&quot;</pre>
+<pre >## [1] &quot;character&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Vector functions</h2></hgroup><article  id="vector-functions">
 
@@ -246,18 +246,18 @@ Levels: boy girl</pre>
 
 </article></slide><slide class=''><hgroup><h2>Head and Tail</h2></hgroup><article  id="head-and-tail-1">
 
-<pre class = 'prettyprint lang-r'>&gt; z = 1:100 # recall a sequence from 1 to 100
-&gt; head(z)</pre>
+<pre class = 'prettyprint lang-r'>z = 1:100 # recall a sequence from 1 to 100
+head(z)</pre>
 
-<pre >[1] 1 2 3 4 5 6</pre>
+<pre >## [1] 1 2 3 4 5 6</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; tail(z)</pre>
+<pre class = 'prettyprint lang-r'>tail(z)</pre>
 
-<pre >[1]  95  96  97  98  99 100</pre>
+<pre >## [1]  95  96  97  98  99 100</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; str(z)</pre>
+<pre class = 'prettyprint lang-r'>str(z)</pre>
 
-<pre > int [1:100] 1 2 3 4 5 6 7 8 9 10 ...</pre>
+<pre >##  int [1:100] 1 2 3 4 5 6 7 8 9 10 ...</pre>
 
 <p>These functions show a brief snapshot of the data which is useful for exploratory data analysis.</p>
 
@@ -267,64 +267,64 @@ Levels: boy girl</pre>
 
 <p>From the manual: &quot;table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor level&quot;</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = c(&quot;boy&quot;, &quot;girl&quot;, &quot;girl&quot;, &quot;boy&quot;, &quot;girl&quot;)
-&gt; table(x)</pre>
+<pre class = 'prettyprint lang-r'>x = c(&quot;boy&quot;, &quot;girl&quot;, &quot;girl&quot;, &quot;boy&quot;, &quot;girl&quot;)
+table(x)</pre>
 
-<pre >x
- boy girl 
-   2    3 </pre>
+<pre >## x
+##  boy girl 
+##    2    3</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; y = c(1, 2, 1, 2, 1)
-&gt; table(x,y)</pre>
+<pre class = 'prettyprint lang-r'>y = c(1, 2, 1, 2, 1)
+table(x,y)</pre>
 
-<pre >      y
-x      1 2
-  boy  1 1
-  girl 2 1</pre>
+<pre >##       y
+## x      1 2
+##   boy  1 1
+##   girl 2 1</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting">
 
 <p>Brackets are used to select/subset/extract data in R</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x1 = 10:20
-&gt; x1</pre>
+<pre class = 'prettyprint lang-r'>x1 = 10:20
+x1</pre>
 
-<pre > [1] 10 11 12 13 14 15 16 17 18 19 20</pre>
+<pre >##  [1] 10 11 12 13 14 15 16 17 18 19 20</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; length(x1)</pre>
+<pre class = 'prettyprint lang-r'>length(x1)</pre>
 
-<pre >[1] 11</pre>
+<pre >## [1] 11</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Subsetting</h2></hgroup><article  id="data-subsetting-1">
 
-<pre class = 'prettyprint lang-r'>&gt; x1[1] # selecting first element</pre>
+<pre class = 'prettyprint lang-r'>x1[1] # selecting first element</pre>
 
-<pre >[1] 10</pre>
+<pre >## [1] 10</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; x1[3:4] # selecting third and fourth elements</pre>
+<pre class = 'prettyprint lang-r'>x1[3:4] # selecting third and fourth elements</pre>
 
-<pre >[1] 12 13</pre>
+<pre >## [1] 12 13</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; x1[c(1, 5, 7)] # first, fifth, and seventh elements</pre>
+<pre class = 'prettyprint lang-r'>x1[c(1, 5, 7)] # first, fifth, and seventh elements</pre>
 
-<pre >[1] 10 14 16</pre>
+<pre >## [1] 10 14 16</pre>
 
 <h4><strong>This is probably the most powerful and useful function in R. If you master this, you can literally do anything with R. Everything in the &#39;data analysis pipeline&#39; revolves around subsetting (as you will soon see)</strong></h4>
 
 </article></slide><slide class=''><hgroup><h2>Matrices</h2></hgroup><article  id="matrices">
 
-<pre class = 'prettyprint lang-r'>&gt; n = 1:9 # sequence from first number to second number incrementing by 1
-&gt; n</pre>
+<pre class = 'prettyprint lang-r'>n = 1:9 # sequence from first number to second number incrementing by 1
+n</pre>
 
-<pre >[1] 1 2 3 4 5 6 7 8 9</pre>
+<pre >## [1] 1 2 3 4 5 6 7 8 9</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; mat = matrix(n, nrow = 3)
-&gt; mat</pre>
+<pre class = 'prettyprint lang-r'>mat = matrix(n, nrow = 3)
+mat</pre>
 
-<pre >     [,1] [,2] [,3]
-[1,]    1    4    7
-[2,]    2    5    8
-[3,]    3    6    9</pre>
+<pre >##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</pre>
 
 </article></slide><slide class=''><hgroup><h2>Matrix (and Data frame) Functions</h2></hgroup><article  id="matrix-and-data-frame-functions">
 
@@ -341,29 +341,29 @@ x      1 2
 
 <p>Matrices have two &quot;slots&quot; you can use to select data, which represent rows and columns, that are separated by a comma, so the syntax is <code>matrix[row,column]</code>.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; mat[1, 1] # individual entry: row 1, column 1</pre>
+<pre class = 'prettyprint lang-r'>mat[1, 1] # individual entry: row 1, column 1</pre>
 
-<pre >[1] 1</pre>
+<pre >## [1] 1</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; mat[1, ] # first row</pre>
+<pre class = 'prettyprint lang-r'>mat[1, ] # first row</pre>
 
-<pre >[1] 1 4 7</pre>
+<pre >## [1] 1 4 7</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; mat[, 1] # first columns</pre>
+<pre class = 'prettyprint lang-r'>mat[, 1] # first columns</pre>
 
-<pre >[1] 1 2 3</pre>
+<pre >## [1] 1 2 3</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-1">
 
 <p>Note that the class of the returned object is no longer a matrix</p>
 
-<pre class = 'prettyprint lang-r'>&gt; class(mat[1, ])</pre>
+<pre class = 'prettyprint lang-r'>class(mat[1, ])</pre>
 
-<pre >[1] &quot;integer&quot;</pre>
+<pre >## [1] &quot;integer&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; class(mat[, 1])</pre>
+<pre class = 'prettyprint lang-r'>class(mat[, 1])</pre>
 
-<pre >[1] &quot;integer&quot;</pre>
+<pre >## [1] &quot;integer&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames">
 
@@ -375,91 +375,91 @@ x      1 2
 
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-1" class="smaller">
 
-<pre class = 'prettyprint lang-r'>&gt; data(iris) ## just use some data in R already
-&gt; names(iris) ## get the column names</pre>
+<pre class = 'prettyprint lang-r'>data(iris) ## just use some data in R already
+names(iris) ## get the column names</pre>
 
-<pre >[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
-[5] &quot;Species&quot;     </pre>
+<pre >## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+## [5] &quot;Species&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; str(iris) # easy snapshot of data, like `describe` in Stata</pre>
+<pre class = 'prettyprint lang-r'>str(iris) # easy snapshot of data, like `describe` in Stata</pre>
 
-<pre >&#39;data.frame&#39;:   150 obs. of  5 variables:
- $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
- $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
- $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
- $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
- $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</pre>
+<pre >## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; head(iris, 3) # get top 3 rows</pre>
+<pre class = 'prettyprint lang-r'>head(iris, 3) # get top 3 rows</pre>
 
-<pre >  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1          5.1         3.5          1.4         0.2  setosa
-2          4.9         3.0          1.4         0.2  setosa
-3          4.7         3.2          1.3         0.2  setosa</pre>
+<pre >##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-2">
 
 <p>Data frames have special ways to select data, specifically by a <code>$</code> and the column name.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; head(iris$Petal.Length)</pre>
+<pre class = 'prettyprint lang-r'>head(iris$Petal.Length)</pre>
 
-<pre >[1] 1.4 1.4 1.3 1.5 1.4 1.7</pre>
+<pre >## [1] 1.4 1.4 1.3 1.5 1.4 1.7</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; class(iris$Petal.Width)</pre>
+<pre class = 'prettyprint lang-r'>class(iris$Petal.Width)</pre>
 
-<pre >[1] &quot;numeric&quot;</pre>
+<pre >## [1] &quot;numeric&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Selection</h2></hgroup><article  id="data-selection-3">
 
 <p>You can also subset data frames like matrices, using row and column indices, but using column names is generally safer and more reproducible.</p>
 
-<pre class = 'prettyprint lang-r'>&gt; head(iris[, 2])</pre>
+<pre class = 'prettyprint lang-r'>head(iris[, 2])</pre>
 
-<pre >[1] 3.5 3.0 3.2 3.1 3.6 3.9</pre>
+<pre >## [1] 3.5 3.0 3.2 3.1 3.6 3.9</pre>
 
 <p>You can also use the bracket notation, but specify the name(s) in quotes if you want more than 1 column. This allows you to subset rows and columns at the same time</p>
 
-<pre class = 'prettyprint lang-r'>&gt; iris[1:3, c(&quot;Sepal.Width&quot;, &quot;Species&quot;)]</pre>
+<pre class = 'prettyprint lang-r'>iris[1:3, c(&quot;Sepal.Width&quot;, &quot;Species&quot;)]</pre>
 
-<pre >  Sepal.Width Species
-1         3.5  setosa
-2         3.0  setosa
-3         3.2  setosa</pre>
+<pre >##   Sepal.Width Species
+## 1         3.5  setosa
+## 2         3.0  setosa
+## 3         3.2  setosa</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-2">
 
 <p>You can make your own data frames from &quot;scratch&quot; too, either from a matrix or using the <code>data.frame</code> function:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; x = c(&quot;Andrew&quot;, &quot;Leonardo&quot;, &quot;Shaun&quot;)
-&gt; y = 1:3
-&gt; df = data.frame(name = x, id = y)
-&gt; df</pre>
+<pre class = 'prettyprint lang-r'>x = c(&quot;Andrew&quot;, &quot;Leonardo&quot;, &quot;Shaun&quot;)
+y = 1:3
+df = data.frame(name = x, id = y)
+df</pre>
 
-<pre >      name id
-1   Andrew  1
-2 Leonardo  2
-3    Shaun  3</pre>
+<pre >##       name id
+## 1   Andrew  1
+## 2 Leonardo  2
+## 3    Shaun  3</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames-3" class="smaller">
 
 <p>You can add variables to a <code>data.frame</code> using <code>$</code> as well:</p>
 
-<pre class = 'prettyprint lang-r'>&gt; iris2 = iris # copy `iris` to a new df
-&gt; iris2$Index = 1:nrow(iris2)
-&gt; head(iris2)</pre>
+<pre class = 'prettyprint lang-r'>iris2 = iris # copy `iris` to a new df
+iris2$Index = 1:nrow(iris2)
+head(iris2)</pre>
 
-<pre >  Sepal.Length Sepal.Width Petal.Length Petal.Width Species Index
-1          5.1         3.5          1.4         0.2  setosa     1
-2          4.9         3.0          1.4         0.2  setosa     2
-3          4.7         3.2          1.3         0.2  setosa     3
-4          4.6         3.1          1.5         0.2  setosa     4
-5          5.0         3.6          1.4         0.2  setosa     5
-6          5.4         3.9          1.7         0.4  setosa     6</pre>
+<pre >##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Index
+## 1          5.1         3.5          1.4         0.2  setosa     1
+## 2          4.9         3.0          1.4         0.2  setosa     2
+## 3          4.7         3.2          1.3         0.2  setosa     3
+## 4          4.6         3.1          1.5         0.2  setosa     4
+## 5          5.0         3.6          1.4         0.2  setosa     5
+## 6          5.4         3.9          1.7         0.4  setosa     6</pre>
 
-<pre class = 'prettyprint lang-r'>&gt; names(iris2)</pre>
+<pre class = 'prettyprint lang-r'>names(iris2)</pre>
 
-<pre >[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
-[5] &quot;Species&quot;      &quot;Index&quot;       </pre>
+<pre >## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+## [5] &quot;Species&quot;      &quot;Index&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>Data Classes: Extended</h2></hgroup><article  id="data-classes-extended">
 

@@ -26,7 +26,7 @@ MOST IMPORTANT RULE - LOOK AT YOUR DATA!
 Again - `table`, `summarize`, `is.na`, `any`, `all` are useful.
 
 ## Data Cleaning {.smaller}
-```{r table, comment="", prompt=TRUE}
+```{r table}
 table(c(0, 1, 2, 3, NA, 3, 3, 2,2, 3), 
         useNA="ifany")
 table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
@@ -39,7 +39,7 @@ margin.table(tab, 2)
 
 ---
 
-```{r table2, comment="", prompt=TRUE}
+```{r table2}
 prop.table(tab)
 prop.table(tab,1)
 ```
@@ -50,7 +50,7 @@ https://data.baltimorecity.gov/City-Government/Baltimore-City-Employee-Salaries-
 
 Download as a CSV and then read it into R as the variable `Sal`
 
-```{r readSal, comment="", prompt=TRUE}
+```{r readSal}
 Sal = read.csv("../data/Baltimore_City_Employee_Salaries_FY2014.csv",
                 as.is=TRUE)
 ```
@@ -59,7 +59,7 @@ Sal = read.csv("../data/Baltimore_City_Employee_Salaries_FY2014.csv",
 * `any()` - checks if there are any TRUES
 * `all()` - checks if ALL are true
 
-```{r isna, comment="", prompt=TRUE}
+```{r isna}
 Sal[1:4,]
 any(is.na(Sal$Name))
 ```
@@ -79,12 +79,12 @@ data$gender[data$gender %in%
 
 Sometimes though, it's not so simple.  That's where functions that find patterns come in very useful.
 
-```{r gender, comment="", prompt=TRUE, echo=FALSE}
+```{r gender, echo=FALSE}
 set.seed(4)
 gender <- sample(c("Male", "mAle", "MaLe", "M", "MALE", "Ma", "FeMAle", "F", "Woman", "Man", "Fm", "FEMALE"), 1000, replace =TRUE)
 ```
 
-```{r gentab, comment="", prompt=TRUE}
+```{r gentab}
 table(gender)
 ```
 
@@ -111,7 +111,7 @@ table(gender)
 
 ## 'Find' functions
 
-```{r RawlMatch, comment="", prompt=TRUE}
+```{r RawlMatch}
 grep("Rawlings",Sal$Name)
 ```
 
@@ -121,14 +121,14 @@ These are the indices/elements where the pattern match occurs
 
 ## 'Find' functions {.smaller}
 
-```{r grepl, comment="", prompt=TRUE}
+```{r grepl}
 grep("Rawlings",Sal$Name)
 grep("Rawlings",Sal$Name,value=TRUE)
 Sal[grep("Rawlings",Sal$Name),]
 ```
 
 ## `grep()` Options
-```{r greppers, comment="", prompt=TRUE}
+```{r greppers}
 head(grep("Tajhgh",Sal$Name, value=TRUE))
 grep("Jaffe",Sal$Name)
 length(grep("Jaffe",Sal$Name))
@@ -148,13 +148,13 @@ length(grep("Jaffe",Sal$Name))
     * Leonard and then an S
     * Spence then a capital C
   
-```{r grepstar, comment="", prompt=TRUE}
+```{r grepstar}
 grep("Payne.*", x=Sal$Name, value=TRUE)
 ```
 
 ---
 
-```{r grepstar2, comment="", prompt=TRUE}
+```{r grepstar2}
 grep("Leonard.?S", x=Sal$Name, value=TRUE)
 grep("Spence.*C.*", x=Sal$Name, value=TRUE)
 ```
@@ -163,11 +163,11 @@ grep("Spence.*C.*", x=Sal$Name, value=TRUE)
 
 Let's say we wanted to sort the data set by Annual Salary:
 
-```{r classSal, comment="", prompt=TRUE}
+```{r classSal}
 class(Sal$AnnualSalary)
 ```
 
-```{r orderstring, comment="", prompt=TRUE}
+```{r orderstring}
 sort(c("1", "2", "10")) #  not sort correctly (order simply ranks the data)
 order(c("1", "2", "10"))
 ```
@@ -175,7 +175,7 @@ order(c("1", "2", "10"))
 ## Replace
 
 So we must change the annual pay into a numeric:
-```{r destringSal, comment="", prompt=TRUE}
+```{r destringSal}
 head(as.numeric(Sal$AnnualSalary), 4)
 ```
 
@@ -187,7 +187,7 @@ R didn't like the $ so it thought turned them all to `NA`.
 
 Now we can replace the `$` with nothing (used fixed=TRUE because $ means something in regular expressions):
 
-```{r orderSal, comment="", prompt=TRUE}
+```{r orderSal}
 Sal$AnnualSalary <- as.numeric(gsub(pattern="$", replacement="", 
                               Sal$AnnualSalary, fixed=TRUE))
 Sal <- Sal[order(Sal$AnnualSalary,decreasing=TRUE), ] # use negative to sort descending
@@ -209,7 +209,7 @@ Useful String functions
 
 Paste can be very useful for joining vectors together:
 
-```{r Paste, comment="", prompt=TRUE}
+```{r Paste}
 paste("Visit", 1:5, sep="_")
 paste("Visit", 1:5, sep="_", collapse=" ")
 paste("To", "is going be the ", "we go to the store!", sep="day ")
@@ -219,7 +219,7 @@ paste0("Visit",1:5)
 
 ---
 
-```{r Paste2, comment="", prompt=TRUE}
+```{r Paste2}
 paste(1:5, letters[1:5], sep="_")
 paste(6:10, 11:15, 2000:2005, sep="/")
 paste(paste("x",1:5,sep=""),collapse="+")
@@ -227,7 +227,7 @@ paste(paste("x",1:5,sep=""),collapse="+")
 
 ## Strsplit
 
-```{r strsplit, comment="", prompt=TRUE}
+```{r strsplit}
 x <- c("I really", "like writing", "R code")
 y <- strsplit(x, split=" ")
 y[[2]]
@@ -246,7 +246,7 @@ sapply(y, "[", 2) # on the fly
 * `t()` is a function that will transpose the data
 
 ## Merging {.smaller}
-```{r merging, comment="", prompt=TRUE}
+```{r merging}
 base <- data.frame(id=1:10, Age= seq(55,60, length=10))
 base[1:2,]
 visits <- data.frame(id=rep(1:8, 3), visit= rep(1:3, 8),
@@ -256,7 +256,7 @@ visits[1:2,]
 
 ---
 
-```{r merging2, comment="", prompt=TRUE}
+```{r merging2}
 merged.data <- merge(base, visits, by="id")
 merged.data[1:5,]
 dim(merged.data)
@@ -264,7 +264,7 @@ dim(merged.data)
 
 ---
 
-```{r mergeall, comment="", prompt=TRUE}
+```{r mergeall}
 all.data <- merge(base, visits, by="id", all=TRUE)
 tail(all.data)
 dim(all.data)
@@ -274,7 +274,7 @@ dim(all.data)
 
 You can convert date-like strings in the `Date` class (http://www.statmethods.net/input/dates.html for more info)
 
-```{r date, comment="", prompt=TRUE}
+```{r date}
 circ = read.csv("../data/Charm_City_Circulator_Ridership.csv",as.is=TRUE)
 head(sort(circ$date))
 circ$date <- as.Date(circ$date, "%m/%d/%Y") # creating a date for sorting
@@ -290,13 +290,13 @@ Disclaimer: the `reshape` command in R is not remarkably intuitive.
 * Long - multiple measurements are rows so data gets longer with more measurements
 * One example would be many ids with multiple visits
 
-```{r longwide, comment="", prompt=TRUE, echo=FALSE}
+```{r longwide, echo=FALSE}
 wide <- data.frame(id=1, visit1="Good", visit2="Good", visit3 = "Bad")
 long <- data.frame(id=rep(1, 3), visit=c(1, 2, 3), Outcome=c("Good", "Good", "Bad"))
 ```
 
 ## Example of Long/Wide
-```{r showlong, comment="", prompt=TRUE, echo=TRUE}
+```{r showlong, echo=TRUE}
 head(wide)
 head(long)
 ```
@@ -305,12 +305,12 @@ head(long)
 
 * Good resource: http://www.ats.ucla.edu/stat/r/faq/reshape.htm
 
-```{r reshape, comment="", prompt=TRUE}
+```{r reshape}
 head(Indometh) # this is long
 ```
 
 ## Data Reshaping {.smaller}
-```{r reshape2, comment="", prompt=TRUE}
+```{r reshape2}
 wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
                 timevar = "time", direction = "wide")
 head(wide)
@@ -318,7 +318,7 @@ head(wide)
 
 ## Data Reshaping {.smaller}
 
-```{r reshape3, comment="", prompt=TRUE}
+```{r reshape3}
 dim(Indometh)
 wide
 ```
@@ -327,7 +327,7 @@ wide
 
 * If you've reshaped a data set - to get it back, just reshape it again
 
-```{r rewide, comment="", prompt=TRUE}
+```{r rewide}
 reshape(wide, direction = "long")[1:10,]
 ```
 
@@ -335,11 +335,11 @@ Note the row name change
 
 ## Data Reshaping - A Better Example {.smaller}
 
-```{r xlsx, comment="", prompt=TRUE,echo=FALSE, results='hide'}
+```{r xlsx,echo=FALSE, results='hide'}
 library(xlsx,verbose=FALSE)
 ```
 
-```{r TB, comment="", prompt=TRUE, cache=TRUE}
+```{r TB}
 TB <- read.xlsx(file="../data/indicator_estimatedincidencealltbper100000.xlsx",
                 sheetName="Data")
 head(TB, 1)
@@ -349,7 +349,7 @@ head(TB, 1)
 
 ## Data Reshaping - A Better Example {.smaller}
 
-```{r TB.hd, comment="", prompt=TRUE, cache=FALSE}
+```{r TB.hd}
 colnames(TB) <- c("Country", paste("Year", 
                           1990:2007, sep="."))
 head(TB,1)
@@ -357,7 +357,7 @@ head(TB,1)
 
 ## Data Reshaping - More is better! {.smaller}
 
-```{r TB.long, comment="", prompt=TRUE}
+```{r TB.long}
 TB.long <- reshape(TB, idvar="Country", 
             v.names="Cases", times=1990:2007, 
                    direction="long", timevar="Year", 

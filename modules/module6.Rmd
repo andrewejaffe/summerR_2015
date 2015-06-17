@@ -24,7 +24,7 @@ Now we are going to cover manipulating your data and summarizing it using basic 
 
 ## Sorting and ordering
 
-```{r sortVorder, comment="",prompt=TRUE}
+```{r sortVorder}
 x = c(1,4,7,6,4,12,9,3)
 sort(x)
 order(x)
@@ -34,7 +34,7 @@ Note you would have to assign the sorted variable to a new variable to retain it
 
 ## Sorting and ordering {.smaller}
 
-```{r sortVorder1, comment="",prompt=TRUE}
+```{r sortVorder1}
 circ = read.csv("../data/charmcitycirc_reduced.csv", header=TRUE,as.is=TRUE)
 circ2 = circ[,c("day","date", "orangeAverage","purpleAverage",
               "greenAverage","bannerAverage","daily")]
@@ -45,7 +45,7 @@ The first indicates the rows of `circ2` ordered by daily average ridership. The 
 
 ## Sorting and ordering {.smaller}
 
-```{r sortVorder2, comment="",prompt=TRUE}
+```{r sortVorder2}
 circSorted = circ2[order(circ2$daily,decreasing=TRUE),]
 circSorted[1:5,]
 ```
@@ -54,7 +54,7 @@ circSorted[1:5,]
 
 Note that the row names refer to their previous values. You can do something like this to fix:
 
-```{r sortVorder3, comment="",prompt=TRUE}
+```{r sortVorder3}
 rownames(circSorted)=NULL
 circSorted[1:5,]
 ```
@@ -63,7 +63,7 @@ circSorted[1:5,]
 
 the `rep()` ["repeat"] function is useful for creating new variables 
 
-```{r rep1, comment="",prompt=TRUE}
+```{r rep1}
 bg = rep(c("boy","girl"),each=50)
 head(bg)
 bg2 = rep(c("boy","girl"),times=50)
@@ -90,7 +90,7 @@ ifelse(test, yes, no)
 
 For example, we can create a new variable that records whether daily ridership on the Circulator was above 10,000.
 
-```{r ifelse1, comment="",prompt=TRUE}
+```{r ifelse1}
 hi_rider = ifelse(circ$daily > 10000, 1, 0)
 head(hi_rider)
 table(hi_rider)
@@ -100,7 +100,7 @@ table(hi_rider)
 
 You can also nest `ifelse()` within itself to create 3 levels of a variable.
 
-```{r ifelse2, comment="",prompt=TRUE}
+```{r ifelse2}
 riderLevels = ifelse(circ$daily < 10000, "low", 
                   ifelse(circ$daily > 20000,
                   "high", "med"))
@@ -145,7 +145,7 @@ factor(x = character(), levels, labels = levels,
 
 Suppose we have a vector of case-control status
 
-```{r factor1, comment="", prompt=TRUE}
+```{r factor1}
 cc = factor(c("case","case","case",
         "control","control","control"))
 cc
@@ -157,7 +157,7 @@ cc
 
 Note that the levels are alphabetically ordered by default. We can also specify the levels within the factor call
 
-```{r factor2, comment="", prompt=TRUE}
+```{r factor2}
 factor(c("case","case","case","control",
           "control","control"), 
         levels =c("control","case") )
@@ -170,7 +170,7 @@ factor(c("case","case","case","control",
 
 Factors can be converted to `numeric` or `character` very easily
 
-```{r factor3, comment="", prompt=TRUE}
+```{r factor3}
 x = factor(c("case","case","case","control",
       "control","control"),
         levels =c("control","case") )
@@ -182,7 +182,7 @@ as.numeric(x)
 
 Now that we know more about factors, `cut()` will make more sense:
 
-```{r cut1, comment="", prompt=TRUE}
+```{r cut1}
 x = 1:100
 cx = cut(x, breaks=c(0,10,25,50,100))
 head(cx)  
@@ -193,7 +193,7 @@ table(cx)
 
 We can also leave off the labels
 
-```{r cut2, comment="", prompt=TRUE}
+```{r cut2}
 cx = cut(x, breaks=c(0,10,25,50,100), labels=FALSE)
 head(cx)  
 table(cx)
@@ -203,7 +203,7 @@ table(cx)
 
 Note that you have to specify the endpoints of the data, otherwise some of the categories will not be created
 
-```{r cut3, comment="", prompt=TRUE}
+```{r cut3}
 cx = cut(x, breaks=c(10,25,50), labels=FALSE)
 head(cx)  
 table(cx)
@@ -212,7 +212,7 @@ table(cx,useNA="ifany")
 
 ## Adding to data frames {.smaller}
 
-```{r addingVar, comment="",prompt=TRUE}
+```{r addingVar}
 circ2$riderLevels = cut(circ2$daily, 
       breaks = c(0,10000,20000,100000))
 circ2[1:2,]
@@ -221,7 +221,7 @@ table(circ2$riderLevels, useNA="always")
 
 ## Adding rows and columns
 
-```{r mat1, comment="",prompt=TRUE}
+```{r mat1}
 m1 = matrix(1:9, nrow = 3, 
       ncol = 3, byrow = FALSE)
 m1
@@ -238,19 +238,19 @@ Note that the vector you are adding has to have the same length as the number of
 
 When binding two matrices, they must have either the same number of rows or columns
 
-```{r mat2, comment="",prompt=TRUE}
+```{r mat2}
 cbind(m1,m2)
 ```
 
 ## Adding rows and columns {.smaller}
 
-```{r mat3, comment="",prompt=TRUE}
+```{r mat3}
 rbind(m1,m2)
 ```
 
 ## Adding columns manually {.smaller}
 
-```{r cbind, comment="",prompt=TRUE}
+```{r cbind}
 circ2$riderLevels = NULL
 rider = cut(circ2$daily, breaks = c(0,10000,20000,100000))
 circ2 = cbind(circ2,rider)

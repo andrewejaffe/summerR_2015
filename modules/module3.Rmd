@@ -18,7 +18,7 @@ output:
 ## R Help
 * If you know the name of a function, `?[function name]` or `help([function name])` will pop up the help menu
 
-```{r assign_help, comment="", prompt=TRUE}
+```{r assign_help}
 ## ?str
 ## help("str")
 ```
@@ -49,7 +49,7 @@ You can also see examples of running a function using `example()` [which is anot
 
 We have already covered `character` and `numeric`
 
-```{r numChar, comment="", prompt=TRUE}
+```{r numChar}
 class(c("Andrew", "Jaffe"))
 class(c(1, 4, 7))
 ```
@@ -62,7 +62,7 @@ Recall that `c()` and `class()` are both functions!
 
 A sequence of numbers is an example of the integer class
 
-```{r seq, comment="", prompt=TRUE}
+```{r seq}
 x = seq(from = 1, to = 5) # seq() is a function
 x
 class(x)
@@ -75,7 +75,7 @@ The colon `:` is a shortcut for making sequences of numbers
 It makes consecutive integer sequence from `[num1]` to `[num2]` by 1
 
 
-```{r seqShort, comment="", prompt=TRUE}
+```{r seqShort}
 1:5
 ```
 
@@ -83,7 +83,7 @@ It makes consecutive integer sequence from `[num1]` to `[num2]` by 1
 
 `factor` are special `character` vectors where the elements have pre-defined groups or 'levels'. You can think of these as qualitative or categorical variables:
 
-```{r factor1, comment="", prompt=TRUE}
+```{r factor1}
 x = factor(c("boy", "girl", "girl", "boy", "girl"))
 x 
 class(x)
@@ -95,7 +95,7 @@ Note that levels are, by default, alphabetical or alphanumerical order.
 
 `logical` is a class that only has two possible elements: `TRUE` and `FALSE`
 
-```{r logical1, comment="", prompt=TRUE}
+```{r logical1}
 x = c(TRUE, FALSE, TRUE, TRUE, FALSE)
 class(x)
 ```
@@ -105,7 +105,7 @@ class(x)
 ## Logical
 
 Note that `logical` elements are NOT in quotes. 
-```{r logical2, comment="", prompt=TRUE}
+```{r logical2}
 z = c("TRUE", "FALSE", "TRUE", "FALSE")
 class(z)
 ```
@@ -129,7 +129,7 @@ Useful functions for exploring vectors (and other data types):
 
 ## Head and Tail
  
-```{r head, comment="",prompt=TRUE}
+```{r head}
 z = 1:100 # recall a sequence from 1 to 100
 head(z)
 tail(z)
@@ -144,7 +144,7 @@ These functions show a brief snapshot of the data which is useful for explorator
 
 From the manual: "table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor level"
 
-```{r tab, comment="",prompt=TRUE}
+```{r tab}
 x = c("boy", "girl", "girl", "boy", "girl")
 table(x)
 y = c(1, 2, 1, 2, 1)
@@ -155,7 +155,7 @@ table(x,y)
 
 Brackets are used to select/subset/extract data in R
 
-```{r subset1, comment="",prompt=TRUE}
+```{r subset1}
 x1 = 10:20
 x1
 length(x1)
@@ -163,7 +163,7 @@ length(x1)
 
 ## Data Subsetting
 
-```{r subset2, comment="",prompt=TRUE}
+```{r subset2}
 x1[1] # selecting first element
 x1[3:4] # selecting third and fourth elements
 x1[c(1, 5, 7)] # first, fifth, and seventh elements
@@ -173,7 +173,7 @@ x1[c(1, 5, 7)] # first, fifth, and seventh elements
 
 ## Matrices
 
-```{r matrix, comment="", prompt=TRUE}
+```{r matrix}
 n = 1:9 # sequence from first number to second number incrementing by 1
 n
 mat = matrix(n, nrow = 3)
@@ -193,7 +193,7 @@ These are in addition to the previous useful vector functions:
 
 Matrices have two "slots" you can use to select data, which represent rows and columns, that are separated by a comma, so the syntax is `matrix[row,column]`.
 
-```{r subset3, comment="", prompt=TRUE}
+```{r subset3}
 mat[1, 1] # individual entry: row 1, column 1
 mat[1, ] # first row
 mat[, 1] # first columns
@@ -203,7 +203,7 @@ mat[, 1] # first columns
 
 Note that the class of the returned object is no longer a matrix
 
-```{r subset4, comment="", prompt=TRUE}
+```{r subset4}
 class(mat[1, ])
 class(mat[, 1])
 ```
@@ -218,7 +218,7 @@ We can look at some of the example data frames that come with R.
 
 ## Data Frames {.smaller}
 
-```{r df1, comment="", prompt=TRUE}
+```{r df1}
 data(iris) ## just use some data in R already
 names(iris) ## get the column names
 str(iris) # easy snapshot of data, like `describe` in Stata
@@ -230,7 +230,7 @@ head(iris, 3) # get top 3 rows
 Data frames have special ways to select data, specifically by a `$` and the column name.
 
 
-```{r df2, comment="", prompt=TRUE}
+```{r df2}
 head(iris$Petal.Length)
 class(iris$Petal.Width)
 ```
@@ -239,12 +239,12 @@ class(iris$Petal.Width)
 
 You can also subset data frames like matrices, using row and column indices, but using column names is generally safer and more reproducible.
 
-```{r subset6, comment="", prompt=TRUE}
+```{r subset6}
 head(iris[, 2])
 ```
 
 You can also use the bracket notation, but specify the name(s) in quotes if you want more than 1 column. This allows you to subset rows and columns at the same time
-```{r subset7, comment="", prompt=TRUE}
+```{r subset7}
 iris[1:3, c("Sepal.Width", "Species")]
 ```
 
@@ -252,7 +252,7 @@ iris[1:3, c("Sepal.Width", "Species")]
 
 You can make your own data frames from "scratch" too, either from a matrix or using the `data.frame` function:
 
-```{r df3, comment="", prompt=TRUE}
+```{r df3}
 x = c("Andrew", "Leonardo", "Shaun")
 y = 1:3
 df = data.frame(name = x, id = y)
@@ -263,7 +263,7 @@ df
 
 You can add variables to a `data.frame` using `$` as well:
 
-```{r dfAdd, comment="", prompt=TRUE}
+```{r dfAdd}
 iris2 = iris # copy `iris` to a new df
 iris2$Index = 1:nrow(iris2)
 head(iris2)

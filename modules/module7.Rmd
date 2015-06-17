@@ -38,7 +38,7 @@ output:
 
 ## column and row means
 
-```{r colMeans, prompt=TRUE,comment=""}
+```{r colMeans}
 circ2 = read.csv("../data/charmcitycirc_reduced.csv", 
             header=TRUE,as.is=TRUE)
 colMeans(circ2[,3:6],na.rm=TRUE)
@@ -47,7 +47,7 @@ head(rowMeans(circ2[,3:6],na.rm=TRUE))
 
 ## Summary
 
-```{r summary1, prompt=TRUE,comment=""}
+```{r summary1}
 summary(circ2)
 ```
 
@@ -69,7 +69,7 @@ apply(X, MARGIN, FUN, ...)
 
 ## Apply statements
 
-```{r apply1, prompt=TRUE,comment=""}
+```{r apply1}
 tmp = circ2[,3:6]
 apply(tmp,2,mean,na.rm=TRUE) # column means
 apply(tmp,2,sd,na.rm=TRUE) # columns sds
@@ -99,7 +99,7 @@ Simply put, you can apply function `FUN` to `X` within each categorical level of
 
 For example, we can estimate the highest average daily ridership for each day of the week in 1 line in the Circulator dataset. 
 
-```{r tapply1, comment="",prompt=TRUE}
+```{r tapply1}
 tapply(circ2$daily, circ2$day, max, na.rm=TRUE)
 ```
 
@@ -109,20 +109,20 @@ Plotting is an important component of exploratory data analysis. We will review 
 
 ## Scatterplot
 
-```{r scatter1, comment="",prompt=TRUE}
+```{r scatter1}
 data(cars)
 plot(cars$speed, cars$dist)
 ```
 
 ## Histograms
 
-```{r hist1, comment="",prompt=TRUE}
+```{r hist1}
 hist(circ2$daily)
 ```
 
 ## Density
 
-```{r dens1, comment="",prompt=TRUE,fig.width=5,fig.height=5}
+```{r dens1,fig.width=5,fig.height=5}
 ## plot(density(circ2$daily))
 plot(density(circ2$daily,na.rm=TRUE))
 ```
@@ -130,20 +130,20 @@ plot(density(circ2$daily,na.rm=TRUE))
 ## Boxplots
 
 
-```{r box1, comment="",prompt=TRUE}
+```{r box1}
 boxplot(circ2$daily ~ circ2$day)
 ```
 
 ## Boxplots
 
 
-```{r box2, comment="",prompt=TRUE}
+```{r box2}
 boxplot(daily ~ day, data=circ2)
 ```
 
 ## Matrix plot
 
-```{r matplot1, comment="",prompt=TRUE}
+```{r matplot1}
 matplot(circ2[,3:6])
 ```
 
