@@ -48,10 +48,8 @@ Class:
 | 4  | 2015-06-18  | Module 10  | [lecSlides](modules/module10.html), [lecNotes](modules/module10.pdf),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module10.R) | Lists and functions |
 | 4  | 2015-06-18  | Module 11  | [lecSlides](modules/module11.html), [lecNotes](modules/module11.pdf),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module11.R) | Statistics |
 |---|---|---|---|---|
+
 <!-- Add links to the rest of the material as we go
-
-
-
 
 
 |---|---|---|---|---|
