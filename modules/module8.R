@@ -1,275 +1,207 @@
-<<<<<<< HEAD
-## ----table---------------------------------------------------------------
-=======
-## ----table, comment="", prompt=TRUE--------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-table(c(0, 1, 2, 3, NA, 3, 3, 2,2, 3), 
-        useNA="ifany")
-table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
-        useNA="always")
-tab <- table(c(0, 1, 2, 3, 2, 3, 3, 2,2, 3), 
-             c(0, 1, 2, 3, 2, 3, 3, 4, 4, 3), 
-              useNA="always")
-margin.table(tab, 2)
+## ----knit-setup, echo=FALSE, results='hide'------------------------------
+library(knitr)
+opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE,
+               comment = "")
 
-<<<<<<< HEAD
-## ----table2--------------------------------------------------------------
-prop.table(tab)
-prop.table(tab,1)
+## ----seed,echo=FALSE,results='hide'--------------------------------------
+set.seed(3) 
 
-## ----readSal-------------------------------------------------------------
-Sal = read.csv("../data/Baltimore_City_Employee_Salaries_FY2014.csv",
+## ----plotEx--------------------------------------------------------------
+death = read.csv("http://biostat.jhsph.edu/~ajaffe/files/indicatordeadkids35.csv",
+                 as.is=TRUE,header=TRUE, row.names=1)
+death[1:2, 1:5]
+
+## ------------------------------------------------------------------------
+year = as.integer(gsub("X","",names(death)))
+head(year)
+
+## ----plot1, fig.width=4,fig.height=4-------------------------------------
+plot(as.numeric(death["Sweden",])~year)
+
+## ----plotEx2, fig.width=4,fig.height=4-----------------------------------
+plot(as.numeric(death["Sweden",])~year,
+      ylab="# of deaths per family", main = "Sweden")
+
+## ----plotEx3, fig.width=4,fig.height=4-----------------------------------
+plot(as.numeric(death["Sweden",])~year,
+      ylab="# of deaths per family", main = "Sweden",
+     xlim = c(1760,2012), pch = 19, cex=1.2,col="blue")
+
+## ----plotEx4, fig.width=4,fig.height=4-----------------------------------
+scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,
+      ylab="# of deaths per family", main = "Sweden",lwd=3,
+     xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
+
+## ----plotEx5, fig.width=8,fig.height=4-----------------------------------
+par(mfrow=c(1,2))
+scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,
+      ylab="# of deaths per family", main = "Sweden",lwd=3,
+     xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
+scatter.smooth(as.numeric(death["United Kingdom",])~year,span=0.2,
+      ylab="# of deaths per family", main = "United Kingdom",lwd=3,
+     xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
+
+## ----plotEx6, fig.width=8,fig.height=4-----------------------------------
+par(mfrow=c(1,2))
+yl = range(death[c("Sweden","United Kingdom"),])
+scatter.smooth(as.numeric(death["Sweden",])~year,span=0.2,ylim=yl,
+      ylab="# of deaths per family", main = "Sweden",lwd=3,
+     xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
+scatter.smooth(as.numeric(death["United Kingdom",])~year,span=0.2,
+      ylab="", main = "United Kingdom",lwd=3,ylim=yl,
+     xlim = c(1760,2012), pch = 19, cex=0.9,col="grey")
+
+## ----barplot2, fig.width=4,fig.height=4----------------------------------
+## Stacked Bar Charts
+cars = read.csv("http://biostat.jhsph.edu/~ajaffe/files/kaggleCarAuction.csv",
                 as.is=TRUE)
+counts <- table(cars$IsBadBuy, cars$VehicleAge)
+barplot(counts, main="Car Distribution by Age and Status",
+  xlab="Vehicle Age", col=c("darkblue","red"),
+    legend = rownames(counts))
 
-## ----isna----------------------------------------------------------------
-Sal[1:4,]
-any(is.na(Sal$Name))
+## ----barplot2a, fig.width=4,fig.height=4---------------------------------
+## Use percentages (column percentages)
+barplot(prop.table(counts, 2), 
+    main="Car Distribution by Age and Status",
+  xlab="Vehicle Age", col=c("darkblue","red"),
+    legend = rownames(counts))
 
-## ----gender, echo=FALSE--------------------------------------------------
-set.seed(4)
-gender <- sample(c("Male", "mAle", "MaLe", "M", "MALE", "Ma", "FeMAle", "F", "Woman", "Man", "Fm", "FEMALE"), 1000, replace =TRUE)
+## ----barplot3, fig.width=4,fig.height=4----------------------------------
+# Stacked Bar Plot with Colors and Legend    
+barplot(counts, main="Car Distribution by Age and Status",
+  xlab="Vehicle Age", col=c("darkblue","red"),
+    legend = rownames(counts), beside=TRUE)
 
-## ----gentab--------------------------------------------------------------
-table(gender)
+## ----boxplots, fig.width=4,fig.height=4----------------------------------
+boxplot(weight ~ Diet, data=ChickWeight, outline=FALSE)
+points(ChickWeight$weight ~ jitter(as.numeric(ChickWeight$Diet),0.5))
 
-## ----RawlMatch-----------------------------------------------------------
-grep("Rawlings",Sal$Name)
+## ----box_ex, eval=FALSE--------------------------------------------------
+## boxplot(weight ~ Diet, data=ChickWeight, outline=FALSE)
 
-## ----grepl---------------------------------------------------------------
-=======
-## ----table2, comment="", prompt=TRUE-------------------------------------
-prop.table(tab)
-prop.table(tab,1)
+## ----geoboxplot, fig.width=4,fig.height=4--------------------------------
+library(ggplot2)
+qplot(factor(Diet), y= weight, data = ChickWeight, geom = "boxplot")
 
-## ----readSal, comment="", prompt=TRUE------------------------------------
-Sal = read.csv("../data/Baltimore_City_Employee_Salaries_FY2014.csv",
-                as.is=TRUE)
+## ----geoboxpoint, fig.width=4,fig.height=4-------------------------------
+qplot(factor(Diet), y= weight, data = ChickWeight, geom = c("boxplot", "point"),
+      position = c('identity', "jitter"))
 
-## ----isna, comment="", prompt=TRUE---------------------------------------
-Sal[1:4,]
-any(is.na(Sal$Name))
+## ----hist, fig.width=4,fig.height=4--------------------------------------
+hist(ChickWeight$weight, breaks=20)
 
-## ----gender, comment="", prompt=TRUE, echo=FALSE-------------------------
-set.seed(4)
-gender <- sample(c("Male", "mAle", "MaLe", "M", "MALE", "Ma", "FeMAle", "F", "Woman", "Man", "Fm", "FEMALE"), 1000, replace =TRUE)
+## ----ghist, fig.width=4,fig.height=4-------------------------------------
+qplot(x= weight, fill = Diet, data = ChickWeight, geom = c("histogram"))
 
-## ----gentab, comment="", prompt=TRUE-------------------------------------
-table(gender)
 
-## ----RawlMatch, comment="", prompt=TRUE----------------------------------
-grep("Rawlings",Sal$Name)
+## ----ghist_alpha, fig.width=4,fig.height=4-------------------------------
+qplot(x= weight, fill = Diet, data = ChickWeight,
+      geom = c("histogram"), alpha=I(.7))
 
-## ----grepl, comment="", prompt=TRUE--------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-grep("Rawlings",Sal$Name)
-grep("Rawlings",Sal$Name,value=TRUE)
-Sal[grep("Rawlings",Sal$Name),]
+## ----gdens, fig.width=4,fig.height=4-------------------------------------
+qplot(x= weight, fill = Diet, data = ChickWeight, 
+      geom = c("density"), alpha=I(.7))
 
-<<<<<<< HEAD
-## ----greppers------------------------------------------------------------
-=======
-## ----greppers, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-head(grep("Tajhgh",Sal$Name, value=TRUE))
-grep("Jaffe",Sal$Name)
-length(grep("Jaffe",Sal$Name))
+## ----gdens_alpha, fig.width=4,fig.height=4-------------------------------
+qplot(x= weight, colour = Diet, data = ChickWeight, geom = c("density"), alpha=I(.7))
 
-<<<<<<< HEAD
-## ----grepstar------------------------------------------------------------
-grep("Payne.*", x=Sal$Name, value=TRUE)
+## ----gdens_line_alpha, fig.width=4,fig.height=4--------------------------
+qplot(x= weight,  colour = Diet, data = ChickWeight, 
+      geom = c("line"), stat="density")
 
-## ----grepstar2-----------------------------------------------------------
-grep("Leonard.?S", x=Sal$Name, value=TRUE)
-grep("Spence.*C.*", x=Sal$Name, value=TRUE)
+## ----spaghetti, fig.width=4,fig.height=4---------------------------------
+qplot(x=Time, y=weight, colour = Chick, 
+      data = ChickWeight, geom = "line")
 
-## ----classSal------------------------------------------------------------
-class(Sal$AnnualSalary)
+## ----fac_spag, fig.width=4,fig.height=4----------------------------------
+qplot(x=Time, y=weight, colour = Chick, 
+      facets = ~ Diet, 
+      data = ChickWeight, geom = "line")
 
-## ----orderstring---------------------------------------------------------
-sort(c("1", "2", "10")) #  not sort correctly (order simply ranks the data)
-order(c("1", "2", "10"))
+## ----fac_spag_noleg, fig.width=4,fig.height=4----------------------------
+qplot(x=Time, y=weight, colour = Chick, 
+      facets = ~ Diet, 
+      data = ChickWeight, geom = "line") +  
+          guides(colour=FALSE)
 
-## ----destringSal---------------------------------------------------------
-head(as.numeric(Sal$AnnualSalary), 4)
+## ----pal, fig.width=4,fig.height=4---------------------------------------
+palette("default")
+plot(1:8, 1:8, type="n")
+text(1:8, 1:8, lab = palette(), col = 1:8)
 
-## ----orderSal------------------------------------------------------------
-=======
-## ----grepstar, comment="", prompt=TRUE-----------------------------------
-grep("Payne.*", x=Sal$Name, value=TRUE)
+## ----pal2, fig.width=4,fig.height=4--------------------------------------
+palette(c("darkred","orange","blue"))
+plot(1:3,1:3,col=1:3,pch =19,cex=2)
 
-## ----grepstar2, comment="", prompt=TRUE----------------------------------
-grep("Leonard.?S", x=Sal$Name, value=TRUE)
-grep("Spence.*C.*", x=Sal$Name, value=TRUE)
+## ----pal3, fig.width=4,fig.height=4--------------------------------------
+palette("default")
+plot(weight ~ Time, data= ChickWeight, 
+     pch = 19, col = Diet)
 
-## ----classSal, comment="", prompt=TRUE-----------------------------------
-class(Sal$AnnualSalary)
+## ----pal4, fig.width=4,fig.height=4--------------------------------------
+library(RColorBrewer)
+palette(brewer.pal(5,"Dark2"))
+plot(weight ~ Time, data=ChickWeight, 
+     pch = 19,  col = Diet)
 
-## ----orderstring, comment="", prompt=TRUE--------------------------------
-sort(c("1", "2", "10")) #  not sort correctly (order simply ranks the data)
-order(c("1", "2", "10"))
+## ----pal5, fig.width=4,fig.height=4--------------------------------------
+library(RColorBrewer)
+palette(brewer.pal(5,"Dark2"))
+plot(weight ~ jitter(Time,amount=0.2),
+     data=ChickWeight,
+     pch = 19,  col = Diet,xlab="Time")
 
-## ----destringSal, comment="", prompt=TRUE--------------------------------
-head(as.numeric(Sal$AnnualSalary), 4)
+## ----leg1, fig.width=4,fig.height=4--------------------------------------
+palette(brewer.pal(5,"Dark2"))
+plot(weight ~ jitter(Time,amount=0.2),
+     data=ChickWeight,
+     pch = 19,  col = Diet,xlab="Time")
+legend("topleft", paste("Diet",
+        levels(ChickWeight$Diet)), 
+    col = 1:length(levels(ChickWeight$Diet)),
+    lwd = 3, ncol = 2)
 
-## ----orderSal, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-Sal$AnnualSalary <- as.numeric(gsub(pattern="$", replacement="", 
-                              Sal$AnnualSalary, fixed=TRUE))
-Sal <- Sal[order(Sal$AnnualSalary,decreasing=TRUE), ] # use negative to sort descending
-Sal[1:5, c("Name", "AnnualSalary", "JobTitle")]
+## ----circ, fig.width=4.5,fig.height=4.5----------------------------------
+load("../data/charmcirc.rda")
+palette(brewer.pal(7,"Dark2"))
+dd = factor(circ$day)
+plot(orangeAverage ~ greenAverage,data=circ, 
+     pch=19, col = as.numeric(dd))
+legend("bottomright", levels(dd), col=1:length(dd), pch = 19)
 
-<<<<<<< HEAD
-## ----Paste---------------------------------------------------------------
-=======
-## ----Paste, comment="", prompt=TRUE--------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-paste("Visit", 1:5, sep="_")
-paste("Visit", 1:5, sep="_", collapse=" ")
-paste("To", "is going be the ", "we go to the store!", sep="day ")
-# and paste0 can be even simpler see ?paste0 
-paste0("Visit",1:5)
+## ----circ2, fig.width=4.5,fig.height=4.5---------------------------------
+dd = factor(circ$day, levels=c("Monday","Tuesday","Wednesday","Thursday",
+                              "Friday","Saturday","Sunday"))
+plot(orangeAverage ~ greenAverage, data=circ,
+     pch=19, col = as.numeric(dd))
+legend("bottomright", levels(dd), col=1:length(dd), pch = 19)
 
-<<<<<<< HEAD
-## ----Paste2--------------------------------------------------------------
-=======
-## ----Paste2, comment="", prompt=TRUE-------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-paste(1:5, letters[1:5], sep="_")
-paste(6:10, 11:15, 2000:2005, sep="/")
-paste(paste("x",1:5,sep=""),collapse="+")
+## ----lattice1, fig.width=4,fig.height=4----------------------------------
+library(lattice)
+xyplot(weight ~ Time | Diet, data = ChickWeight)
 
-<<<<<<< HEAD
-## ----strsplit------------------------------------------------------------
-=======
-## ----strsplit, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-x <- c("I really", "like writing", "R code")
-y <- strsplit(x, split=" ")
-y[[2]]
-sapply(y, "[", 1) # on the fly
-sapply(y, "[", 2) # on the fly
+## ----lattice2, fig.width=4,fig.height=4----------------------------------
+densityplot(~weight | Diet, data = ChickWeight)
 
-<<<<<<< HEAD
-## ----merging-------------------------------------------------------------
-=======
-## ----merging, comment="", prompt=TRUE------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-base <- data.frame(id=1:10, Age= seq(55,60, length=10))
-base[1:2,]
-visits <- data.frame(id=rep(1:8, 3), visit= rep(1:3, 8),
-                    Outcome= seq(10,50, length=24))
-visits[1:2,]
+## ----levelplot1, fig.width=4,fig.height=4--------------------------------
+rownames(circ2) = circ2$date
+mat = as.matrix(circ2[975:nrow(circ2),3:6])
+levelplot(t(mat), aspect = "fill")
 
-<<<<<<< HEAD
-## ----merging2------------------------------------------------------------
-=======
-## ----merging2, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-merged.data <- merge(base, visits, by="id")
-merged.data[1:5,]
-dim(merged.data)
+## ----levelplot2, fig.width=4,fig.height=4--------------------------------
+library(RColorBrewer)
+theSeq = seq(0,max(mat,na.rm=TRUE), by=50)
+my.col = colorRampPalette(brewer.pal(
+  5,"Greens"))(length(theSeq))
+levelplot(t(mat), aspect = "fill",at = theSeq,
+    col.regions = my.col,xlab="Route",ylab="Date")
 
-<<<<<<< HEAD
-## ----mergeall------------------------------------------------------------
-=======
-## ----mergeall, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-all.data <- merge(base, visits, by="id", all=TRUE)
-tail(all.data)
-dim(all.data)
-
-<<<<<<< HEAD
-## ----date----------------------------------------------------------------
-=======
-## ----date, comment="", prompt=TRUE---------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-circ = read.csv("../data/Charm_City_Circulator_Ridership.csv",as.is=TRUE)
-head(sort(circ$date))
-circ$date <- as.Date(circ$date, "%m/%d/%Y") # creating a date for sorting
-head(circ$date)
-head(sort(circ$date))
-
-<<<<<<< HEAD
-## ----longwide, echo=FALSE------------------------------------------------
-wide <- data.frame(id=1, visit1="Good", visit2="Good", visit3 = "Bad")
-long <- data.frame(id=rep(1, 3), visit=c(1, 2, 3), Outcome=c("Good", "Good", "Bad"))
-
-## ----showlong, echo=TRUE-------------------------------------------------
-head(wide)
-head(long)
-
-## ----reshape-------------------------------------------------------------
-head(Indometh) # this is long
-
-## ----reshape2------------------------------------------------------------
-=======
-## ----longwide, comment="", prompt=TRUE, echo=FALSE-----------------------
-wide <- data.frame(id=1, visit1="Good", visit2="Good", visit3 = "Bad")
-long <- data.frame(id=rep(1, 3), visit=c(1, 2, 3), Outcome=c("Good", "Good", "Bad"))
-
-## ----showlong, comment="", prompt=TRUE, echo=TRUE------------------------
-head(wide)
-head(long)
-
-## ----reshape, comment="", prompt=TRUE------------------------------------
-head(Indometh) # this is long
-
-## ----reshape2, comment="", prompt=TRUE-----------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-wide <- reshape(Indometh, v.names = "conc", idvar = "Subject",
-                timevar = "time", direction = "wide")
-head(wide)
-
-<<<<<<< HEAD
-## ----reshape3------------------------------------------------------------
-dim(Indometh)
-wide
-
-## ----rewide--------------------------------------------------------------
-reshape(wide, direction = "long")[1:10,]
-
-## ----xlsx,echo=FALSE, results='hide'-------------------------------------
-library(xlsx,verbose=FALSE)
-
-## ----TB------------------------------------------------------------------
-=======
-## ----reshape3, comment="", prompt=TRUE-----------------------------------
-dim(Indometh)
-wide
-
-## ----rewide, comment="", prompt=TRUE-------------------------------------
-reshape(wide, direction = "long")[1:10,]
-
-## ----xlsx, comment="", prompt=TRUE,echo=FALSE, results='hide'------------
-library(xlsx,verbose=FALSE)
-
-## ----TB, comment="", prompt=TRUE, cache=TRUE-----------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-TB <- read.xlsx(file="../data/indicator_estimatedincidencealltbper100000.xlsx",
-                sheetName="Data")
-head(TB, 1)
-TB$NA. <- NULL
-head(TB, 1)
-
-<<<<<<< HEAD
-## ----TB.hd---------------------------------------------------------------
-=======
-## ----TB.hd, comment="", prompt=TRUE, cache=FALSE-------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-colnames(TB) <- c("Country", paste("Year", 
-                          1990:2007, sep="."))
-head(TB,1)
-
-<<<<<<< HEAD
-## ----TB.long-------------------------------------------------------------
-=======
-## ----TB.long, comment="", prompt=TRUE------------------------------------
->>>>>>> d7ffaa7cd7a8e656f9f841e507370951b00f5028
-TB.long <- reshape(TB, idvar="Country", 
-            v.names="Cases", times=1990:2007, 
-                   direction="long", timevar="Year", 
-                   varying = paste("Year", 1990:2007, sep="."))
-head(TB.long, 4)
-rownames(TB.long) <- NULL
-head(TB.long, 4)
+## ----levelplot3, fig.width=8,fig.height=4--------------------------------
+tmp=death[grep("s$", rownames(death)), 200:251]
+yr = gsub("X","",names(tmp))
+theSeq = seq(0,max(tmp,na.rm=TRUE), by=0.05)
+my.col <- colorRampPalette(brewer.pal(5,"Reds"))(length(theSeq))
+levelplot(t(tmp), aspect = "fill",at = theSeq,col.regions = my.col,
+           scales=list(x=list(label=yr, rot=90, cex=0.7)))
 
