@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2015-06-17" />
+  <meta name="date" content="2015-06-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -91,7 +91,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">June 17, 2015</p>
+            <p style="margin-top: 6px; margin-left: -2px;">June 18, 2015</p>
           </hgroup>
   </slide>
 
@@ -358,9 +358,6 @@ margin.table(tab, 2)</pre>
 <p>So we must change the annual pay into a numeric:</p>
 
 <pre class = 'prettyprint lang-r'>head(as.numeric(Sal$AnnualSalary), 4)</pre>
-
-<pre >## Warning in head(as.numeric(Sal$AnnualSalary), 4): NAs introduced by
-## coercion</pre>
 
 <pre >## [1] NA NA NA NA</pre>
 
@@ -643,9 +640,6 @@ head(wide)</pre>
 <p>Note the row name change</p>
 
 </article></slide><slide class=''><hgroup><h2>Data Reshaping - A Better Example</h2></hgroup><article  id="data-reshaping---a-better-example" class="smaller">
-
-<pre >## Loading required package: rJava
-## Loading required package: xlsxjars</pre>
 
 <pre class = 'prettyprint lang-r'>TB &lt;- read.xlsx(file=&quot;../data/indicator_estimatedincidencealltbper100000.xlsx&quot;,
                 sheetName=&quot;Data&quot;)
