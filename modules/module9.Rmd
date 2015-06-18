@@ -1,8 +1,8 @@
 ---
 title: "Data Cleaning"
-subtitle: Module 9
+subtitle: Module 8
 author: "Andrew Jaffe"
-date: "June 18, 2015"
+date: "June 17, 2015"
 output:
   ioslides_presentation:
     css: styles.css

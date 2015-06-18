@@ -1,24 +1,57 @@
-### Module 9 - lab
+#################
+# Data Cleaning and Plotting
+##############
 # 6/17/2015
-## you will need data from:
-##     https://data.baltimorecity.gov/browse?limitTo=datasets
-## A. Baltimore_City_Employee_Salaries_FY2014
-## B. Monuments
+
+## Download the "Real Property Taxes" Data from my website (via OpenBaltimore):
+## http://www.aejaffe.com/summerR_2015/data/Real_Property_Taxes.zip
+## and unzip it to a .csv file
+
+# 1. Read the Property Tax data into R and call it the variable `tax`
+
+# 2. How many addresses pay property taxes? 
+
+# 3. What is the total city and state tax paid?
+
+# 4. What is the 75th percentile of city and state tax paid by ward?
+
+# 5. Split the data by ward into a list: 
+
+# Using `tapply()` and `table()`
+#	a. how many observations are in each ward?
+
+#	b. what is the mean state tax per ward
+
+#	c. what is the maximum amount still due?
+
+# 6. Make boxplots using base graphics showing cityTax 
+#	 	by whether the property	is a principal residence or not.
+
+# 7. Subset the data to only retain those houses that are principal residences. 
+#	a) How many such houses are there?
+
+#	b) Describe the distribution of property taxes on these residences.
 
 
-# Salaries data:
+################################
+## Read in the Salary FY2014 dataset
 
-# 1. Make an object called health.sal using the salaries data set, 
+# 10. Make an object called health.sal using the salaries data set, 
 #		with only agencies of those with "fire" (or any forms), if any, in the name
 
-# 2. Make a data set called trans which contains only agencies that contain "TRANS".
+# 11. Make a data set called trans which contains only agencies that contain "TRANS".
 
-# 3. What is/are the profession(s) of people who have "abra" in their name for Baltimore's Salaries?
+# 12. What is/are the profession(s) of people who have "abra" in their name for Baltimore's Salaries?
 
-# 4. What is the distribution of annual salaries look like? What is the IQR?
+# 13. What is the distribution of annual salaries look like? What is the IQR?
 
-# 5. Convert HireDate to the `Date` class - plot Annual Salary vs Hire Date
+# 14. Convert HireDate to the `Date` class - plot Annual Salary vs Hire Date
 
-# Monuments data:
+# 15. Plot annual salary versus hire date. 
+#		Hint: first convert to numeric and date respectively
 
-# 6. How many monuments contain the phrase "Monument" in them?
+# 16. Create a smaller dataset that only includes the
+# 	Police Department,  Fire Department and Sheriff's Office.
+#  a. How many employees are in this new dataset?
+
+# 17. Replot annual salary versus hire date, color by Agency using base plotting 
