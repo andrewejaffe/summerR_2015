@@ -42,7 +42,7 @@ Class:
 |---|---|---|---|---|
 | 3  | 2015-06-17  | Homework 3  | [HW](hw/homework3.R) | Homework |
 | 3  | 2015-06-17  | Module 7  | [lecSlides](modules/module7.html), [lecNotes](modules/module7.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module7.R), [lab](labs/module7_lab.R), [key](labs/module7_lab_key.R)  | Summarization |
-| 3  | 2015-06-17  | Module 8  | [lecSlides](modules/module8.html), [lecNotes](modules/module8.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module8.R), [lab](labs/module8_lab.R)  | Visualization |
+| 3  | 2015-06-17  | Module 8  | [lecSlides](modules/module8.html), [lecNotes](modules/module8.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module8.R), [lab](labs/module8_lab.R), [key](labs/module8_lab_key.R)  | Visualization |
 |---|---|---|---|---|
 | 4  | 2015-06-18  | Module 9  | [lecSlides](modules/module9.html), [lecNotes](modules/module9.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module9.R), [lab](labs/module9_lab.R), [key](labs/module9_lab_key.R)  | Data cleaning |
 | 4  | 2015-06-18  | Module 10  | [lecSlides](modules/module10.html), [lecNotes](modules/module10.pdf),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module10.R) | Lists and functions |
