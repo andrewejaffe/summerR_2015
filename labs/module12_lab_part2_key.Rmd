@@ -1,0 +1,73 @@
+---
+title: "Module 12 lab part 2"
+author: "Leonardo Collado-Torres"
+date: "June 19, 2015"
+output: 
+  html_document:
+    theme: spacelab
+---
+
+## Correlation plot
+
+```{r 'correlation plot'}
+## Load the data
+data("mtcars")
+
+## Load the library that has the plotting function
+library('corrplot')
+
+## Calculate the correlations and make the plot
+mcor <- cor(mtcars)
+corrplot(mcor)
+
+## Extract the pair wise correlations.
+mcor.range <- range(mcor[upper.tri(mcor)])
+```
+
+The above plot shows the correlation for the _mtcars_ data set that has `r nrow(mtcars)` rows and `r ncol(mtcars)` variables. The non-diagonal correlations range from `r signif(mcor.range[1], 3)` to `r signif(mcor.range[2], 3)`.
+
+## Math vs reading scores
+
+```{r 'math vs reading', message = FALSE}
+## Load the school data
+library('AER')
+data('CASchools')
+
+## Load the plotting library
+library('ggplot2')
+
+## Give it a shorter name
+cas <- CASchools
+
+## Reproduce figure Q4 from 
+## http://jeromyanglim.blogspot.com/2012/05/example-reproducile-report-using-r.html
+ggplot(cas, aes(read, math)) + geom_point() + geom_smooth() + geom_smooth(method=lm, se = FALSE, col = 'orange')
+
+## Fit a simple linear regression
+fit <- lm(math ~ read, data = cas)
+
+## Extract slope, p-value, and calculate 95% CI
+beta1 <- fit$coefficients['read']
+pvalue <- summary(fit)$coefficients['read', 4]
+ci <- beta1 + c(-1.96, 1.96) * summary(fit)$coefficients['read', 2]
+```
+
+This plot shows the relationship between reading and math scores for K-6 and K-8 districts in California from 1998 and 1999. The blue line shows the smoothed relationship with its spread in grey. This line is quite similar to the linear relationship shown in orange. For 1 unit increase in the read score, the math score increases by `r signif(beta1, 3)` units which is significantly different from zero (95 percent confidence interval (`r signif(ci[1], 3)`, `r signif(ci[2], 3)`), P-value: $`r signif(pvalue, 3)`$).
+
+
+## References
+
+Based on:
+
+* the [two-D knitrBootstrap vignette](http://cran.r-project.org/web/packages/knitrBootstrap/vignettes/two-D.html),
+* and the blog post [Example Reproducible Report using R Markdown](http://jeromyanglim.blogspot.com/2012/05/example-reproducile-report-using-r.html) by Jeromy Anglim.
+
+## Reproducibility
+
+```{r 'reproducibility', echo = FALSE}
+library('devtools')
+session_info()
+```
+
+Date this report was generated: `r Sys.time()`.
+

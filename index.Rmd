@@ -48,7 +48,7 @@ Class:
 | 4  | 2015-06-18  | Module 10  | [lecSlides](modules/module10.html), [lecNotes](modules/module10.pdf),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module10.R) | Lists and functions |
 | 4  | 2015-06-18  | Module 11  | [lecSlides](modules/module11.html), [lecNotes](modules/module11.pdf),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module11.R) | Statistics |
 |---|---|---|---|---|
-| 5  | 2015-06-19  | Module 12  | [lecSlides](modules/module12.html), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module12.R), [lab](labs/module12.R), [illusion R Markdown file](labs/illusion.Rmd), [illusion Word file](labs/illusion.docx)  | Reproducible research  |
+| 5  | 2015-06-19  | Module 12  | [lecSlides](modules/module12.html), [lecNotes](modules/module12.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module12.R), [lab](labs/module12.R), [illusion R Markdown file](labs/illusion.Rmd), [illusion Word file](labs/illusion.docx)  | Reproducible research  |
 
 <!-- Add links to the rest of the material as we go
 
@@ -63,3 +63,5 @@ https://github.com/andrewejaffe/summerR_2015
 ## Render this file:
 rmarkdown::render('index.Rmd')
 ```
+
+This page was last updated on `r Sys.time()`.

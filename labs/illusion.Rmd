@@ -12,10 +12,11 @@ To run this document you will need to install the following packages:
 * [rmarkdown](http://cran.r-project.org/web/packages/rmarkdown/index.html) which allows you to write [R Markdown](http://rmarkdown.rstudio.com/) documents and transform them into HTML documents, HTML presentations or Word Document files. You can also create PDF files with it but need other dependencies.
 * `grid` which is used for making some of the fancy plots below. Comes with your R installation.
 * [plyr](http://cran.r-project.org/web/packages/plyr/index.html) which is used for the code of one of the plots.
+* [devtools](http://cran.r-project.org/web/packages/devtools/index.html) for detailed session information.
 
 ```{r 'install instructions', eval = FALSE}
 ## Run manually if you need to install these packages
-install.packages(c("plyr", "rmarkdown"))
+install.packages(c("plyr", "rmarkdown", "devtools"))
 ```
 
 TODO
@@ -232,7 +233,7 @@ TODO
 
 ## References
 
-Based on the [illusions knitrBootstrap vignette](http://cran.r-project.org/web/packages/knitrBootstrap/vignettes/illusions.html) which itself is based on ´[Kohske Takahashi](https://twitter.com/kohske) code at http://rpubs.com/kohske/R-de-illusion.
+Based on the [illusions knitrBootstrap vignette](http://cran.r-project.org/web/packages/knitrBootstrap/vignettes/illusions.html) which itself is based on [Kohske Takahashi](https://twitter.com/kohske)'s code at http://rpubs.com/kohske/R-de-illusion.
 
 ## Reproducibility
 

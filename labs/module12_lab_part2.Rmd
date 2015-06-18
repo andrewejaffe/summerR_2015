@@ -1,0 +1,117 @@
+---
+title: "Module 12 lab part 2"
+author: "Leonardo Collado-Torres"
+date: "June 19, 2015"
+output: 
+  html_document
+---
+
+## Setup
+
+To run this document you will need to install the following packages:
+
+* [rmarkdown](http://cran.r-project.org/web/packages/rmarkdown/index.html) which allows you to write [R Markdown](http://rmarkdown.rstudio.com/) documents and transform them into HTML documents, HTML presentations or Word Document files. You can also create PDF files with it but need other dependencies.
+* [corrplot](http://cran.r-project.org/web/packages/corrplot/index.html) has the code for creating the correlation plot.
+* [AER](http://cran.r-project.org/web/packages/AER/index.html) has the school data.
+* [ggplot2](http://cran.r-project.org/web/packages/ggplot2/index.html) for the scatterplot we'll make soon.
+* [devtools](http://cran.r-project.org/web/packages/devtools/index.html) for detailed session information.
+
+```{r 'install instructions', eval = FALSE}
+## Run manually if you need to install these packages
+install.packages(c("rmarkdown", "AER", "corrplot", "ggplot2", "devtools"))
+```
+
+TODO
+
+* Install the necessary packages.
+* Delete this section.
+
+## Correlation plot
+
+```{r 'correlation plot'}
+## Load the data
+data("mtcars")
+
+## Load the library that has the plotting function
+library('corrplot')
+
+## Calculate the correlations and make the plot
+# TODO: check http://cran.r-project.org/web/packages/knitrBootstrap/vignettes/two-D.html for code
+
+## TODO: calculate the range of the correlations excluding the ones from the
+## diagonal and save them into a vector called "mcor.range". You might want to use the upper.tri() and range() functions.
+## You will be able to access the "mcor.range" object by inline R code after
+## this chunk. For example, the following would print the smallest correlation:
+## `r min(mcor.range)`
+```
+
+The above plot shows the correlation for the _mtcars_ data set that has TODO rows and TODO variables. The non-diagonal correlations range from TODO (use 3 significant digits) to TODO (use 3 significant digits).
+
+## Math vs reading scores
+
+```{r 'math vs reading', message = FALSE}
+## Load the school data
+library('AER')
+data('CASchools')
+
+## Load the plotting library
+library('ggplot2')
+
+## Give it a shorter name
+cas <- CASchools
+
+## Reproduce figure Q4 from 
+## http://jeromyanglim.blogspot.com/2012/05/example-reproducile-report-using-r.html
+# However, we'll tweak the original figure by adding a linear regression line
+# (with no spread for the regression line) and color it "orange".
+# Check the "Basic scatterplots with regression lines" section from 
+# http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/
+# You'll want the original code and add a second geom_smooth() call that will
+# kind of look like this:
+# ggplot(cas, aes(read, math)) + geom_point() + geom_smooth() + geom_smooth(TO_COMPLETE, col = 'orange')
+
+## Fit a simple linear regression where your outcome Y is the math scores and 
+## your predictor X are the reading scores.
+# You'll want to use the lm() function and save your results into an object.
+# Call this object "fit".
+
+## Extract slope, p-value, and calculate 95% confidence interval
+# Remember that the output from lm() is like a list with different names. Check
+# them using:
+# names(fit)
+
+# For the slope, you will want the coefficient that corresponds to the "read"
+# variable. Save it in an object called "beta1".
+
+# For the p-value, notice that you can extract it from the summary results.
+# That is, look at:
+# summary(fit)
+# names(summary(fit))
+# summary(fit)$coefficients ## ultimate hint :P
+# Then extract the p-value for the "read" coefficient.
+
+# Finally, for the 95% confidence interval, you will want to extract the
+# standard error of the "read" coefficient. Lets call it se. Then use:
+# beta1 + c(-1.96, 1.96) * se
+# and save it into an object called "ci".
+```
+
+This plot shows the relationship between reading and math scores for K-6 and K-8 districts in California from 1998 and 1999. The blue line shows the smoothed relationship with its spread in grey. This line is quite similar to the linear relationship shown in orange. For 1 unit increase in the read score, the math score increases by TODO (use 3 significant digits) units which is significantly different from zero (95 percent confidence interval (TODO (use 3 significant digits), TODO (use 3 significant digits)), P-value: $TODO (use 3 significant digits)$).
+
+
+## References
+
+Based on:
+
+* the [two-D knitrBootstrap vignette](http://cran.r-project.org/web/packages/knitrBootstrap/vignettes/two-D.html),
+* and the blog post [Example Reproducible Report using R Markdown](http://jeromyanglim.blogspot.com/2012/05/example-reproducile-report-using-r.html) by Jeromy Anglim.
+
+## Reproducibility
+
+```{r 'reproducibility'}
+library('devtools')
+session_info()
+```
+
+Date this report was generated: `r Sys.time()`.
+
