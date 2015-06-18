@@ -37,7 +37,6 @@
 #		  - 1 acre = 43560 square feet
 # 		  - Don't spend more than 5-10 minutes on this; stop and move on
 
-
 # 9.a) Plot your numeric lotSize versus cityTax on principal residences. 
 #	b) How many values of lot size were missing?
 
