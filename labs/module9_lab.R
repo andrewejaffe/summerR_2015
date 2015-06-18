@@ -32,6 +32,15 @@
 
 #	b) Describe the distribution of property taxes on these residences.
 
+# 8. Convert the 'lotSize' variable to a numeric square feet variable. 
+#	Tips: - Assume hyphens represent decimal places within measurements. 
+#		  - 1 acre = 43560 square feet
+# 		  - Don't spend more than 5-10 minutes on this; stop and move on
+
+
+# 9.a) Plot your numeric lotSize versus cityTax on principal residences. 
+#	b) How many values of lot size were missing?
+
 
 ################################
 ## Read in the Salary FY2014 dataset
