@@ -8,7 +8,7 @@ output:
     css: styles.css
 ---
 
-```{r loadData, comment="", prompt=TRUE, echo=FALSE, cache=TRUE}
+```{r loadData, comment="", prompt=TRUE, echo=FALSE}
 set.seed(123)
 Sal <- read.csv("../data/Baltimore_City_Employee_Salaries_FY2014.csv",as.is=TRUE)
 mon <- read.csv("../data/Monuments.csv",as.is=TRUE,na.strings="")

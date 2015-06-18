@@ -107,7 +107,7 @@ names(tt)
 You can also use the 'formula' notation.  In this syntax, it is `y ~ x`, where `x` is a factor with 2 levels or a binary variable and `y` is a vector of the same length.  
 
 
-```{r tt2, comment="",prompt=TRUE,cache=TRUE}
+```{r tt2, comment="",prompt=TRUE}
 cars = read.csv("../data/kaggleCarAuction.csv",as.is=TRUE)
 tt2 = t.test(VehBCost~IsBadBuy, data=cars)
 tt2$estimate
