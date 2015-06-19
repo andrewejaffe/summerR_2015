@@ -1,0 +1,133 @@
+---
+title: "Reproducible research"
+subtitle: Module 12
+author: "Leonardo Collado-Torres"
+date: "June 19, 2015"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+```{r echo = FALSE}
+library('devtools')
+```
+
+
+## Reproducible research
+
+> * Have you heard about it?
+> * Maybe you've heard about the [Cousera Reproducible Research](https://www.coursera.org/course/repdata) course
+> * How would you define it?
+> * Is it the same as replicability?
+> * Is it important?
+
+##
+
+    Science moves forward then discoveries are replicated
+    and reproduced
+
+[_Implementing Reproducible Research_](https://osf.io/s9tya/wiki/home/)
+
+## Replication
+
+    Replication, the practice of independently implementing
+    scientific experiments to validate specific findings,
+     is the cornerstone of discovering scientific truth.
+
+[_Implementing Reproducible Research_](https://osf.io/s9tya/wiki/home/)
+
+## Reproducibility
+
+    Reproducibility can be thought of as a different
+    standard of validity from replication because it
+    forgoes independent data collection and uses the
+    methods and data collected by the original investigator.
+
+[_Implementing Reproducible Research_](https://osf.io/s9tya/wiki/home/)
+
+## A bit more practical
+
+    The sharing of analytic data and computer codes
+    uses to map those data into computational results
+    is central to any comprehensive definition of
+    reproducibility.
+    
+[_Implementing Reproducible Research_](https://osf.io/s9tya/wiki/home/)
+
+## Why its important?
+
+    Except for the simplest of analyses, the computer
+    code used to analyze a dataset is the only record
+    that permits others to fully understand what a
+    researcher has done.
+
+[_Implementing Reproducible Research_](https://osf.io/s9tya/wiki/home/)
+
+## Scrapping example
+
+> * Open [Scrapping Ravens data from ESPN](http://rpubs.com/lcollado/4080)
+> * Is this document reproducible?
+> * What information is missing?
+> * How could we improve it?
+> * What about [rMaps Mexico map](http://lcolladotor.github.io/2014/02/26/excited-by-willingness-to-help-get-things-done/#.VYL992RVhHw)?
+
+## R session information {.smaller}
+
+```{r 'sessionInfo'}
+sessionInfo()
+```
+
+## {.smaller}
+
+```{r 'session_info'}
+library('devtools'); session_info()
+```
+
+## Reproducible documents
+
+> * Have you ever had your code in one file, your description of the results in another file?
+> * Ever made copy-paste mistakes?
+> * What if you were asked to change some models or revise the document?
+> * Was it easy to maintain?
+
+##
+
+![Exhausted](https://isomkuade.files.wordpress.com/2012/07/exhausted1.jpg)
+
+> * What would be a reproducible document for you?
+
+## Reproducible docs in R
+
+> * [R Markdown](http://rmarkdown.rstudio.com/) is the easiest
+> * It's based on [Markdown](http://daringfireball.net/projects/markdown/basics): simple human readable syntax that generates HTML docs
+> * Also uses [Pandoc](http://pandoc.org/) to create files in many formats
+> * You maintain a __single__ file! It has the code, figures and description of results. It then creates a file in the format you want to share with others.
+
+## Markdown
+
+![Markdown overview](http://rmarkdown.rstudio.com/images/markdownOverview.png)
+
+
+## Markdown + R code
+
+![Markdown and R](http://rmarkdown.rstudio.com/images/markdownChunk.png)
+
+
+## Examples
+
+> * [R Programming for Data Science](https://leanpub.com/rprogramming) (can buy for $0.00)
+> * [Advanced R](http://adv-r.had.co.nz/), for example [Data structures](http://adv-r.had.co.nz/Data-structures.html)
+> * [Polyester: simulating RNA-seq datasets with differential transcript expression](https://github.com/leekgroup/polyester_code/blob/master/polyester_manuscript.Rmd) paper which creates [this html](http://htmlpreview.github.io/?https://github.com/alyssafrazee/polyester_code/blob/master/polyester_manuscript.html).
+> * [Timing information report](https://github.com/leekgroup/derSoftware/blob/gh-pages/timing/timing.Rmd) which renders into [this html](http://lcolladotor.github.io/derSoftware/timing/timing.html). Note that it has an interactive table.
+
+## 
+
+![Lets code](http://dgdc5.digitalgameslearning.org/dgdc_5th/wp-content/uploads/lc.png)
+
+## Misc
+
+* [R Markdown](http://rmarkdown.rstudio.com/): where to go to learn more
+* [Example R Markdown doc](https://gist.github.com/jeromyanglim/2716336)
+* [An example interactive document](https://cpsievert.shinyapps.io/animintRmarkdown/): beyond the scope of this course, but cool to know it exists. 
+* [Another intro to R Markdown presentation](http://cpsievert.github.io/slides/markdown/#/)
+* [Where do I start using Bioconductor?](http://lcolladotor.github.io/2014/10/16/startBioC/#.VYL_aGRVhHx)

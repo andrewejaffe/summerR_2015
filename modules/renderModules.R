@@ -20,4 +20,4 @@ for(file in files) {
 }
 
 ## Render a specific module
-# renderFile('module9.Rmd')
+renderFile('module12.Rmd')
