@@ -10,10 +10,8 @@
 
 install.packages("rworldmap")
 install.packages("rworldxtra")
-library(rworldmap)
-library(rworldxtra)
-
-setwd("C:/Users/Shaun/SkyDrive/JHSPH/R Class/Mapping Module")
+library("rworldmap")
+library("rworldxtra")
 
 
 # 1. Create an object containing all of the map data need for the world in high resolution.
@@ -61,7 +59,7 @@ plot(asia, col=asia$MAP_COLOR, bg="lightblue")
 
 # 5. Load the Health Care Expenditure data.
 
-world.healthcare <- read.csv("world.healthcare.csv", header=TRUE)
+world.healthcare <- read.csv("../data/world.healthcare.csv", header=TRUE)
 row.names(world.healthcare) <- world.healthcare[,1]
 
 
@@ -102,20 +100,21 @@ asia <- asia[which(!is.na(asia$X2013)),]
 #       A. Create an interval variable that allows you to distiguish outliers. 
 #           (Hint: make sure you have "classInt" package loaded)
 
-library(classInt)
+library('classInt')
 
-brks<-classIntervals(asia$X2013, n=8, style="quantile")
-brks<- brks$brks
+brks <- classIntervals(asia$X2013, n=8, style="quantile")
+brks <- brks$brks
 
 #       B. Create a set of colors for these intervals using the RColorBrewer package
 
-library(RColorBrewer)
+library('RColorBrewer')
 colors <- brewer.pal(8, "RdYlBu")
 
 
 # 10. Plot the map
 #       A. Plot it with colors for health care expenditure.
-plot(asia, col=colors[findInterval(asia$X2013, brks, all.inside=TRUE)], axes=F, bg="lightgray")
+plot(asia, col=colors[findInterval(asia$X2013, brks, all.inside=TRUE)], 
+    axes=FALSE, bg="lightgray")
 
 #       B. Add a title
 title("Health Care Expenditure by Country, Asia 2013")

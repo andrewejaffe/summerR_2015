@@ -7,7 +7,7 @@
 # Part A: Setting up your base map
 # Data available from 'rworldmap' and 'rworldxtra' packages
 # Install these packages to get started
-
+install.pacakges(c("rworldmap", "rworldxtra"))
 
 
 
