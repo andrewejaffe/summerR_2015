@@ -55,6 +55,7 @@ plot(asia, col=asia$MAP_COLOR, bg="lightblue")
 #########################################################
 # PART B: Plotting data on your maps
 # Data available from http://data.worldbank.org/indicator/SP.DYN.CBRT.IN/countries
+# Also at http://www.aejaffe.com/summerR_2015/data/world.healthcare.csv
 
 
 # 5. Load the Health Care Expenditure data.
