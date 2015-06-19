@@ -1,0 +1,245 @@
+---
+title: "Making Maps with R"
+author: "Shaun Truelove"
+date: "Friday, June 19, 2015"
+output: ioslides_presentation
+fontsize: 10pt
+---
+
+## Making Maps with R
+
+- rworldmap
+- ggmaps
+
+## Setup your packages
+
+```{r Install, eval=FALSE}
+library(rworldmap)
+library(rworldxtra)
+library(RColorBrewer)
+library(maptools)
+```
+
+```{r, echo=FALSE}
+# setwd("C:/Users/Shaun/SkyDrive/JHSPH/R Class/Mapping Module")
+library(rworldmap)
+library(rworldxtra)
+library(RColorBrewer)
+library(maptools)
+```
+
+## Load the map data
+
+First we need to load the data. For this we will be using data provided by the package `rworldmap` for our maps. You can do the same thing with your own map files or using packages that use freely available maps, like `Google Maps` or `OpenStreetMap` (https://www.openstreetmap.org).
+
+```{r getMap}
+worldmap <- getMap(resolution = "high")
+dim(worldmap)
+```
+
+## What's in the data object
+```{r worldmapdetails}
+names(worldmap)
+```
+
+## Plot the world
+
+```{r}
+par(mar=c(0,0,0,0))     # Set 0 margins
+plot(worldmap)          # Plot
+```
+
+## Plot a smaller area
+Setting the `xlim`  and `ylim` sets our plotted area to a specific limit of lattitude and longitude coordinates.   
+
+- ylim = Lattitude
+- xlim = Longitude
+
+```{r PlotEurope1, fig.height=3, fig.width=4}
+par(mar=c(0,0,0,0))     # Set 0 margins
+plot(worldmap, xlim = c(-20, 59), ylim = c(35, 71), asp = 1) 
+```
+
+## Plot a Region, Country, or other Area
+We can also select only certain regions or countries if we want.
+
+```{r}
+t(t(table(worldmap$REGION)))
+```
+## More 
+```{r}
+table(worldmap$GEO3)
+```
+
+## Plot Europe
+```{r PlotEurope2, fig.height=3, fig.width=4}
+par(mar=c(0,0,0,0))     # Set 0 margins
+europe <- worldmap[which(worldmap$REGION=="Europe"),]               
+plot(europe, col="lightgreen", bg="lightblue")
+```
+    
+This looks a little weird because of Russia and the inclusion of the island territories.
+
+## Europe excluding Russia and Territories
+```{r PlotEurope3, fig.height=3, fig.width=4}
+par(mar=c(0,0,0,0))  
+europe <- worldmap[which(grepl("Europe", worldmap$GEO3) & 
+                             as.character(worldmap$NAME) != "Russia"),]               
+plot(europe, col="lightgreen", bg="lightblue")
+```
+
+## Zoom to an area
+```{r PlotEurope4, fig.height=3, fig.width=4}
+par(mar=c(0,0,0,0)) 
+plot(europe, col="lightgreen", bg="lightblue", 
+     xlim = c(-25, 50), ylim = c(35, 71), asp = 1)
+```
+
+
+Mapping Data
+===========================================
+
+## Adding Population data
+First we need to load our population data:
+```{r AddPop}
+# setwd("C:/Users/Shaun/SkyDrive/JHSPH/R Class/Mapping Module")
+world.pop <- read.csv("../data/world.population.csv",
+                  header=TRUE)
+row.names(world.pop) <- world.pop[,1]
+```
+
+## Check Matching
+Check which countries we do not have population data for:
+```{r}
+country.codes <- as.character(worldmap$ADM0_A3)
+worldmap$ADMIN[which(!(country.codes %in%
+    world.pop$CountryCode))]
+```
+
+## Check Matching
+Look for one that didn't match
+```{r}
+grep("west bank", world.pop$CountryName, ignore.case=TRUE, value=TRUE)
+```
+
+## Check Matching
+Check what from the population data is not in the map data
+```{r}
+as.character(world.pop$CountryName)[
+  which(!(world.pop$CountryCode %in% country.codes))]
+```
+  
+Looks like all of the unmatched are aggregates, with a couple exceptions.
+
+## Add the population data to the map data
+```{r AddPop4}
+Pop2013 <- world.pop[,c("CountryCode", "X2013")]
+colnames(Pop2013)
+colnames(Pop2013)[2] <- "Pop2013"
+
+worldmap$ADM0_A3 <- as.character(worldmap$ADM0_A3)
+worldmap <- merge(worldmap, Pop2013, 
+  by.x="ADM0_A3", by.y="CountryCode", all.x=TRUE)
+```
+
+
+## Other options for adding data to map data
+
+```{r OtherOptAdd, eval=FALSE}
+joinCountryData2Map()
+```
+  
+Part of the `rworldmap` package
+  
+Joins user data referenced by country codes or names to an internal map, ready for plotting using mapCountryData. Reports join successes and failures.
+
+
+## Setting up to Plot
+To plot population, we will give the country a color based on the population. To do this, we need to create population categories/intervals.
+
+*Option 1.*
+```{r SettingUpPopPlot, warnings=TRUE}
+quantile(worldmap$Pop2013, na.rm=TRUE)
+library(classInt)
+brks<-classIntervals(worldmap$Pop2013[
+    which(!is.na(worldmap$Pop2013))],
+       n=10, style="quantile")
+brks<- brks$brks
+colors <- brewer.pal(length(brks), "RdYlBu")
+```
+
+## Option 2.
+```{r SettingUpPopPlot2}
+pop_cuts <- c(100000, 500000, 1000000, 5000000, 25000000, 
+              100000000, 500000000, 1000000000, 1500000000)
+colors2 <- brewer.pal(length(pop_cuts)+1, "RdYlBu")
+```
+
+## Plot the world map
+```{r}
+#plot the map
+plot(worldmap, 
+     col=colors[findInterval(worldmap$Pop2013, 
+          brks, all.inside=TRUE)], 
+     axes=FALSE, bg="lightgray")
+```
+
+This does not let us distinguish very well. We know the U.S. has a population of ~330 million, yet it is the same color as India and China, each with over 1 billion. We can define our population cuts better for this.
+
+## Plot World Population - 2
+```{r}
+plot(worldmap, 
+     col=colors2[findInterval(worldmap$Pop2013, 
+      pop_cuts, all.inside=TRUE)], axes=FALSE, bg="lightgray")
+title("Population by Country, World 2013") #add a title
+legend("bottomleft", legend=leglabs(round(pop_cuts)), #add a legend
+       fill=colors2, bty="n", cex=.6)
+```
+
+
+```{r, eval=FALSE}
+
+################################################################################################
+# Birth Rates
+
+birthrates <- read.csv("../data/birthrates.csv", header=TRUE)
+row.names(birthrates) <- birthrates[,1]
+
+europe.birth <- birthrates[as.character(birthrates$CountryCode) %in% country.codes,]
+europe.birth$CountryCode <- as.character(europe.birth$CountryCode)
+
+country.codes[which(!(country.codes %in% europe.birth$CountryCode))]
+europe$ADMIN[which(!(country.codes %in% europe.birth$CountryCode))]
+grep("taiwan", birthrates$CountryName, ignore.case=TRUE)
+
+births.2013 <- europe.birth[,c("CountryCode", "X2013")]
+colnames(births.2013)[2] <- "BirthRate2013"
+
+europe <- merge(europe, births.2013, by.x="ADM0_A3", by.y="CountryCode", all.x=TRUE)
+
+quantile(europe$BirthRate2013, na.rm=TRUE)
+
+
+
+brks<-classIntervals(europe$BirthRate2013, n=10, style="quantile")
+brks<- brks$brks
+
+pop_cuts <- c(100000, 500000, 1000000, 5000000, 25000000, 100000000, 500000000, 1000000000, 1500000000)
+
+colors <- brewer.pal(11, "RdYlBu")
+
+#plot the map
+plot(europe, col=colors[findInterval(europe$BirthRate2013, 
+      brks, all.inside=TRUE)], axes=FALSE, bg="lightgray")
+
+#add a title
+title("Birth Rate by Country, europe 2013")
+
+#add a legend
+legend("bottomleft", legend=leglabs(round(brks)),
+       fill=colors, bty="n", cex=.6)
+
+```
+
+
+
