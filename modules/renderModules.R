@@ -21,3 +21,5 @@ for(file in files) {
 
 ## Render a specific module
 renderFile('module12.Rmd')
+
+renderFile('mapping_module.Rmd')
