@@ -1,15 +1,21 @@
 ## ----Install, eval=FALSE-------------------------------------------------
-## library(rworldmap)
-## library(rworldxtra)
-## library(RColorBrewer)
-## library(maptools)
+## ## If necessary
+## install.packages(c("rworldmap", "rworldxtra", "RColorBrewer",
+##     "maptools", "classInt"))
+## 
+## ## Load packages
+## library('rworldmap')
+## library('rworldxtra')
+## library('RColorBrewer')
+## library('maptools')
+## library('classInt')
 
-## ---- echo=FALSE---------------------------------------------------------
+## ----loadLibs, echo=FALSE, message = FALSE-------------------------------
 # setwd("C:/Users/Shaun/SkyDrive/JHSPH/R Class/Mapping Module")
-library(rworldmap)
-library(rworldxtra)
-library(RColorBrewer)
-library(maptools)
+library('rworldmap')
+library('rworldxtra')
+library('RColorBrewer')
+library('maptools')
 
 ## ----getMap--------------------------------------------------------------
 worldmap <- getMap(resolution = "high")
@@ -18,18 +24,18 @@ dim(worldmap)
 ## ----worldmapdetails-----------------------------------------------------
 names(worldmap)
 
-## ------------------------------------------------------------------------
+## ----worldPlot-----------------------------------------------------------
 par(mar=c(0,0,0,0))     # Set 0 margins
 plot(worldmap)          # Plot
 
-## ----PlotEurope1, fig.height=3, fig.width=4------------------------------
+## ----PlotEurope1---------------------------------------------------------
 par(mar=c(0,0,0,0))     # Set 0 margins
 plot(worldmap, xlim = c(-20, 59), ylim = c(35, 71), asp = 1) 
 
-## ------------------------------------------------------------------------
+## ----tableWorldReg-------------------------------------------------------
 t(t(table(worldmap$REGION)))
 
-## ------------------------------------------------------------------------
+## ----tableWroldGEO3------------------------------------------------------
 table(worldmap$GEO3)
 
 ## ----PlotEurope2, fig.height=3, fig.width=4------------------------------
@@ -49,20 +55,19 @@ plot(europe, col="lightgreen", bg="lightblue",
      xlim = c(-25, 50), ylim = c(35, 71), asp = 1)
 
 ## ----AddPop--------------------------------------------------------------
-# setwd("C:/Users/Shaun/SkyDrive/JHSPH/R Class/Mapping Module")
 world.pop <- read.csv("../data/world.population.csv",
                   header=TRUE)
 row.names(world.pop) <- world.pop[,1]
 
-## ------------------------------------------------------------------------
+## ----checkMatching-------------------------------------------------------
 country.codes <- as.character(worldmap$ADM0_A3)
 worldmap$ADMIN[which(!(country.codes %in%
     world.pop$CountryCode))]
 
-## ------------------------------------------------------------------------
+## ----checkWestBank-------------------------------------------------------
 grep("west bank", world.pop$CountryName, ignore.case=TRUE, value=TRUE)
 
-## ------------------------------------------------------------------------
+## ----checkPopData--------------------------------------------------------
 as.character(world.pop$CountryName)[
   which(!(world.pop$CountryCode %in% country.codes))]
 
@@ -81,33 +86,29 @@ worldmap <- merge(worldmap, Pop2013,
 ## ----SettingUpPopPlot, warnings=TRUE-------------------------------------
 quantile(worldmap$Pop2013, na.rm=TRUE)
 library(classInt)
-brks<-classIntervals(worldmap$Pop2013[
+brks <- classIntervals(worldmap$Pop2013[
     which(!is.na(worldmap$Pop2013))],
        n=10, style="quantile")
-brks<- brks$brks
+brks <- brks$brks
 colors <- brewer.pal(length(brks), "RdYlBu")
 
 ## ----SettingUpPopPlot2---------------------------------------------------
 pop_cuts <- c(100000, 500000, 1000000, 5000000, 25000000, 
               100000000, 500000000, 1000000000, 1500000000)
-colors2 <- brewer.pal(length(pop_cuts)+1, "RdYlBu")
+colors2 <- brewer.pal(length(pop_cuts) + 1, "RdYlBu")
 
-## ------------------------------------------------------------------------
-#plot the map
-plot(worldmap, 
-     col=colors[findInterval(worldmap$Pop2013, 
-          brks, all.inside=TRUE)], 
-     axes=FALSE, bg="lightgray")
+## ----plotWorldMap--------------------------------------------------------
+plot(worldmap, col=colors[findInterval(worldmap$Pop2013, 
+      brks, all.inside=TRUE)], axes=FALSE, bg="lightgray")
 
-## ------------------------------------------------------------------------
-plot(worldmap, 
-     col=colors2[findInterval(worldmap$Pop2013, 
+## ----plotWorldMap2-------------------------------------------------------
+plot(worldmap, col=colors2[findInterval(worldmap$Pop2013, 
       pop_cuts, all.inside=TRUE)], axes=FALSE, bg="lightgray")
 title("Population by Country, World 2013") #add a title
 legend("bottomleft", legend=leglabs(round(pop_cuts)), #add a legend
        fill=colors2, bty="n", cex=.6)
 
-## ---- eval=FALSE---------------------------------------------------------
+## ----extraCode, eval=FALSE, echo = FALSE---------------------------------
 ## 
 ## ################################################################################################
 ## # Birth Rates
@@ -131,8 +132,8 @@ legend("bottomleft", legend=leglabs(round(pop_cuts)), #add a legend
 ## 
 ## 
 ## 
-## brks<-classIntervals(europe$BirthRate2013, n=10, style="quantile")
-## brks<- brks$brks
+## brks <- classIntervals(europe$BirthRate2013, n=10, style="quantile")
+## brks <- brks$brks
 ## 
 ## pop_cuts <- c(100000, 500000, 1000000, 5000000, 25000000, 100000000, 500000000, 1000000000, 1500000000)
 ## 
