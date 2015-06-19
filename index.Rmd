@@ -22,9 +22,15 @@ Class:
 
 * 8:30am - 12:00pm in room W4013
 
+Course Info:
+
+* Course number: 140.886.11
+* Course name: Introduction to R for Public Health Researchers
+
 # Important links
 
 * [Syllabus](http://www.aejaffe.com/summerR_2015/docs/Syllabus-summerR-student.doc)
+* [Course survey](http://jhsph.co1.qualtrics.com/SE/?SID=SV_726A1IBrXffLDEN)
 
 # Schedule
 
