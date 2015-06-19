@@ -50,13 +50,12 @@ Class:
 |---|---|---|---|---|
 | 5  | 2015-06-19  | Module 12 lecture | [lecSlides](modules/module12.html), [lecNotes](modules/module12.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/module12.R)  | Reproducible research  |
 | 5  | 2015-06-19  | Module 12 lab | [lab](labs/module12_lab.R), [illusion R Markdown](labs/illusion.Rmd), [illusion Word](labs/illusion.docx), [part 2 Rmd](labs/module12_lab_part2.Rmd), [part 2 html](labs/module12_lab_part2.html)  | Reproducible research (practical) |
-| 5  | 2015-06-19  | Module 13  | [lecSlides](modules/mapping_module.html),  [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/mapping_module.R), [lab](labs/mapping_module_lab.R) | Mapping Tools  |
+| 5  | 2015-06-19  | Module 13  | [lecSlides](modules/mapping_module.html), [lecNotes](modules/mapping_module.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/mapping_module.R), [lab](labs/mapping_module_lab.R) | Mapping Tools  |
 
 <!-- Add links to the rest of the material as we go
 
-| 5  | 2015-06-19  | Module X  | [lecSlides](modules/moduleX.html), [code](), [lab](), [key]()  |   |
-
 | 5  | 2015-06-19  | Module 12 lab | [lab](labs/module12_lab.R), [illusion R Markdown](labs/illusion.Rmd), [illusion Word](labs/illusion.docx), [part 2 Rmd](labs/module12_lab_part2.Rmd), [part 2 html](labs/module12_lab_part2.html), [key](labs/module12_lab_key.R) | Reproducible research (practical) |
+| 5  | 2015-06-19  | Module 13  | [lecSlides](modules/mapping_module.html), [lecNotes](modules/mapping_module.pdf), [code](https://github.com/andrewejaffe/summerR_2015/blob/gh-pages/modules/mapping_module.R), [lab](labs/mapping_module_lab.R), [key](labs/mapping_module_labkey.R) | Mapping Tools  |
 -->
 
 Feel free to submit typos/errors/etc via the github repository associated with the class: 
